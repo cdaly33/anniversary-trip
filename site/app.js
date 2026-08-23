@@ -84,7 +84,7 @@
       pace: "Three bases create the highest relocation load among the European routes shown. Keep both transfer evenings protected and retain the outlined recovery, seated, and lower-walking choices.",
       route: "Lake Como (4 nights) → Venice (3) → Rovinj (4)", centerpiece: "Lake anniversary day + Adriatic finale",
       stops: [
-        { id: "como", name: "Lake Como", lat: 45.987, lng: -9.2572, role: "base" },
+        { id: "como", name: "Lake Como", lat: 45.987, lng: 9.2572, role: "base" },
         { id: "venice", name: "Venice", lat: 45.4408, lng: 12.3155, role: "base" },
         { id: "rovinj", name: "Rovinj", lat: 45.0812, lng: 13.6387, role: "base" },
         { id: "istria", name: "Istrian interior", lat: 45.25, lng: 13.82, role: "excursion" }
@@ -153,13 +153,13 @@
       why: "No other proposal combines an imperial city on two continents with Cappadocia's rock-cut landscape so efficiently. Its Bosphorus evening and sunrise moments come from place rather than luxury.",
       question: "Does the operational burden—safety, entry, aviation, urban intensity, and balloon or weather dependence—remain acceptable?",
       repair: "Actively monitor official conditions and flight reliability, and ensure Cappadocia still works if balloon operations do not.",
-      pace: "Two bases but one domestic flight and an intense city stay. Before choosing underground-city or valley activities, ask providers about walking distance, stairs, terrain, and lower-effort alternatives.",
+      pace: "Two bases but one domestic flight and an intense city stay. Before choosing Derinkuyu or valley activities, ask providers about walking distance, stairs, terrain, and lower-effort alternatives.",
       repairLabel: "What still needs testing", route: "Istanbul (6 nights) ⇢ domestic flight ⇢ Cappadocia (4)", centerpiece: "Bosphorus evening + Cappadocia sunrise",
       stops: [
         { id: "istanbul", name: "Istanbul", lat: 41.0082, lng: 28.9784, role: "base" },
         { id: "bosphorus", name: "Bosphorus", lat: 41.104, lng: 29.055, role: "excursion" },
         { id: "cappadocia", name: "Cappadocia", lat: 38.6431, lng: 34.8289, role: "base" },
-        { id: "underground", name: "Underground city", lat: 38.3735, lng: 34.7348, role: "excursion" },
+        { id: "underground", name: "Derinkuyu Underground City", lat: 38.3735, lng: 34.7348, role: "excursion" },
         { id: "valleys", name: "Cappadocia valleys", lat: 38.655, lng: 34.84, role: "excursion" }
       ],
       segments: [
@@ -174,7 +174,7 @@
         ["Bosphorus + food neighborhoods", "Pair a water perspective with regional food and neighborhood time.", "bosphorus"],
         ["Fly to Cappadocia", "One domestic flight connects the two bases.", "cappadocia"],
         ["Rock-cut heritage", "Churches, carved landscapes, and regional history.", "cappadocia"],
-        ["Underground city + valleys", "Balance underground heritage with the open landscape.", ["underground", "valleys"]],
+        ["Derinkuyu option + valleys", "If selected, balance Derinkuyu's underground heritage with the open landscape; no timed visit is assumed.", ["underground", "valleys"]],
         ["Two sunrise chances", "Allow two opportunities without making balloon operation essential.", "valleys"]
       ]
     },
@@ -245,6 +245,11 @@
       ]
     }
   ];
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = trips;
+    return;
+  }
 
   const els = Object.fromEntries([
     "concept-list","sort-concepts","mobile-concept-trigger","mobile-current-concept","review-progress","map-heading",
