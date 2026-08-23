@@ -10,6 +10,14 @@
 
 **Why:** These constraints reflect Rachel and Chris's established travel style and keep comparisons consistent across Northern Italy + Croatia, New Zealand + Australia, and Portugal.
 
+### 2026-08-23T12:45:11.098-05:00: 2027 travel-window flexibility
+
+**By:** @cdaly33
+
+**What:** Candidate itineraries may use any travel dates after March 2027 through December 31, 2027. Council drafts should remain concise while following the consolidated planning guardrails.
+
+**Why:** The wider window lets each concept use its strongest season rather than anchoring every option to the May 17 anniversary date.
+
 ## Governance
 
 - Trip Lead records accepted scope and planning decisions here.

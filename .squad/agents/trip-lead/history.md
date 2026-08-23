@@ -16,3 +16,5 @@
 ## Learnings
 
 Initial charter and planning guardrails established.
+
+📌 Team update (2026-08-23T12:45:11.098-05:00): The completed council retained Northern Italy + Croatia and Portugal with revisions, while New Zealand + Australia remains structurally rejected; the final synthesis and verification are in `docs\2027-trip-council\07-council-final-report.md` and `08-final-verification.md` — decided by Trip Council and Fact Checker

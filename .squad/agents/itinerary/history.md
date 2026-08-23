@@ -15,3 +15,5 @@
 ## Learnings
 
 Initial itinerary design constraints established.
+
+📌 Team update (2026-08-23T12:45:11.098-05:00): Council itinerary work produced concise outlines for the three original concepts and a balance review with 3 decisions and 12 actions; New Zealand + Australia remains structurally rejected despite its repaired outline — decided by Trip Council and Fact Checker

@@ -14,3 +14,5 @@
 ## Learnings
 
 Initial travel verification context established.
+
+📌 Team update (2026-08-23T12:45:11.098-05:00): Final verification approved the council report as a faithful synthesis; Northern Italy + Croatia and Portugal survive with revisions, while New Zealand + Australia remains structurally rejected — decided by Fact Checker
