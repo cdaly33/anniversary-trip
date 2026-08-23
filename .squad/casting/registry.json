@@ -1,0 +1,67 @@
+{
+  "agents": {
+    "trip-lead": {
+      "persistent_name": "Trip Lead",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "destination-guide": {
+      "persistent_name": "Destination Guide",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "itinerary": {
+      "persistent_name": "Itinerary",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "logistics": {
+      "persistent_name": "Logistics",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "value": {
+      "persistent_name": "Value",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "scribe": {
+      "persistent_name": "Scribe",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "ralph": {
+      "persistent_name": "Ralph",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "rai": {
+      "persistent_name": "Rai",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "fact-checker": {
+      "persistent_name": "Fact Checker",
+      "universe": "descriptive",
+      "created_at": "2026-08-23T12:33:15.248-05:00",
+      "legacy_named": false,
+      "status": "active"
+    }
+  }
+}

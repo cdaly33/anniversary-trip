@@ -1,0 +1,26 @@
+{
+  "universe_usage_history": [
+    {
+      "universe": "descriptive",
+      "assignment_id": "anniversary-trip-init-2026-08-23",
+      "used_at": "2026-08-23T12:33:15.248-05:00"
+    }
+  ],
+  "assignment_cast_snapshots": {
+    "anniversary-trip-init-2026-08-23": {
+      "universe": "descriptive",
+      "agents": {
+        "trip-lead": "Trip Lead",
+        "destination-guide": "Destination Guide",
+        "itinerary": "Itinerary",
+        "logistics": "Logistics",
+        "value": "Value",
+        "scribe": "Scribe",
+        "ralph": "Ralph",
+        "rai": "Rai",
+        "fact-checker": "Fact Checker"
+      },
+      "created_at": "2026-08-23T12:33:15.248-05:00"
+    }
+  }
+}
