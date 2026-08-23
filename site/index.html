@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123044">
+  <meta name="description" content="Compare seven possible routes for Rachel and Chris's 30th anniversary trip.">
+  <title>Seven routes · One 30th anniversary</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="assets/leaflet/leaflet.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#trip-review">Skip to trip review</a>
+
+  <header class="masthead">
+    <div class="anniversary-mark" aria-label="30th anniversary">30 <span>years</span></div>
+    <div>
+      <p class="eyebrow">Rachel + Chris · 2027 route table</p>
+      <h1>Seven routes.<br><em>One</em> 30th anniversary.</h1>
+      <p class="thesis">Trace each trip, test the tradeoffs, and mark what feels right.</p>
+    </div>
+    <div class="header-actions">
+      <p id="review-progress">0 of 7 reviewed</p>
+      <button class="text-button" id="open-summary" type="button">Review summary</button>
+    </div>
+  </header>
+
+  <aside class="provisional" aria-label="Planning caveat">
+    <strong>2027 details are provisional.</strong>
+    Schedules, prices, availability, operating dates, entry rules, and weather expectations still need verification.
+  </aside>
+
+  <noscript>
+    <section class="no-script">
+      <h2>Route review without JavaScript</h2>
+      <p>The interactive map and private review controls need JavaScript, but the council record remains available:</p>
+      <ul>
+        <li><strong>Portugal:</strong> current leading fit, conditional; 11 days, Lisbon and Porto.</li>
+        <li><strong>Spain:</strong> strongest challenger and council alternative; 11 days, Madrid and Seville.</li>
+        <li><strong>Northern Italy + Croatia:</strong> current shortlist, conditional; 12 days, Lake Como, Venice, and Rovinj.</li>
+        <li><strong>New Zealand + Australia:</strong> current shortlist concept rejected as a recommendation; 14 days.</li>
+        <li><strong>Türkiye:</strong> council alternative; 11 days, Istanbul and Cappadocia.</li>
+        <li><strong>Austria + Slovenia:</strong> council alternative; 12 days, Ljubljana and Vienna.</li>
+        <li><strong>Sicily + Malta:</strong> council alternative; 12 days, Ortigia/Syracuse and Valletta.</li>
+      </ul>
+      <p>The complete daily outlines and tradeoffs return when JavaScript is enabled.</p>
+    </section>
+  </noscript>
+
+  <main id="trip-review" class="route-table">
+    <section class="concept-region" aria-labelledby="concepts-heading">
+      <div class="region-heading">
+        <div>
+          <p class="eyebrow">Council view</p>
+          <h2 id="concepts-heading">Choose a route</h2>
+        </div>
+        <label class="sort-control">Sort
+          <select id="sort-concepts">
+            <option value="council">Council view</option>
+            <option value="alpha">Alphabetical</option>
+            <option value="bases">Fewest bases</option>
+            <option value="days">Shortest trip</option>
+          </select>
+        </label>
+      </div>
+      <button class="mobile-concept-trigger" id="mobile-concept-trigger" type="button" aria-expanded="false" aria-controls="concept-list">
+        <span id="mobile-current-concept">Portugal</span><span aria-hidden="true">⌄</span>
+      </button>
+      <div id="concept-list" class="concept-list" aria-label="Trip concepts"></div>
+    </section>
+
+    <section class="map-region" aria-labelledby="map-heading">
+      <div class="map-heading">
+        <div>
+          <p class="eyebrow">Route rehearsal</p>
+          <h2 id="map-heading">Portugal route</h2>
+        </div>
+        <div class="map-actions">
+          <button id="enable-map" class="small-button" type="button">Enable map interaction</button>
+          <button id="fit-route" class="small-button" type="button">Fit full route</button>
+        </div>
+      </div>
+      <div class="map-shell">
+        <div id="map" aria-label="Interactive route map"></div>
+        <div id="map-fallback" class="map-fallback" hidden>
+          <p><strong>Map detail is unavailable.</strong> The route sequence and trip notes still work.</p>
+          <p id="fallback-route"></p>
+          <button id="retry-map" class="small-button" type="button">Retry map</button>
+        </div>
+        <div class="map-legend" aria-label="Map legend">
+          <span><i class="marker-key base-key"></i>Overnight base</span>
+          <span><i class="marker-key excursion-key"></i>Excursion</span>
+          <span><i class="marker-key alternative-key"></i>Choose one</span>
+          <span><i class="line rail-line"></i>Rail</span>
+          <span><i class="line road-line"></i>Road</span>
+          <span><i class="line ferry-line"></i>Ferry</span>
+          <span><i class="line flight-line"></i>Flight</span>
+          <span><i class="line uncertain-line"></i>Unverified transfer</span>
+          <span><i class="line excursion-line"></i>Return excursion</span>
+          <span><i class="color-key compare-key"></i>Compared route</span>
+        </div>
+      </div>
+      <p id="route-description" class="route-description"></p>
+      <p class="map-disclosure">Map detail loads from <a href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer">OpenStreetMap</a> when this page opens. Its tile service may receive normal network metadata such as your IP address and site origin. <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noreferrer">OSM privacy policy</a>.</p>
+      <div id="compare-strip" class="compare-strip" hidden></div>
+      <nav class="itinerary-rail" aria-label="Route rehearsal itinerary">
+        <div id="rail-beats" class="rail-beats"></div>
+      </nav>
+    </section>
+
+    <article class="evidence-region" aria-labelledby="concept-title">
+      <header class="concept-header">
+        <div>
+          <p id="concept-kicker" class="status-label"></p>
+          <h2 id="concept-title">Portugal</h2>
+          <p id="route-shape" class="route-shape"></p>
+        </div>
+        <button id="pin-comparison" class="pin-button" type="button">Pin for comparison</button>
+      </header>
+
+      <dl id="route-facts" class="route-facts"></dl>
+
+      <section class="reading-section">
+        <h3>Why it could fit</h3>
+        <p id="why-fit"></p>
+      </section>
+
+      <section class="itinerary-section" aria-labelledby="itinerary-heading">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow" id="plan-kind">Daily plan</p>
+            <h3 id="itinerary-heading">Rehearse the route</h3>
+          </div>
+          <button id="toggle-plan" class="text-button" type="button" aria-expanded="false">Show full plan</button>
+        </div>
+        <div class="beat-current">
+          <button id="previous-beat" class="beat-nav" type="button" aria-label="Previous itinerary beat">←</button>
+          <div>
+            <p id="beat-position" class="beat-position"></p>
+            <h4 id="beat-title"></h4>
+            <p id="beat-detail"></p>
+          </div>
+          <button id="next-beat" class="beat-nav" type="button" aria-label="Next itinerary beat">→</button>
+        </div>
+        <ol id="itinerary-list" class="itinerary-list"></ol>
+      </section>
+
+      <section class="question-block">
+        <div>
+          <p class="eyebrow">The hardest question</p>
+          <p id="hard-question"></p>
+        </div>
+        <div>
+          <p class="eyebrow" id="repair-label">What would make it work</p>
+          <p id="repair"></p>
+        </div>
+      </section>
+
+      <section class="travel-checks" aria-labelledby="travel-checks-heading">
+        <h3 id="travel-checks-heading">Pace &amp; responsible-travel check</h3>
+        <p id="pace-cue"></p>
+        <p>Before choosing, check current local guidance and customs, pressure-sensitive sites or seasons, locally owned options, and rail instead of flying where practical.</p>
+      </section>
+
+      <section class="review-controls" aria-labelledby="your-take-heading">
+        <p class="eyebrow">Your judgment stays separate from the council's</p>
+        <h3 id="your-take-heading">Your take</h3>
+
+        <button id="favorite-toggle" class="favorite-toggle" type="button" aria-pressed="false">
+          <span aria-hidden="true">♡</span> Shortlist this trip
+        </button>
+
+        <fieldset>
+          <legend>Gut reaction</legend>
+          <div id="reaction-options" class="choice-row"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>How settled does that feel?</legend>
+          <div id="confidence-options" class="choice-row"></div>
+        </fieldset>
+
+        <label for="trip-notes">Notes for Chris</label>
+        <textarea id="trip-notes" rows="4" maxlength="2000" placeholder="What stands out, worries you, or needs checking?"></textarea>
+
+        <label class="check-control">
+          <input id="needs-answer" type="checkbox">
+          <span>Needs an answer before deciding</span>
+        </label>
+        <p class="storage-disclosure">Notes stay in this browser profile and are not sent to this site. Shared-profile users may see them, and clearing site data may erase them. Copied or downloaded notes leave browser storage.</p>
+        <p id="save-status" class="save-status"></p>
+      </section>
+    </article>
+
+  </main>
+
+  <footer>
+    <p>This is a comparison aid, not a booking recommendation. No trip is booked.</p>
+    <button class="text-button" id="footer-summary" type="button">Open review summary</button>
+  </footer>
+
+  <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog id="summary-dialog" class="summary-dialog" aria-labelledby="summary-heading">
+    <form method="dialog" class="dialog-top">
+      <div>
+        <p class="eyebrow">Stored in this browser profile</p>
+        <h2 id="summary-heading">Rachel's review tray</h2>
+      </div>
+      <button class="close-button" value="close" aria-label="Close review summary">×</button>
+    </form>
+    <div id="summary-content" class="summary-content"></div>
+    <p class="storage-disclosure">This review is not sent to the site. Shared-profile users may see it, and clearing site data may erase it. Copying or downloading creates data outside browser storage.</p>
+    <div class="dialog-actions">
+      <button id="copy-summary" type="button">Copy review</button>
+      <button id="download-summary" type="button">Download review</button>
+      <button id="clear-review" class="danger-button" type="button">Clear saved review</button>
+    </div>
+    <p id="summary-feedback" class="save-status" aria-live="polite"></p>
+  </dialog>
+
+  <dialog id="clear-dialog" class="confirm-dialog" aria-labelledby="clear-heading">
+    <h2 id="clear-heading">Clear Rachel's saved review?</h2>
+    <p>This removes all shortlist choices, reactions, confidence, and notes from this browser.</p>
+    <div class="dialog-actions">
+      <button id="cancel-clear" type="button">Keep review</button>
+      <button id="confirm-clear" class="danger-button" type="button">Clear review</button>
+    </div>
+  </dialog>
+</body>
+</html>
