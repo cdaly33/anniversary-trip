@@ -34,6 +34,43 @@
 
 **Why:** The four retained concepts need comparable, trustworthy depth without false precision, licensing risk, or a misleading change to the council's existing conclusion.
 
+### 2026-08-24T17:04:52.553-05:00: Design revision — shorter masthead, dropdown nav at all widths, feedback UI removal, 50/50 map split with expand mode
+
+**By:** Web Developer, requested by @cdaly33
+
+**What:**
+
+- **Masthead ~40–45% shorter:** padding reduced from `38px 48px 30px` to `20px 48px 16px`, the anniversary mark from 96px to 72px, and `h1` from `clamp(3.4rem,7vw,7.2rem)` to `clamp(2.4rem,4.6vw,4.2rem)` (mobile: `clamp(2.2rem,11vw,3.4rem)`). Large-type identity kept via the Antonio display face and multi-line headline.
+- **Dropdown concept nav at all widths:** the persistent 250px left rail is gone. The former `mobile-concept-trigger` pattern (renamed `concept-trigger` / `current-concept`) is now the only nav presentation: a full-width trigger button with `aria-expanded`/`aria-controls` toggling the concept list (4-column grid when open at desktop, single column ≤759px). Escape closes the list and returns focus to the trigger; selecting a route closes it. The 1099px media query was deleted because its layout became the default.
+- **Feedback UI removed:** shortlist, gut-reaction, confidence, notes, needs-answer, review-progress, review tray/clear dialogs, and all `localStorage` review persistence are removed. `review-storage.js` is deleted; `validate-content.js` no longer imports it and the storage-migration test block is removed (the approved day-content fixture and its sha256 check are retained). Route pin-for-comparison stays — it compares routes on the map, not feedback.
+- **Map/description split:** default desktop grid is 50/50 (`minmax(0,1fr) minmax(0,1fr)`). An **Expand map** button (`aria-expanded`, `aria-controls="map-shell"`) switches the grid to ~70/30 (`7fr/3fr`) and raises the map shell to `min(78vh,880px)`; it stays expanded until the same button (now "Collapse map") or Escape exits, with focus returned to the button. Expanding also enables map gestures (drag/touch/scroll-wheel zoom) and restores the prior interaction state on collapse; Leaflet `invalidateSize()` plus a route re-fit run after each layout change. At ≤759px the layout stays stacked and expansion instead raises the map shell to 70vh.
+- **Flights untouched:** no flight data or flight-panel rendering was modified; Logistics' parallel routing verification is unaffected.
+
+**Why:** Chris asked for a shorter header, the iPad-style collapsible nav at desktop to reclaim dead space, removal of the in-site feedback flow (Rachel and Chris discuss in person), and a roomier default reading split with an opt-in map-focus mode. Button-plus-Escape (rather than click-into-map) was chosen for the expand interaction because it is keyboard-operable, screen-reader-announced, and cannot be triggered accidentally while panning.
+
+### 2026-08-24T17:04:52.553-05:00: Flight routing reality corrections for all concepts (Fact Checker follow-up pending)
+
+**By:** Logistics, applied by Web Developer
+
+**What:**
+
+Baseline assumption correction: "STL has no transatlantic service" is outdated as of 2026. Replace with:
+- **STL–FRA (Lufthansa):** nonstop, seasonal (roughly late March–late October, 3–5x/week). Covers late-September/early-October 2027 window; confirm exact season end for 2027.
+- **STL–LHR (British Airways):** nonstop, starts April 19, 2026, 4x/week (Tue/Wed/Fri/Sun), seasonal summer service. Confirm whether 2027 season extends into early October.
+- Everything else intercontinental still requires a US/European hub. No nonstop STL–Lisbon, STL–Madrid, STL–Milan, or any STL–Oceania service exists.
+
+**Portugal:** one connection each way (typically ORD, EWR, JFK, or IAD); two possible from Porto on weaker dates. Outbound: STL–ORD–LIS (TAP, year-round ORD–LIS nonstop) cleanest one-stop; alternates STL–EWR/JFK/IAD/BOS–LIS; seasonal STL–FRA (Lufthansa) or STL–LHR (BA) when operating. Return: OPO–EWR (United, seasonal) one-stop best case; OPO–LIS or European hub two stops on weaker dates. Total travel time: ~11–15h outbound, 13–17h home.
+
+**Spain:** one stop via PHL, CLT, JFK, MIA, DFW, ORD, ATL, or IAD (all have MAD nonstops); seasonal STL–FRA and STL–LHR now true one-stop options when operating. Seville return needs two connections or rail to Madrid plus one flight. Total travel time: 11–18h each way.
+
+**Italy–Croatia:** Return gateway hierarchy: VCE (only one-stop option via seasonal US nonstops); TRS and ZAG (two stops); PUY (least useful, seasonal, two stops and fragile schedules). Seasonal STL–FRA–MXP (Lufthansa) valid one-stop outbound. Lake transfer: 1–1.5h. Total travel time: 12–20h to MXP / 14–24h home.
+
+**New Zealand–Australia:** Return can be single connection via Qantas SYD–DFW–STL; SYD–LAX/SFO–STL similarly one-stop. ORD–AKL (Air New Zealand/United) valid Auckland gateway. AA DFW–AKL seasonal (verify Nov 2027). ZQN–SYD trans-Tasman seasonal; AKL connection fallback. Total travel time: 22–32h inbound / 19–27h home.
+
+**Why:** Rachel needs flight expectations that match current carrier realities and seasonal dependencies, not outdated assumptions. Wording throughout marked as provisional pending 2027 booking-window confirmations.
+
+**Fact Checker follow-up:** Verify 5 date-sensitive items once 2027 booking windows open: (1) BA STL–LHR season end vs. late-Sep/early-Oct 2027, (2) Lufthansa STL–FRA 2027 season, (3) United OPO–EWR and VCE US nonstops 2027 operation, (4) AA DFW–AKL and Qantas SYD–DFW for Nov 2027, (5) TAP ORD–LIS shoulder-season frequency.
+
 ## Governance
 
 - Trip Lead records accepted scope and planning decisions here.

@@ -1,6 +1,6 @@
 {
-  "description": "Approved rendered day-content snapshot after independent publication-blocker remediation.",
-  "sha256": "8fc09d7568436b2608cf9fc989fa1a762dd1b90e989b3c531ada8e8621f696d2",
+  "description": "Approved rendered day-content snapshot after independent publication-blocker remediation and Logistics flight corrections.",
+  "sha256": "e6bb5d0e32107e3b05a4e0af12e44fff791666c746585e3eb39ab3293b3595bb",
   "trips": [
     { "id": "portugal", "entries": 12, "dayLinkPlacements": 25 },
     { "id": "spain", "entries": 12, "dayLinkPlacements": 26 },

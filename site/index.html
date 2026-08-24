@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="styles.css">
   <script src="assets/leaflet/leaflet.js" defer></script>
   <script src="trip-data.js" defer></script>
-  <script src="review-storage.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -22,11 +21,7 @@
     <div>
       <p class="eyebrow">Rachel + Chris · 2027 route table</p>
       <h1>Four routes.<br><em>One</em> 30th anniversary.</h1>
-      <p class="thesis">Trace each trip, test the tradeoffs, and mark what feels right.</p>
-    </div>
-    <div class="header-actions">
-      <p id="review-progress">0 of 4 reviewed</p>
-      <button class="text-button" id="open-summary" type="button">Review summary</button>
+      <p class="thesis">Trace each trip, test the tradeoffs, and talk through what feels right.</p>
     </div>
   </header>
 
@@ -38,14 +33,14 @@
   <noscript>
     <section class="no-script">
       <h2>Route review without JavaScript</h2>
-      <p>The interactive map and private review controls need JavaScript, but the council record remains available:</p>
+      <p>The interactive map needs JavaScript, but the council record remains available:</p>
       <ul>
         <li><strong>Portugal:</strong> provisional leading fit; Travel Day 0 + Days 1–11, Lisbon and Porto.</li>
         <li><strong>Spain:</strong> strongest challenger; Travel Day 0 + Days 1–11, Madrid and Seville.</li>
         <li><strong>Northern Italy + Croatia:</strong> conditional on routing; Travel Day 0 + Days 1–12, Lake Como, Venice, and Rovinj.</li>
         <li><strong>New Zealand + Australia:</strong> highest burden and not recommended in this shape; Days 1–14.</li>
       </ul>
-      <p>The complete daily outlines, flight expectations, costs, links, and private review controls return when JavaScript is enabled.</p>
+      <p>The complete daily outlines, flight expectations, costs, and links return when JavaScript is enabled.</p>
     </section>
   </noscript>
 
@@ -65,8 +60,8 @@
           </select>
         </label>
       </div>
-      <button class="mobile-concept-trigger" id="mobile-concept-trigger" type="button" aria-expanded="false" aria-controls="concept-list">
-        <span id="mobile-current-concept">Portugal</span><span aria-hidden="true">⌄</span>
+      <button class="concept-trigger" id="concept-trigger" type="button" aria-expanded="false" aria-controls="concept-list">
+        <span id="current-concept">Portugal</span><span aria-hidden="true">⌄</span>
       </button>
       <div id="concept-list" class="concept-list" aria-label="Trip concepts"></div>
     </section>
@@ -78,11 +73,12 @@
           <h2 id="map-heading">Portugal route</h2>
         </div>
         <div class="map-actions">
+          <button id="expand-map" class="small-button" type="button" aria-expanded="false" aria-controls="map-shell">Expand map</button>
           <button id="enable-map" class="small-button" type="button">Enable map interaction</button>
           <button id="fit-route" class="small-button" type="button">Fit full route</button>
         </div>
       </div>
-      <div class="map-shell">
+      <div class="map-shell" id="map-shell">
         <div id="map" aria-label="Interactive route map"></div>
         <div id="map-fallback" class="map-fallback" hidden>
           <p><strong>Map detail is unavailable.</strong> The route sequence and trip notes still work.</p>
@@ -199,71 +195,14 @@
         <p><strong>Conditions vary:</strong> confirm venue-level access, boarding, hills, cobbles, stairs, heat, and luggage realities; this is not a medical or binary accessibility score.</p>
         <p id="responsible-copy"></p>
       </section>
-
-      <section class="review-controls" aria-labelledby="your-take-heading">
-        <p class="eyebrow">Your judgment stays separate from the council's</p>
-        <h3 id="your-take-heading">Your take</h3>
-
-        <button id="favorite-toggle" class="favorite-toggle" type="button" aria-pressed="false">
-          <span aria-hidden="true">♡</span> Shortlist this trip
-        </button>
-
-        <fieldset>
-          <legend>Gut reaction</legend>
-          <div id="reaction-options" class="choice-row"></div>
-        </fieldset>
-
-        <fieldset>
-          <legend>How settled does that feel?</legend>
-          <div id="confidence-options" class="choice-row"></div>
-        </fieldset>
-
-        <label for="trip-notes">Notes for Chris</label>
-        <textarea id="trip-notes" rows="4" maxlength="2000" placeholder="What stands out, worries you, or needs checking?"></textarea>
-
-        <label class="check-control">
-          <input id="needs-answer" type="checkbox">
-          <span>Needs an answer before deciding</span>
-        </label>
-        <p class="storage-disclosure">Notes stay in this browser profile and are not sent to this site. Shared-profile users may see them, and clearing site data may erase them. Copied or downloaded notes leave browser storage.</p>
-        <p id="save-status" class="save-status"></p>
-      </section>
     </article>
 
   </main>
 
   <footer>
     <p>This is a comparison aid, not a booking recommendation. No trip is booked.</p>
-    <button class="text-button" id="footer-summary" type="button">Open review summary</button>
   </footer>
 
   <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-
-  <dialog id="summary-dialog" class="summary-dialog" aria-labelledby="summary-heading">
-    <form method="dialog" class="dialog-top">
-      <div>
-        <p class="eyebrow">Stored in this browser profile</p>
-        <h2 id="summary-heading">Rachel's review tray</h2>
-      </div>
-      <button class="close-button" value="close" aria-label="Close review summary">×</button>
-    </form>
-    <div id="summary-content" class="summary-content"></div>
-    <p class="storage-disclosure">This review is not sent to the site. Shared-profile users may see it, and clearing site data may erase it. Copying or downloading creates data outside browser storage.</p>
-    <div class="dialog-actions">
-      <button id="copy-summary" type="button">Copy review</button>
-      <button id="download-summary" type="button">Download review</button>
-      <button id="clear-review" class="danger-button" type="button">Clear saved review</button>
-    </div>
-    <p id="summary-feedback" class="save-status" aria-live="polite"></p>
-  </dialog>
-
-  <dialog id="clear-dialog" class="confirm-dialog" aria-labelledby="clear-heading">
-    <h2 id="clear-heading">Clear Rachel's saved review?</h2>
-    <p>This removes all shortlist choices, reactions, confidence, and notes from this browser.</p>
-    <div class="dialog-actions">
-      <button id="cancel-clear" type="button">Keep review</button>
-      <button id="confirm-clear" class="danger-button" type="button">Clear review</button>
-    </div>
-  </dialog>
 </body>
 </html>

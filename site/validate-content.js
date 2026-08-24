@@ -5,12 +5,10 @@ const fs = require("fs");
 const path = require("path");
 const trips = require("./trip-data.js");
 const fixture = require("./approved-content-fixture.json");
-const { sanitizeReview } = require("./review-storage.js");
 
 const errors = [];
 const fail = message => errors.push(message);
 const expectedDayKeys = ["companion", "fallback", "fit", "kind", "label", "links", "main", "pace", "stops", "title"];
-const retainedIds = new Set(fixture.trips.map(trip => trip.id));
 
 if (trips.length !== fixture.trips.length) fail(`Expected ${fixture.trips.length} trips, found ${trips.length}.`);
 
@@ -61,23 +59,6 @@ for (const trip of trips) {
   });
 }
 
-const seeded = {
-  schemaVersion: 1,
-  updatedAt: "2026-08-23T20:00:00.000Z",
-  trips: Object.fromEntries([
-    ...trips.map(trip => [trip.id, { notes: `retained-${trip.id}` }]),
-    ["unknown-route-alpha", { notes: "must-purge-alpha" }],
-    ["stale-review-2099", { notes: "must-purge-stale" }]
-  ]),
-  legacyMetadata: ["unknown-route-alpha", "stale-review-2099"]
-};
-const migrated = sanitizeReview(seeded, retainedIds);
-const migratedText = JSON.stringify(migrated);
-if (JSON.stringify(Object.keys(migrated.trips)) !== JSON.stringify([...retainedIds])) fail("Storage migration did not retain exactly the allowlisted trip IDs.");
-if (migratedText.includes("unknown-route-alpha") || migratedText.includes("stale-review-2099") || "legacyMetadata" in migrated) {
-  fail("Storage migration retained stale identifiers or metadata.");
-}
-
 if (errors.length) {
   console.error(`Content validation failed (${errors.length}):`);
   errors.forEach(error => console.error(`- ${error}`));
@@ -86,5 +67,4 @@ if (errors.length) {
   const entryCount = trips.reduce((sum, trip) => sum + trip.daysPlan.length, 0);
   const placementCount = trips.reduce((sum, trip) => sum + trip.daysPlan.reduce((daySum, day) => daySum + day.links.length, 0), 0);
   console.log(`Content validation passed: ${trips.length} trips, ${entryCount} entries, ${placementCount} day-link placements, ${productionUrls.size} unique production URLs.`);
-  console.log(`Storage migration passed: ${Object.keys(migrated.trips).length} allowlisted trip IDs retained; 2 arbitrary stale IDs and stale metadata purged.`);
 }

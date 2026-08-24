@@ -21,8 +21,8 @@ node site/validate-coordinates.js
 ```
 
 The content check validates the four retained trips, all 51 approved itinerary entries and
-116 day-link placements against the approved fixture, verifies image transformation
-disclosures and local files, and proves storage migration keeps only allowlisted trip IDs.
+116 day-link placements against the approved fixture, and verifies image transformation
+disclosures and local files.
 
 The check imports the shared deployed trip data from `site/trip-data.js` and validates all
 marker IDs, labels, roles, reference distances, route endpoints, segment

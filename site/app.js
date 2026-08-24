@@ -10,24 +10,16 @@
     return;
   }
 
-  const CAVEAT = "2027 schedules, prices, availability, operating dates, entry rules, and weather expectations remain provisional. Verify before booking.";
-  const COST_CAVEAT = "Rough 2027 planning range for two, not a quote. Includes economy travel from STL, stated midrange hotel nights, required route transport, ordinary meals, representative anchors, insurance, and contingency. Excludes shopping, premium upgrades, and unlisted extras; recalculate after any route, gateway, season, positioning-night, or hotel-night change.";
-  const STORAGE_KEY = "anniversaryTripReview.v1";
   const RETAINED_IDS = new Set(trips.map(trip => trip.id));
-  const storage = globalThis.ANNIVERSARY_REVIEW_STORAGE;
-  const reactions = ["Love this", "Interested", "Unsure", "Not for us"];
-  const confidences = ["First impression", "Leaning", "Confident"];
   const byId = id => document.getElementById(id);
   const ids = [
-    "concept-list", "sort-concepts", "mobile-concept-trigger", "mobile-current-concept", "review-progress", "map-heading",
-    "map-fallback", "fallback-route", "retry-map", "fit-route", "enable-map", "route-description", "compare-strip",
+    "concept-list", "sort-concepts", "concept-trigger", "current-concept", "map-heading",
+    "map-fallback", "fallback-route", "retry-map", "fit-route", "enable-map", "expand-map", "route-description", "compare-strip",
     "concept-kicker", "concept-title", "status-detail", "route-shape", "pin-comparison", "route-facts", "why-fit",
     "flight-summary", "flight-detail", "flight-burden", "flight-links", "cost-range", "cost-hotels", "cost-buys",
     "cost-pressure", "cost-confidence", "cost-verdict", "image-gallery", "mobility-summary", "responsible-copy",
     "toggle-plan", "beat-position", "beat-title", "beat-detail", "beat-extra", "previous-beat", "next-beat",
-    "itinerary-list", "hard-question", "repair", "favorite-toggle", "reaction-options", "confidence-options",
-    "trip-notes", "needs-answer", "save-status", "rail-beats", "live-region", "summary-dialog", "summary-content",
-    "summary-feedback", "clear-dialog"
+    "itinerary-list", "hard-question", "repair", "rail-beats", "live-region"
   ];
   const els = Object.fromEntries(ids.map(id => [id, byId(id)]));
 
@@ -38,85 +30,10 @@
   let tileLayer;
   let routeLayers = [];
   let mapEnabled = false;
-  let pendingNote = null;
-  let review = loadReview();
-
-  function emptyReview() {
-    return storage.emptyReview();
-  }
-
-  function loadReview() {
-    try {
-      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      const migrated = storage.sanitizeReview(parsed, RETAINED_IDS);
-      if (JSON.stringify(parsed) !== JSON.stringify(migrated)) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
-      }
-      return migrated;
-    } catch (error) {
-      console.warn("Review could not be loaded.", error);
-      return emptyReview();
-    }
-  }
+  let mapInteractionBeforeExpand = false;
 
   function currentTrip() {
     return trips.find(trip => trip.id === selectedId) || trips[0];
-  }
-
-  function currentReview() {
-    return review.trips[selectedId] || {};
-  }
-
-  function isReviewed(value) {
-    return Boolean(value && (value.favorite || value.reaction || value.confidence || value.notes || value.needsAnswer));
-  }
-
-  function writeReviewForTrip(tripId, patch, { announceSave = true, updateUi = true } = {}) {
-    if (!RETAINED_IDS.has(tripId)) return false;
-    const savedAt = new Date().toISOString();
-    const next = {
-      ...review,
-      updatedAt: savedAt,
-      trips: {
-        ...review.trips,
-        [tripId]: { ...(review.trips[tripId] || {}), ...patch, updatedAt: savedAt }
-      }
-    };
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      review = next;
-      if (tripId === selectedId) els["save-status"].textContent = "Saved in this browser profile";
-      if (announceSave) announce("Review saved in this browser profile.");
-    } catch (error) {
-      console.warn("Review could not be saved.", error);
-      if (tripId === selectedId) els["save-status"].textContent = "This browser could not save your review. Copy or download it before leaving.";
-      return false;
-    }
-    if (updateUi) {
-      updateProgress();
-      renderConcepts();
-    }
-    return true;
-  }
-
-  function writeReview(patch) {
-    return writeReviewForTrip(selectedId, patch);
-  }
-
-  function flushPendingNotes({ announceSave = true, updateUi = true } = {}) {
-    if (!pendingNote) return true;
-    const { routeId, value, timer } = pendingNote;
-    clearTimeout(timer);
-    pendingNote = null;
-    return writeReviewForTrip(routeId, { notes: value }, { announceSave, updateUi });
-  }
-
-  function debouncedNotesSave() {
-    if (pendingNote) clearTimeout(pendingNote.timer);
-    const routeId = selectedId;
-    const value = els["trip-notes"].value;
-    els["save-status"].textContent = "Saving…";
-    pendingNote = { routeId, value, timer: setTimeout(() => flushPendingNotes(), 350) };
   }
 
   function announce(message) {
@@ -136,7 +53,6 @@
   function renderConcepts() {
     els["concept-list"].replaceChildren();
     sortedTrips().forEach(trip => {
-      const saved = review.trips[trip.id] || {};
       const button = document.createElement("button");
       button.type = "button";
       button.className = "concept-item";
@@ -152,10 +68,7 @@
       const meta = document.createElement("span");
       meta.className = "meta";
       meta.textContent = `${trip.calendarEntries} calendar days · ${trip.bases} bases`;
-      const personal = document.createElement("span");
-      personal.className = "personal";
-      personal.textContent = [saved.favorite ? "♥ Shortlist" : "", saved.reaction || ""].filter(Boolean).join(" · ");
-      button.append(name, status, meta, personal);
+      button.append(name, status, meta);
       button.addEventListener("click", () => selectTrip(trip.id, 0, true));
       els["concept-list"].append(button);
     });
@@ -189,10 +102,9 @@
 
   function renderEvidence() {
     const trip = currentTrip();
-    const saved = currentReview();
     const day = trip.daysPlan[dayIndex];
     document.title = `${trip.name} · Four anniversary routes`;
-    els["mobile-current-concept"].textContent = trip.name;
+    els["current-concept"].textContent = trip.name;
     els["map-heading"].textContent = `${trip.name} route`;
     els["concept-kicker"].textContent = trip.status;
     els["concept-title"].textContent = trip.name;
@@ -227,15 +139,6 @@
     els["responsible-copy"].textContent = trip.responsible;
     renderImages(trip);
 
-    els["favorite-toggle"].setAttribute("aria-pressed", String(Boolean(saved.favorite)));
-    els["favorite-toggle"].innerHTML = saved.favorite
-      ? '<span aria-hidden="true">♥</span> Shortlisted'
-      : '<span aria-hidden="true">♡</span> Shortlist this trip';
-    renderChoices(els["reaction-options"], reactions, saved.reaction, "reaction");
-    renderChoices(els["confidence-options"], confidences, saved.confidence, "confidence");
-    els["trip-notes"].value = saved.notes || "";
-    els["needs-answer"].checked = Boolean(saved.needsAnswer);
-    els["save-status"].textContent = saved.updatedAt ? "Saved in this browser profile" : "";
     els["pin-comparison"].textContent = comparisonId === trip.id ? "Remove comparison" : "Pin for comparison";
     els["pin-comparison"].setAttribute("aria-pressed", String(comparisonId === trip.id));
     renderItinerary(day);
@@ -279,19 +182,6 @@
       caption.append(source, document.createTextNode(` ${image.note} `), license);
       figure.append(img, caption);
       els["image-gallery"].append(figure);
-    });
-  }
-
-  function renderChoices(container, values, selected, field) {
-    container.replaceChildren();
-    values.forEach(value => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "choice-button";
-      button.textContent = value;
-      button.setAttribute("aria-pressed", String(value === selected));
-      button.addEventListener("click", () => writeReview({ [field]: value === selected ? null : value }));
-      container.append(button);
     });
   }
 
@@ -372,7 +262,6 @@
   }
 
   function selectTrip(id, newDay = 0, updateHash = false) {
-    flushPendingNotes();
     selectedId = RETAINED_IDS.has(id) ? id : "portugal";
     dayIndex = Math.min(Math.max(newDay, 0), currentTrip().daysPlan.length - 1);
     if (comparisonId === selectedId) comparisonId = null;
@@ -380,10 +269,19 @@
     renderEvidence();
     renderComparison();
     drawRoutes(true);
-    els["concept-list"].classList.remove("open");
-    els["mobile-concept-trigger"].setAttribute("aria-expanded", "false");
+    closeConceptList();
     if (updateHash) updateUrl();
     announce(`${currentTrip().name} selected. ${currentTrip().status}.`);
+  }
+
+  function closeConceptList() {
+    els["concept-list"].classList.remove("open");
+    els["concept-trigger"].setAttribute("aria-expanded", "false");
+  }
+
+  function toggleConceptList() {
+    const open = els["concept-list"].classList.toggle("open");
+    els["concept-trigger"].setAttribute("aria-expanded", String(open));
   }
 
   function setDay(index, updateHash = false) {
@@ -566,108 +464,36 @@
     els["compare-strip"].hidden = false;
   }
 
-  function updateProgress() {
-    const count = trips.filter(trip => isReviewed(review.trips[trip.id])).length;
-    els["review-progress"].textContent = `${count} of 4 reviewed`;
+  function setMapInteraction(enabled) {
+    if (!map) return;
+    mapEnabled = enabled;
+    map.dragging[enabled ? "enable" : "disable"]();
+    map.touchZoom[enabled ? "enable" : "disable"]();
+    map.scrollWheelZoom[enabled ? "enable" : "disable"]();
+    document.querySelector(".map-shell").classList.toggle("interaction-off", !enabled);
+    els["enable-map"].textContent = enabled ? "Disable map interaction" : "Enable map interaction";
   }
 
-  function summaryText() {
-    flushPendingNotes();
-    const savedAt = review.updatedAt ? new Date(review.updatedAt) : new Date();
-    const reviewed = trips.filter(trip => isReviewed(review.trips[trip.id]));
-    const shortlist = reviewed.filter(trip => review.trips[trip.id].favorite);
-    const others = reviewed.filter(trip => !review.trips[trip.id].favorite);
-    const lines = [`Rachel's anniversary trip review — saved ${savedAt.toLocaleDateString()}`, ""];
-    const addGroup = (title, group) => {
-      if (!group.length) return;
-      lines.push(title);
-      group.forEach((trip, index) => {
-        const item = review.trips[trip.id];
-        const judgment = [item.reaction, item.confidence].filter(Boolean).join(" · ") || "No reaction selected";
-        lines.push(`${title === "Shortlist" ? `${index + 1}. ` : ""}${trip.name} — ${trip.status} — ${judgment}`);
-        lines.push(`   Expected flight pattern: ${trip.flight.summary.replace(/^Expected pattern — /, "")}`);
-        lines.push(`   Rough 2027 whole-trip range for two: ${trip.cost.range} (not a quote; no itemized prices)`);
-        if (item.notes) lines.push(`   Note: ${item.notes}`);
-        if (item.needsAnswer) lines.push("   Needs an answer before deciding.");
-      });
-      lines.push("");
-    };
-    addGroup("Shortlist", shortlist);
-    addGroup("Still considering", others);
-    if (!reviewed.length) lines.push("No trips reviewed yet.", "");
-    lines.push(CAVEAT, COST_CAVEAT, "No trip is booked or selected by this review.");
-    return lines.join("\n");
-  }
-
-  function renderSummary() {
-    flushPendingNotes();
-    els["summary-content"].replaceChildren();
-    const reviewed = trips.filter(trip => isReviewed(review.trips[trip.id]));
-    if (!reviewed.length) {
-      const empty = document.createElement("p");
-      empty.textContent = "No trips reviewed yet. Add a reaction, shortlist, note, or question to begin.";
-      els["summary-content"].append(empty);
-      return;
+  function setMapExpanded(expanded, { announceChange = true } = {}) {
+    document.querySelector(".route-table").classList.toggle("map-expanded", expanded);
+    els["expand-map"].setAttribute("aria-expanded", String(expanded));
+    els["expand-map"].textContent = expanded ? "Collapse map" : "Expand map";
+    if (map) {
+      if (expanded) {
+        mapInteractionBeforeExpand = mapEnabled;
+        if (!mapEnabled) setMapInteraction(true);
+      } else if (!mapInteractionBeforeExpand && mapEnabled) {
+        setMapInteraction(false);
+      }
+      map.invalidateSize();
+      drawRoutes(true);
     }
-    reviewed.forEach(trip => {
-      const item = review.trips[trip.id];
-      const section = document.createElement("section");
-      section.className = "summary-item";
-      const heading = document.createElement("h3");
-      heading.textContent = `${trip.name} — ${trip.status}`;
-      section.append(
-        heading,
-        detailRow("Your take", [item.reaction, item.confidence].filter(Boolean).join(" · ") || "No reaction selected"),
-        detailRow("Expected flight pattern", trip.flight.summary.replace(/^Expected pattern — /, "")),
-        detailRow("Rough 2027 whole-trip range for two", `${trip.cost.range}; not a quote`)
-      );
-      if (item.favorite) section.append(detailRow("Shortlist", "Yes"));
-      if (item.notes) section.append(detailRow("Note", item.notes));
-      if (item.needsAnswer) section.append(detailRow("Decision status", "Needs an answer before deciding"));
-      els["summary-content"].append(section);
-    });
-  }
-
-  async function copySummary() {
-    try {
-      await navigator.clipboard.writeText(summaryText());
-      els["summary-feedback"].textContent = "Review copied.";
-    } catch (error) {
-      console.warn("Copy failed.", error);
-      els["summary-feedback"].textContent = "Copy failed. Use Download review instead.";
-    }
-  }
-
-  function downloadSummary() {
-    try {
-      const blob = new Blob([summaryText()], { type: "text/plain;charset=utf-8" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "rachel-anniversary-trip-review.txt";
-      document.body.append(link);
-      link.click();
-      const href = link.href;
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(href), 1000);
-      els["summary-feedback"].textContent = "Review downloaded.";
-    } catch (error) {
-      console.warn("Download failed.", error);
-      els["summary-feedback"].textContent = "Download failed. Use Copy review instead.";
-    }
-  }
-
-  function openSummary() {
-    renderSummary();
-    els["summary-feedback"].textContent = "";
-    els["summary-dialog"].showModal();
+    if (announceChange) announce(expanded ? "Map expanded. Press Escape or the Collapse map button to return." : "Map returned to split view.");
   }
 
   function bindEvents() {
     els["sort-concepts"].addEventListener("change", renderConcepts);
-    els["mobile-concept-trigger"].addEventListener("click", () => {
-      const open = els["concept-list"].classList.toggle("open");
-      els["mobile-concept-trigger"].setAttribute("aria-expanded", String(open));
-    });
+    els["concept-trigger"].addEventListener("click", toggleConceptList);
     els["previous-beat"].addEventListener("click", () => setDay(dayIndex - 1, true));
     els["next-beat"].addEventListener("click", () => setDay(dayIndex + 1, true));
     byId("toggle-plan").addEventListener("click", () => {
@@ -679,9 +505,6 @@
       if (event.key === "ArrowLeft") { event.preventDefault(); setDay(dayIndex - 1, true); }
       if (event.key === "ArrowRight") { event.preventDefault(); setDay(dayIndex + 1, true); }
     });
-    els["favorite-toggle"].addEventListener("click", () => writeReview({ favorite: !currentReview().favorite }));
-    els["trip-notes"].addEventListener("input", debouncedNotesSave);
-    els["needs-answer"].addEventListener("change", () => writeReview({ needsAnswer: els["needs-answer"].checked }));
     els["pin-comparison"].addEventListener("click", () => {
       comparisonId = comparisonId === selectedId ? null : selectedId;
       renderConcepts();
@@ -691,36 +514,26 @@
       announce(comparisonId ? `${currentTrip().name} pinned. Choose another route to compare.` : "Comparison removed.");
     });
     els["fit-route"].addEventListener("click", () => drawRoutes(true));
-    els["enable-map"].addEventListener("click", () => {
-      if (!map) return;
-      mapEnabled = !mapEnabled;
-      map.dragging[mapEnabled ? "enable" : "disable"]();
-      map.touchZoom[mapEnabled ? "enable" : "disable"]();
-      map.scrollWheelZoom[mapEnabled ? "enable" : "disable"]();
-      document.querySelector(".map-shell").classList.toggle("interaction-off", !mapEnabled);
-      els["enable-map"].textContent = mapEnabled ? "Disable map interaction" : "Enable map interaction";
+    els["enable-map"].addEventListener("click", () => setMapInteraction(!mapEnabled));
+    els["expand-map"].addEventListener("click", () => {
+      setMapExpanded(!document.querySelector(".route-table").classList.contains("map-expanded"));
     });
     els["retry-map"].addEventListener("click", () => location.reload());
-    ["open-summary", "footer-summary"].forEach(id => byId(id).addEventListener("click", openSummary));
-    byId("copy-summary").addEventListener("click", copySummary);
-    byId("download-summary").addEventListener("click", downloadSummary);
-    byId("clear-review").addEventListener("click", () => els["clear-dialog"].showModal());
-    byId("cancel-clear").addEventListener("click", () => els["clear-dialog"].close());
-    byId("confirm-clear").addEventListener("click", () => {
-      review = emptyReview();
-      try { localStorage.removeItem(STORAGE_KEY); } catch (error) { console.warn(error); }
-      els["clear-dialog"].close();
-      renderConcepts();
-      renderEvidence();
-      renderSummary();
-      updateProgress();
-      els["summary-feedback"].textContent = "Saved review cleared.";
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape") return;
+      const table = document.querySelector(".route-table");
+      if (table.classList.contains("map-expanded")) {
+        setMapExpanded(false);
+        els["expand-map"].focus();
+      } else if (els["concept-list"].classList.contains("open")) {
+        closeConceptList();
+        els["concept-trigger"].focus();
+      }
     });
     window.addEventListener("popstate", () => {
       const [id, day] = readUrl();
       selectTrip(id, day, false);
     });
-    window.addEventListener("pagehide", () => flushPendingNotes({ announceSave: false, updateUi: false }));
   }
 
   function start() {
@@ -731,7 +544,6 @@
     renderConcepts();
     renderEvidence();
     renderComparison();
-    updateProgress();
     initMap();
   }
 
