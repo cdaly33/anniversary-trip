@@ -95,12 +95,10 @@
           <span><i class="line flight-line"></i>Flight</span>
           <span><i class="line uncertain-line"></i>Unverified transfer</span>
           <span><i class="line excursion-line"></i>Return excursion</span>
-          <span><i class="color-key compare-key"></i>Compared route</span>
         </div>
       </div>
       <p id="route-description" class="route-description"></p>
       <p class="map-disclosure">Map detail loads from <a href="https://www.openstreetmap.org/">OpenStreetMap</a> when this page opens. Its tile service may receive normal network metadata such as your IP address and site origin. Read the <a href="https://osmfoundation.org/wiki/Privacy_Policy">OSM privacy policy</a>.</p>
-      <div id="compare-strip" class="compare-strip" hidden></div>
       <nav class="itinerary-rail" aria-label="Route rehearsal itinerary">
         <div id="rail-beats" class="rail-beats"></div>
       </nav>
@@ -114,7 +112,6 @@
           <p id="status-detail" class="status-detail"></p>
           <p id="route-shape" class="route-shape"></p>
         </div>
-        <button id="pin-comparison" class="pin-button" type="button">Pin for comparison</button>
       </header>
 
       <dl id="route-facts" class="route-facts"></dl>
@@ -163,7 +160,6 @@
             <p class="eyebrow" id="plan-kind">Daily plan</p>
             <h3 id="itinerary-heading">Rehearse the route</h3>
           </div>
-          <button id="toggle-plan" class="text-button" type="button" aria-expanded="false">Open all days</button>
         </div>
         <div class="beat-current">
           <button id="previous-beat" class="beat-nav" type="button" aria-label="Previous itinerary beat">←</button>

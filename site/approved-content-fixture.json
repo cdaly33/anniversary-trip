@@ -1,10 +1,26 @@
 {
-  "description": "Approved rendered day-content snapshot after independent publication-blocker remediation and Logistics flight corrections.",
-  "sha256": "e6bb5d0e32107e3b05a4e0af12e44fff791666c746585e3eb39ab3293b3595bb",
+  "description": "Approved rendered day-content snapshot after removing day-detail toggles, adding Getting-there transit notes, and merging 29 verified Wikimedia Commons day thumbnails from the image-sourcing agent.",
+  "sha256": "edc4e0061073cabb251da254bed99b50a75d367c19d97d29c35e01ac70b2b101",
   "trips": [
-    { "id": "portugal", "entries": 12, "dayLinkPlacements": 25 },
-    { "id": "spain", "entries": 12, "dayLinkPlacements": 26 },
-    { "id": "italy-croatia", "entries": 13, "dayLinkPlacements": 33 },
-    { "id": "new-zealand-australia", "entries": 14, "dayLinkPlacements": 32 }
+    {
+      "id": "portugal",
+      "entries": 12,
+      "dayLinkPlacements": 25
+    },
+    {
+      "id": "spain",
+      "entries": 12,
+      "dayLinkPlacements": 26
+    },
+    {
+      "id": "italy-croatia",
+      "entries": 13,
+      "dayLinkPlacements": 33
+    },
+    {
+      "id": "new-zealand-australia",
+      "entries": 14,
+      "dayLinkPlacements": 32
+    }
   ]
 }

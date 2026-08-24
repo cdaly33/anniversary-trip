@@ -8,7 +8,7 @@ const fixture = require("./approved-content-fixture.json");
 
 const errors = [];
 const fail = message => errors.push(message);
-const expectedDayKeys = ["companion", "fallback", "fit", "kind", "label", "links", "main", "pace", "stops", "title"];
+const expectedDayKeys = ["companion", "fallback", "fit", "image", "kind", "label", "links", "main", "pace", "stops", "title", "transit"];
 
 if (trips.length !== fixture.trips.length) fail(`Expected ${fixture.trips.length} trips, found ${trips.length}.`);
 
@@ -31,6 +31,17 @@ for (const expected of fixture.trips) {
     }
     if (!Array.isArray(day.stops) || !day.stops.length) fail(`${trip.id} entry ${index + 1} has no stop reference.`);
     if (!Array.isArray(day.links) || !day.links.length) fail(`${trip.id} entry ${index + 1} has no planning link.`);
+    if (typeof day.transit !== "string") fail(`${trip.id} entry ${index + 1} has a non-string transit field.`);
+    if (day.image !== null) {
+      const image = day.image;
+      if (!image || typeof image !== "object") fail(`${trip.id} entry ${index + 1} has a malformed image.`);
+      else {
+        if (!/^https:\/\/upload\.wikimedia\.org\//.test(image.url)) fail(`${trip.id} entry ${index + 1} image is not a Wikimedia upload thumbnail.`);
+        if (typeof image.alt !== "string" || !image.alt.trim()) fail(`${trip.id} entry ${index + 1} image lacks alt text.`);
+        if (typeof image.credit !== "string" || !image.credit.trim()) fail(`${trip.id} entry ${index + 1} image lacks a credit.`);
+        if (!Number.isInteger(image.width) || image.width <= 0 || !Number.isInteger(image.height) || image.height <= 0) fail(`${trip.id} entry ${index + 1} image lacks real dimensions.`);
+      }
+    }
     day.links.forEach((link, linkIndex) => {
       if (!link.label || !/^https:\/\//.test(link.url)) fail(`${trip.id} entry ${index + 1} link ${linkIndex + 1} is incomplete.`);
       if (/^UNESCO$/i.test(link.label.trim())) fail(`${trip.id} entry ${index + 1} has an ambiguous link label.`);
@@ -48,7 +59,10 @@ const productionUrls = new Set([
 ]);
 for (const trip of trips) {
   trip.flight.links.forEach(link => productionUrls.add(link.url));
-  trip.daysPlan.forEach(day => day.links.forEach(link => productionUrls.add(link.url)));
+  trip.daysPlan.forEach(day => {
+    day.links.forEach(link => productionUrls.add(link.url));
+    if (day.image) productionUrls.add(day.image.url);
+  });
   trip.images.forEach(image => {
     productionUrls.add(image.source);
     productionUrls.add(image.license);

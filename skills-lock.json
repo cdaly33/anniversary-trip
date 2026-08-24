@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "postrboard": {
+      "source": "burkeholland/postrboard-design",
+      "sourceType": "github",
+      "skillPath": "skill/postrboard/SKILL.md",
+      "computedHash": "9cd3c58ce88398f9d492cfbadbe4117247c22d42b99702e506f6eb935362f374"
+    }
+  }
+}

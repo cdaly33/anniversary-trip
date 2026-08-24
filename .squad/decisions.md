@@ -71,6 +71,24 @@ Baseline assumption correction: "STL has no transatlantic service" is outdated a
 
 **Fact Checker follow-up:** Verify 5 date-sensitive items once 2027 booking windows open: (1) BA STL–LHR season end vs. late-Sep/early-Oct 2027, (2) Lufthansa STL–FRA 2027 season, (3) United OPO–EWR and VCE US nonstops 2027 operation, (4) AA DFW–AKL and Qantas SYD–DFW for Nov 2027, (5) TAP ORD–LIS shoulder-season frequency.
 
+### 2026-08-24T17:39:37.000-05:00: Day-detail polish — toggle removal, transit specification, pin-for-comparison removal, Commons thumbnail integration
+
+**By:** Web Developer, requested by @cdaly33
+
+**What:**
+
+1. **Day details render expanded by default.** Removed the "Open day detail" toggle and "Open all days" button. Itinerary entries are now always-expanded; day titles remain buttons that sync map focus, with the active day marked via `aria-current` and an inset accent bar.
+
+2. **Transit convention (`transit` field).** Day entries carry an optional `transit` string rendered as a "Getting there" row directly after "Main idea". Conventions: Day 0 / Day 1 states sample flight routing with layover gateways and total travel time from Logistics' corrected spec; arrival days state airport→base transfer (mode + time); intercity transfer days state mode + duration; return days state routing and anticipated hours. One to two lines each, labeled "Getting there".
+
+3. **Pin-for-comparison removed.** Removed the comparison pinning feature entirely: the button, compare panel, compare map styling, `comparisonId` state, and associated rendering logic. Concept selection still closes the dropdown and re-fits the map.
+
+4. **Commons thumbnail integration.** Merged 29 verified Wikimedia Commons thumbnails (provided by Scout) as `image` objects `{ url, alt, credit, width, height }` on 29 specific entries. Rendering: 150px fixed-width figure beside day text (stacks ≤759px), `loading="lazy"`, `decoding="async"`, and CC attribution captions. `validate-content.js` enforces the uniform key set; fixture hash regenerated.
+
+**Why:** Chris requested expanded-by-default details, inline flight/transfer expectations, removal of unused comparison pinning, and visual entry anchors via day images. Keeping transit as a labeled field (not prose) maintains consistent presentation and validator coverage.
+
+**Verification:** Validators passed (4 trips, 51 entries, 116 day links, 131 production URLs); coordinate validator passed; headless-Chrome smoke confirmed all entries expanded, 20/20 transit rows rendered, 29/29 thumbnails rendered with proper attributes, no toggle/pin UI remaining.
+
 ## Governance
 
 - Trip Lead records accepted scope and planning decisions here.

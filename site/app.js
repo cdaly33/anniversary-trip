@@ -14,18 +14,17 @@
   const byId = id => document.getElementById(id);
   const ids = [
     "concept-list", "sort-concepts", "concept-trigger", "current-concept", "map-heading",
-    "map-fallback", "fallback-route", "retry-map", "fit-route", "enable-map", "expand-map", "route-description", "compare-strip",
-    "concept-kicker", "concept-title", "status-detail", "route-shape", "pin-comparison", "route-facts", "why-fit",
+    "map-fallback", "fallback-route", "retry-map", "fit-route", "enable-map", "expand-map", "route-description",
+    "concept-kicker", "concept-title", "status-detail", "route-shape", "route-facts", "why-fit",
     "flight-summary", "flight-detail", "flight-burden", "flight-links", "cost-range", "cost-hotels", "cost-buys",
     "cost-pressure", "cost-confidence", "cost-verdict", "image-gallery", "mobility-summary", "responsible-copy",
-    "toggle-plan", "beat-position", "beat-title", "beat-detail", "beat-extra", "previous-beat", "next-beat",
+    "beat-position", "beat-title", "beat-detail", "beat-extra", "previous-beat", "next-beat",
     "itinerary-list", "hard-question", "repair", "rail-beats", "live-region"
   ];
   const els = Object.fromEntries(ids.map(id => [id, byId(id)]));
 
   let selectedId = "portugal";
   let dayIndex = 0;
-  let comparisonId = null;
   let map;
   let tileLayer;
   let routeLayers = [];
@@ -57,7 +56,6 @@
       button.type = "button";
       button.className = "concept-item";
       button.classList.toggle("selected", trip.id === selectedId);
-      button.classList.toggle("compared", trip.id === comparisonId);
       button.setAttribute("aria-pressed", String(trip.id === selectedId));
       const name = document.createElement("span");
       name.className = "name";
@@ -139,8 +137,6 @@
     els["responsible-copy"].textContent = trip.responsible;
     renderImages(trip);
 
-    els["pin-comparison"].textContent = comparisonId === trip.id ? "Remove comparison" : "Pin for comparison";
-    els["pin-comparison"].setAttribute("aria-pressed", String(comparisonId === trip.id));
     renderItinerary(day);
   }
 
@@ -190,43 +186,28 @@
     els["beat-position"].textContent = `${day.label} · ${dayIndex + 1} of ${trip.daysPlan.length}`;
     els["beat-title"].textContent = day.title;
     els["beat-detail"].textContent = day.main;
-    const dayDetail = document.createElement("details");
-    dayDetail.className = "current-day-detail";
-    const daySummary = document.createElement("summary");
-    daySummary.textContent = "Open day detail";
-    const dayBody = document.createElement("div");
-    dayBody.append(
-      detailRow("Companion idea", day.companion),
-      detailRow("Why it fits", day.fit),
-      detailRow("Pace / terrain", day.pace),
-      detailRow("Fallback", day.fallback),
-      detailLinks(day.links)
-    );
-    dayDetail.append(daySummary, dayBody);
-    els["beat-extra"].replaceChildren(dayDetail);
+    els["beat-extra"].replaceChildren(...dayDetailRows(day, false));
     els["previous-beat"].disabled = dayIndex === 0;
     els["next-beat"].disabled = dayIndex === trip.daysPlan.length - 1;
     els["itinerary-list"].replaceChildren();
     els["rail-beats"].replaceChildren();
     trip.daysPlan.forEach((entry, index) => {
       const li = document.createElement("li");
-      const details = document.createElement("details");
-      if (index === dayIndex) details.open = true;
-      const summary = document.createElement("summary");
-      summary.textContent = `${entry.label} — ${entry.title}`;
+      li.classList.toggle("active", index === dayIndex);
+      const select = document.createElement("button");
+      select.type = "button";
+      select.className = "day-select";
+      select.textContent = `${entry.label} — ${entry.title}`;
+      if (index === dayIndex) select.setAttribute("aria-current", "true");
+      select.addEventListener("click", () => setDay(index, true));
       const body = document.createElement("div");
       body.className = "day-expanded";
-      body.append(
-        detailRow("Main idea", entry.main),
-        detailRow("Companion idea", entry.companion),
-        detailRow("Why it fits", entry.fit),
-        detailRow("Pace / terrain", entry.pace),
-        detailRow("Fallback", entry.fallback),
-        detailLinks(entry.links)
-      );
-      summary.addEventListener("click", () => setDay(index, true));
-      details.append(summary, body);
-      li.append(details);
+      const text = document.createElement("div");
+      text.className = "day-text";
+      text.append(...dayDetailRows(entry, true));
+      body.append(text);
+      if (entry.image) body.append(dayFigure(entry.image));
+      li.append(select, body);
       els["itinerary-list"].append(li);
 
       const rail = document.createElement("button");
@@ -240,6 +221,37 @@
       rail.addEventListener("click", () => setDay(index, true));
       els["rail-beats"].append(rail);
     });
+  }
+
+  function dayDetailRows(entry, includeMain) {
+    const rows = [];
+    if (includeMain) rows.push(detailRow("Main idea", entry.main));
+    if (entry.transit) rows.push(detailRow("Getting there", entry.transit));
+    rows.push(
+      detailRow("Companion idea", entry.companion),
+      detailRow("Why it fits", entry.fit),
+      detailRow("Pace / terrain", entry.pace),
+      detailRow("Fallback", entry.fallback),
+      detailLinks(entry.links)
+    );
+    return rows;
+  }
+
+  function dayFigure(image) {
+    const figure = document.createElement("figure");
+    figure.className = "day-figure";
+    const img = document.createElement("img");
+    img.className = "day-thumb";
+    img.src = image.url;
+    img.alt = image.alt;
+    img.width = image.width;
+    img.height = image.height;
+    img.loading = "lazy";
+    img.decoding = "async";
+    const caption = document.createElement("figcaption");
+    caption.textContent = `Photo: ${image.credit}, via Wikimedia Commons`;
+    figure.append(img, caption);
+    return figure;
   }
 
   function detailRow(label, value) {
@@ -264,10 +276,8 @@
   function selectTrip(id, newDay = 0, updateHash = false) {
     selectedId = RETAINED_IDS.has(id) ? id : "portugal";
     dayIndex = Math.min(Math.max(newDay, 0), currentTrip().daysPlan.length - 1);
-    if (comparisonId === selectedId) comparisonId = null;
     renderConcepts();
     renderEvidence();
-    renderComparison();
     drawRoutes(true);
     closeConceptList();
     if (updateHash) updateUrl();
@@ -339,9 +349,9 @@
     return day.stops;
   }
 
-  function markerIcon(stop, label, active = false, compare = false) {
+  function markerIcon(stop, label, active = false) {
     return L.divIcon({
-      className: `route-marker role-${stop.role}${active ? " active" : ""}${compare ? " compare" : ""}`,
+      className: `route-marker role-${stop.role}${active ? " active" : ""}`,
       html: `<span>${label}</span>`,
       iconSize: [44, 44],
       iconAnchor: [22, 22]
@@ -354,7 +364,7 @@
     routeLayers = [];
   }
 
-  function segmentStyle(compare, segment) {
+  function segmentStyle(segment) {
     const styles = {
       rail: { dashArray: null, weight: 4 },
       road: { dashArray: "10 6", weight: 4 },
@@ -364,7 +374,7 @@
       "road-excursion": { dashArray: "10 6", weight: 3 },
       alternative: { dashArray: "2 8", weight: 2 }
     };
-    return { color: compare ? "#187184" : "#d94a38", opacity: compare ? 0.68 : segment.type === "alternative" ? 0.62 : 0.9, lineCap: "round", ...styles[segment.type] };
+    return { color: "#d94a38", opacity: segment.type === "alternative" ? 0.62 : 0.9, lineCap: "round", ...styles[segment.type] };
   }
 
   function segmentLabel(type) {
@@ -379,33 +389,31 @@
     }[type] || "Route segment";
   }
 
-  function addTripRoute(trip, compare = false) {
+  function addTripRoute(trip) {
     const stopById = new Map(trip.stops.map(stop => [stop.id, stop]));
     const bounds = L.latLngBounds(trip.stops.map(stop => [stop.lat, stop.lng]));
     trip.segments.forEach(segment => {
       const from = stopById.get(segment.from);
       const to = stopById.get(segment.to);
-      const line = L.polyline([[from.lat, from.lng], [to.lat, to.lng]], segmentStyle(compare, segment)).addTo(map);
+      const line = L.polyline([[from.lat, from.lng], [to.lat, to.lng]], segmentStyle(segment)).addTo(map);
       line.bindTooltip(segmentLabel(segment.type), { sticky: true });
       routeLayers.push(line);
     });
     let baseNumber = 0;
-    const activeIds = !compare ? stopIdsForDay(trip.daysPlan[dayIndex]) : [];
+    const activeIds = stopIdsForDay(trip.daysPlan[dayIndex]);
     trip.stops.forEach(stop => {
       const label = stop.role === "base" ? String(++baseNumber) : stop.role === "alternative" ? "or" : "";
       const marker = L.marker([stop.lat, stop.lng], {
-        icon: markerIcon(stop, label, activeIds.includes(stop.id), compare),
+        icon: markerIcon(stop, label, activeIds.includes(stop.id)),
         title: stop.name,
-        keyboard: !compare,
+        keyboard: true,
         alt: stop.name
       }).addTo(map);
       marker.bindTooltip(stop.name, { direction: "top" });
-      if (!compare) {
-        marker.on("click", () => {
-          const matching = trip.daysPlan.findIndex(day => day.stops.includes(stop.id));
-          if (matching >= 0) setDay(matching, true);
-        });
-      }
+      marker.on("click", () => {
+        const matching = trip.daysPlan.findIndex(day => day.stops.includes(stop.id));
+        if (matching >= 0) setDay(matching, true);
+      });
       routeLayers.push(marker);
     });
     return bounds;
@@ -415,7 +423,6 @@
     if (!map) return;
     clearRouteLayers();
     const bounds = addTripRoute(currentTrip());
-    if (comparisonId) bounds.extend(addTripRoute(trips.find(trip => trip.id === comparisonId), true));
     if (fit) fitBounds(bounds);
   }
 
@@ -447,21 +454,6 @@
     console.warn(reason);
     els["map-fallback"].hidden = false;
     byId("map").hidden = true;
-  }
-
-  function renderComparison() {
-    if (!comparisonId) {
-      els["compare-strip"].hidden = true;
-      els["compare-strip"].replaceChildren();
-      return;
-    }
-    const compared = trips.find(trip => trip.id === comparisonId);
-    const strong = document.createElement("strong");
-    strong.textContent = `Compared: ${compared.name} — ${compared.status}`;
-    const details = document.createElement("span");
-    details.textContent = `${compared.calendarEntries} days · ${compared.nights} nights · ${compared.bases} bases · ${compared.transfers} major moves · ${compared.cost.range} rough range · Hardest burden: ${compared.mobility.hardest}`;
-    els["compare-strip"].replaceChildren(strong, details);
-    els["compare-strip"].hidden = false;
   }
 
   function setMapInteraction(enabled) {
@@ -496,22 +488,9 @@
     els["concept-trigger"].addEventListener("click", toggleConceptList);
     els["previous-beat"].addEventListener("click", () => setDay(dayIndex - 1, true));
     els["next-beat"].addEventListener("click", () => setDay(dayIndex + 1, true));
-    byId("toggle-plan").addEventListener("click", () => {
-      const expanded = els["itinerary-list"].classList.toggle("expanded");
-      byId("toggle-plan").setAttribute("aria-expanded", String(expanded));
-      byId("toggle-plan").textContent = expanded ? "Hide all days" : "Open all days";
-    });
     document.querySelector(".itinerary-section").addEventListener("keydown", event => {
       if (event.key === "ArrowLeft") { event.preventDefault(); setDay(dayIndex - 1, true); }
       if (event.key === "ArrowRight") { event.preventDefault(); setDay(dayIndex + 1, true); }
-    });
-    els["pin-comparison"].addEventListener("click", () => {
-      comparisonId = comparisonId === selectedId ? null : selectedId;
-      renderConcepts();
-      renderEvidence();
-      renderComparison();
-      drawRoutes(true);
-      announce(comparisonId ? `${currentTrip().name} pinned. Choose another route to compare.` : "Comparison removed.");
     });
     els["fit-route"].addEventListener("click", () => drawRoutes(true));
     els["enable-map"].addEventListener("click", () => setMapInteraction(!mapEnabled));
@@ -543,7 +522,6 @@
     bindEvents();
     renderConcepts();
     renderEvidence();
-    renderComparison();
     initMap();
   }
 
