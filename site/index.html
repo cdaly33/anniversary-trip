@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#123044">
-  <meta name="description" content="Compare seven possible routes for Rachel and Chris's 30th anniversary trip.">
-  <title>Seven routes · One 30th anniversary</title>
+  <meta name="description" content="Compare four possible routes for Rachel and Chris's 30th anniversary trip.">
+  <title>Four routes · One 30th anniversary</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="assets/leaflet/leaflet.css">
   <link rel="stylesheet" href="styles.css">
   <script src="assets/leaflet/leaflet.js" defer></script>
+  <script src="trip-data.js" defer></script>
+  <script src="review-storage.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -19,11 +21,11 @@
     <div class="anniversary-mark" aria-label="30th anniversary">30 <span>years</span></div>
     <div>
       <p class="eyebrow">Rachel + Chris · 2027 route table</p>
-      <h1>Seven routes.<br><em>One</em> 30th anniversary.</h1>
+      <h1>Four routes.<br><em>One</em> 30th anniversary.</h1>
       <p class="thesis">Trace each trip, test the tradeoffs, and mark what feels right.</p>
     </div>
     <div class="header-actions">
-      <p id="review-progress">0 of 7 reviewed</p>
+      <p id="review-progress">0 of 4 reviewed</p>
       <button class="text-button" id="open-summary" type="button">Review summary</button>
     </div>
   </header>
@@ -38,15 +40,12 @@
       <h2>Route review without JavaScript</h2>
       <p>The interactive map and private review controls need JavaScript, but the council record remains available:</p>
       <ul>
-        <li><strong>Portugal:</strong> current leading fit, conditional; 11 days, Lisbon and Porto.</li>
-        <li><strong>Spain:</strong> strongest challenger and council alternative; 11 days, Madrid and Seville.</li>
-        <li><strong>Northern Italy + Croatia:</strong> current shortlist, conditional; 12 days, Lake Como, Venice, and Rovinj.</li>
-        <li><strong>New Zealand + Australia:</strong> current shortlist concept rejected as a recommendation; 14 days.</li>
-        <li><strong>Türkiye:</strong> council alternative; 11 days, Istanbul and Cappadocia.</li>
-        <li><strong>Austria + Slovenia:</strong> council alternative; 12 days, Ljubljana and Vienna.</li>
-        <li><strong>Sicily + Malta:</strong> council alternative; 12 days, Ortigia/Syracuse and Valletta.</li>
+        <li><strong>Portugal:</strong> provisional leading fit; Travel Day 0 + Days 1–11, Lisbon and Porto.</li>
+        <li><strong>Spain:</strong> strongest challenger; Travel Day 0 + Days 1–11, Madrid and Seville.</li>
+        <li><strong>Northern Italy + Croatia:</strong> conditional on routing; Travel Day 0 + Days 1–12, Lake Como, Venice, and Rovinj.</li>
+        <li><strong>New Zealand + Australia:</strong> highest burden and not recommended in this shape; Days 1–14.</li>
       </ul>
-      <p>The complete daily outlines and tradeoffs return when JavaScript is enabled.</p>
+      <p>The complete daily outlines, flight expectations, costs, links, and private review controls return when JavaScript is enabled.</p>
     </section>
   </noscript>
 
@@ -55,7 +54,7 @@
       <div class="region-heading">
         <div>
           <p class="eyebrow">Council view</p>
-          <h2 id="concepts-heading">Choose a route</h2>
+          <h2 id="concepts-heading">Compare four routes</h2>
         </div>
         <label class="sort-control">Sort
           <select id="sort-concepts">
@@ -104,7 +103,7 @@
         </div>
       </div>
       <p id="route-description" class="route-description"></p>
-      <p class="map-disclosure">Map detail loads from <a href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer">OpenStreetMap</a> when this page opens. Its tile service may receive normal network metadata such as your IP address and site origin. <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noreferrer">OSM privacy policy</a>.</p>
+      <p class="map-disclosure">Map detail loads from <a href="https://www.openstreetmap.org/">OpenStreetMap</a> when this page opens. Its tile service may receive normal network metadata such as your IP address and site origin. Read the <a href="https://osmfoundation.org/wiki/Privacy_Policy">OSM privacy policy</a>.</p>
       <div id="compare-strip" class="compare-strip" hidden></div>
       <nav class="itinerary-rail" aria-label="Route rehearsal itinerary">
         <div id="rail-beats" class="rail-beats"></div>
@@ -116,6 +115,7 @@
         <div>
           <p id="concept-kicker" class="status-label"></p>
           <h2 id="concept-title">Portugal</h2>
+          <p id="status-detail" class="status-detail"></p>
           <p id="route-shape" class="route-shape"></p>
         </div>
         <button id="pin-comparison" class="pin-button" type="button">Pin for comparison</button>
@@ -128,13 +128,46 @@
         <p id="why-fit"></p>
       </section>
 
+      <section class="planning-panel flight-panel" aria-labelledby="flight-heading">
+        <p class="eyebrow">Expected pattern · 2027 schedules not confirmed</p>
+        <h3 id="flight-heading">Flight planning from STL</h3>
+        <p id="flight-summary" class="panel-lead"></p>
+        <details>
+          <summary>Open connection detail and planning sources</summary>
+          <p id="flight-detail"></p>
+          <p><strong>Travel burden:</strong> <span id="flight-burden"></span></p>
+          <ul id="flight-links" class="source-list"></ul>
+        </details>
+        <p class="verify-line"><strong>Verify before booking:</strong> exact 2027 operating dates, protected-ticket status, airport or terminal changes, baggage handling, and elapsed time.</p>
+      </section>
+
+      <section class="planning-panel cost-panel" aria-labelledby="cost-heading">
+        <p class="eyebrow">Rough 2027 planning range for two · not a quote</p>
+        <h3 id="cost-heading">Whole-trip cost view</h3>
+        <p id="cost-range" class="cost-range"></p>
+        <dl class="cost-details">
+          <div><dt>General hotel band</dt><dd id="cost-hotels"></dd></div>
+          <div><dt>What it generally buys</dt><dd id="cost-buys"></dd></div>
+          <div><dt>Cost pressure</dt><dd id="cost-pressure"></dd></div>
+          <div><dt>Confidence</dt><dd id="cost-confidence"></dd></div>
+          <div><dt>Value verdict</dt><dd id="cost-verdict"></dd></div>
+        </dl>
+        <p class="cost-disclaimer">Includes economy travel from STL, stated midrange hotel nights, required route transport, ordinary meals, representative anchors, insurance, and contingency. Excludes shopping, premium upgrades, and unlisted extras. Recalculate after any gateway, positioning-night, season, or hotel-night change.</p>
+      </section>
+
+      <section class="image-section" aria-labelledby="image-heading">
+        <p class="eyebrow">Open-license images · locally hosted</p>
+        <h3 id="image-heading">A grounded view of the route</h3>
+        <div id="image-gallery" class="image-gallery"></div>
+      </section>
+
       <section class="itinerary-section" aria-labelledby="itinerary-heading">
         <div class="section-title-row">
           <div>
             <p class="eyebrow" id="plan-kind">Daily plan</p>
             <h3 id="itinerary-heading">Rehearse the route</h3>
           </div>
-          <button id="toggle-plan" class="text-button" type="button" aria-expanded="false">Show full plan</button>
+          <button id="toggle-plan" class="text-button" type="button" aria-expanded="false">Open all days</button>
         </div>
         <div class="beat-current">
           <button id="previous-beat" class="beat-nav" type="button" aria-label="Previous itinerary beat">←</button>
@@ -142,6 +175,7 @@
             <p id="beat-position" class="beat-position"></p>
             <h4 id="beat-title"></h4>
             <p id="beat-detail"></p>
+            <div id="beat-extra" class="beat-extra"></div>
           </div>
           <button id="next-beat" class="beat-nav" type="button" aria-label="Next itinerary beat">→</button>
         </div>
@@ -160,9 +194,10 @@
       </section>
 
       <section class="travel-checks" aria-labelledby="travel-checks-heading">
-        <h3 id="travel-checks-heading">Pace &amp; responsible-travel check</h3>
-        <p id="pace-cue"></p>
-        <p>Before choosing, check current local guidance and customs, pressure-sensitive sites or seasons, locally owned options, and rail instead of flying where practical.</p>
+        <h3 id="travel-checks-heading">Mobility, energy &amp; responsible travel</h3>
+        <ul id="mobility-summary"></ul>
+        <p><strong>Conditions vary:</strong> confirm venue-level access, boarding, hills, cobbles, stairs, heat, and luggage realities; this is not a medical or binary accessibility score.</p>
+        <p id="responsible-copy"></p>
       </section>
 
       <section class="review-controls" aria-labelledby="your-take-heading">

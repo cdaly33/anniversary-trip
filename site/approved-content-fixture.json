@@ -1,0 +1,10 @@
+{
+  "description": "Approved rendered day-content snapshot after independent publication-blocker remediation.",
+  "sha256": "8fc09d7568436b2608cf9fc989fa1a762dd1b90e989b3c531ada8e8621f696d2",
+  "trips": [
+    { "id": "portugal", "entries": 12, "dayLinkPlacements": 25 },
+    { "id": "spain", "entries": 12, "dayLinkPlacements": 26 },
+    { "id": "italy-croatia", "entries": 13, "dayLinkPlacements": 33 },
+    { "id": "new-zealand-australia", "entries": 14, "dayLinkPlacements": 32 }
+  ]
+}

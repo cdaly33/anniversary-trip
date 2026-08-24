@@ -49,14 +49,15 @@ h1 em{color:var(--route);font-style:normal}
 .sort-control{display:flex;flex-direction:column;font:600 .875rem/1.2 var(--utility);text-transform:uppercase;letter-spacing:.06em}
 .sort-control select{margin-top:5px;max-width:102px;border:1px solid var(--line);background:white;padding:6px}
 .mobile-concept-trigger{display:none}
-.concept-list{display:grid;gap:3px;margin-top:22px}
-.concept-item{width:100%;min-height:68px;text-align:left;border:0;border-left:3px solid transparent;background:transparent;padding:10px 9px;cursor:pointer}
+.concept-list{display:grid;gap:0;margin-top:18px;border-top:1px solid var(--line)}
+.concept-item{width:100%;min-height:68px;text-align:left;border:0;border-bottom:1px solid var(--line);border-left:3px solid transparent;background:transparent;padding:10px 9px;cursor:pointer}
 .concept-item:hover{background:var(--sea)}
 .concept-item.selected{background:var(--chart);color:var(--paper)}
 .concept-item.compared{border-left-color:var(--teal)}
 .concept-item .name{display:block;font:600 1.2rem/1.05 var(--display);text-transform:uppercase}
-.concept-item .meta{display:flex;justify-content:space-between;gap:5px;margin-top:7px;font:500 .875rem/1.3 var(--utility);overflow-wrap:anywhere}
-.concept-item .personal{color:var(--route);font-weight:700}
+.concept-item .concept-status{display:block;margin-top:5px;font:600 .875rem/1.25 var(--utility)}
+.concept-item .meta,.concept-item .personal{display:block;margin-top:5px;font:500 .875rem/1.3 var(--utility);overflow-wrap:anywhere}
+.concept-item .personal{color:var(--route);font-weight:700;min-height:1.15em}
 .concept-item.selected .personal{color:#ffb2a8}
 
 .map-heading{align-items:end;margin-bottom:12px}
@@ -91,26 +92,57 @@ h1 em{color:var(--route);font-style:normal}
 .concept-header{border-bottom:1px solid var(--line);padding-bottom:18px}
 .concept-header h2{font-size:clamp(2.25rem,4vw,4.2rem);line-height:.9;margin:4px 0 10px}
 .status-label{color:var(--brass-text)}
+.status-detail{margin:0 0 10px;font:600 .93rem/1.4 var(--utility);max-width:58ch}
 .route-shape{font:500 .875rem/1.4 var(--utility);margin:0}
-.route-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 26px}
-.route-facts div{border-right:1px solid var(--line)}
-.route-facts div:last-child{border:0}
+.route-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:18px 0 26px;border-top:1px solid var(--line)}
+.route-facts div{padding:9px 10px 10px 0;border-bottom:1px solid var(--line)}
+.route-facts div:nth-child(odd){border-right:1px solid var(--line)}
+.route-facts div:nth-child(even){padding-left:10px}
+.route-facts div:last-child{grid-column:1/-1;border-right:0;padding-left:0}
 .route-facts dt{color:var(--muted)}
-.route-facts dd{margin:0;font:600 .875rem/1.35 var(--utility)}
+.route-facts dd{margin:0;font:600 .875rem/1.4 var(--utility);overflow-wrap:anywhere}
 .reading-section{max-width:65ch;margin:0 0 26px}
 h3{font:600 1.05rem/1.25 var(--utility);margin:0 0 8px}
 .reading-section p{margin:0}
+.planning-panel,.image-section{margin:24px 0;border-top:1px solid var(--line);padding-top:20px}
+.planning-panel{padding:18px;background:rgba(220,235,236,.5);border-left:4px solid var(--teal);border-top:0}
+.cost-panel{border-left-color:var(--brass);background:rgba(166,111,22,.07)}
+.planning-panel .panel-lead{font-weight:600;margin:0 0 10px}
+.planning-panel details summary{min-height:44px;display:flex;align-items:center;font:600 .9rem/1.3 var(--utility);color:var(--teal);cursor:pointer}
+.planning-panel details p{margin:8px 0}
+.source-list,.day-links ul{margin:8px 0;padding-left:20px}
+.source-list li,.day-links li{margin:5px 0}
+.verify-line,.cost-disclaimer{font:500 .875rem/1.45 var(--utility);margin:12px 0 0}
+.cost-range{font:700 2rem/1 var(--display);color:var(--brass-text);margin:8px 0 16px}
+.cost-details{margin:0}
+.cost-details div{display:grid;grid-template-columns:120px 1fr;gap:12px;border-top:1px solid var(--line);padding:9px 0}
+.cost-details dt{font:600 .875rem/1.4 var(--utility)}
+.cost-details dd{margin:0}
+.image-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.image-gallery figure{margin:0;min-width:0}
+.image-gallery img{display:block;width:100%;height:220px;object-fit:contain;border:1px solid var(--line);background:var(--sea)}
+.image-gallery figcaption{font:500 .875rem/1.45 var(--utility);margin-top:7px;color:var(--muted)}
+.image-gallery figcaption a:first-child{display:block;color:var(--chart);font-weight:600}
+.image-gallery figcaption a:last-child{display:inline-block;margin-top:3px}
 .itinerary-section{border-top:1px solid var(--line);padding-top:20px}
 .section-title-row{align-items:end}
-.beat-current{display:grid;grid-template-columns:44px 1fr 44px;gap:12px;align-items:center;margin:16px 0;background:var(--sea);border-left:4px solid var(--route);padding:14px 10px}
+.beat-current{display:grid;grid-template-columns:44px 1fr 44px;gap:12px;align-items:start;margin:16px 0;background:var(--sea);border-left:4px solid var(--route);padding:14px 10px}
 .beat-current h4{font:600 1.3rem/1.1 var(--display);text-transform:uppercase;margin:0 0 5px}
 .beat-current p{margin:0}
+.beat-extra{margin-top:12px;border-top:1px solid var(--line);padding-top:4px}
+.beat-extra p{margin:6px 0}
+.current-day-detail summary{min-height:44px;display:flex;align-items:center;color:var(--teal);cursor:pointer;font:600 .875rem/1.3 var(--utility)}
+.current-day-detail>div{padding:2px 0 4px}
+.day-links{font-size:.92rem}
 .beat-nav{width:44px;height:44px;border:1px solid var(--chart);background:var(--paper);cursor:pointer;font:600 1.2rem/1 var(--utility)}
 .beat-nav:disabled{opacity:.35}
 .itinerary-list{display:none;padding:0;margin:0;list-style:none;border-top:1px solid var(--line)}
 .itinerary-list.expanded{display:block}
-.itinerary-list button{display:grid;grid-template-columns:60px 1fr;width:100%;text-align:left;padding:10px 4px;border:0;border-bottom:1px solid var(--line);background:transparent;cursor:pointer}
-.itinerary-list button:hover,.itinerary-list button.active{background:var(--sea)}
+.itinerary-list details{border-bottom:1px solid var(--line)}
+.itinerary-list summary{min-height:48px;display:flex;align-items:center;padding:8px 4px;cursor:pointer;font:600 .92rem/1.35 var(--utility)}
+.itinerary-list summary:hover,.itinerary-list details[open] summary{background:var(--sea)}
+.day-expanded{padding:8px 10px 14px}
+.day-expanded p{margin:7px 0}
 .day-label{font:600 .875rem/1.4 var(--utility);text-transform:uppercase}
 .day-copy{font:400 .92rem/1.4 var(--body)}
 .question-block{margin:28px 0;border-top:2px solid var(--chart);border-bottom:1px solid var(--line)}
@@ -118,7 +150,10 @@ h3{font:600 1.05rem/1.25 var(--utility);margin:0 0 8px}
 .question-block>div+div{border-top:1px solid var(--line)}
 .question-block p:last-child{margin:0}
 .travel-checks{margin:0 0 28px;padding:16px;border-left:4px solid var(--brass);background:rgba(166,111,22,.08)}
-.travel-checks p{margin:6px 0 0}
+.travel-checks p{margin:8px 0 0}
+.travel-checks ul{margin:8px 0 12px;padding-left:20px}
+.travel-checks li{margin:7px 0}
+.tile-notice{bottom:44px}
 .review-controls{border-top:1px solid var(--line);padding-top:24px}
 .favorite-toggle{width:100%;padding:12px;border:1px solid var(--route-text);color:var(--route-text);background:transparent;cursor:pointer;font-weight:600;text-align:left}
 .favorite-toggle[aria-pressed=true]{background:var(--route-text);color:white}
@@ -174,15 +209,17 @@ dialog::backdrop{background:rgba(18,48,68,.72)}
 @media (max-width:1099px){
   .route-table{grid-template-columns:minmax(0,1fr) minmax(330px,42%);grid-template-areas:"concept concept" "map evidence"}
   .concept-region{padding:18px 24px;border-right:0;border-bottom:1px solid var(--line)}
-  .concept-region .region-heading{display:none}
-  .mobile-concept-trigger{display:flex;width:100%;justify-content:space-between;border:1px solid var(--chart);background:var(--paper);padding:11px 14px;font-weight:600}
-  .concept-list{display:none;grid-template-columns:repeat(2,1fr);margin-top:8px}
-  .concept-list.open{display:grid}
+  .concept-region .region-heading{display:flex}
+  .mobile-concept-trigger{display:none}
+  .concept-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px;border-left:1px solid var(--line)}
+  .concept-item{border-left:0;border-right:1px solid var(--line)}
+  .concept-item.compared{box-shadow:inset 3px 0 0 var(--teal)}
   .map-region{position:static;align-self:stretch}
   .map-shell{height:50vh;min-height:420px}
 }
 @media (max-width:759px){
   body{font-size:16px}
+  .masthead,.provisional,.route-table,.concept-region,.map-region,.evidence-region,footer{width:100%;min-width:0}
   .masthead{grid-template-columns:1fr;padding:24px 18px 20px;gap:12px}
   .anniversary-mark{display:none}
   h1{font-size:clamp(2.8rem,15vw,4.5rem)}
@@ -195,15 +232,25 @@ dialog::backdrop{background:rgba(18,48,68,.72)}
   .map-region{order:2;padding:16px 18px;background:var(--sea)}
   .evidence-region{order:4;padding:22px 18px;border:0}
   .itinerary-rail{margin:16px -18px -16px;padding:10px 18px}
-  .concept-list{grid-template-columns:1fr}
+  .concept-region .region-heading{align-items:end}
+  .region-heading h2{font-size:1.15rem}
+  .sort-control select{max-width:118px}
+  .concept-list{grid-template-columns:1fr;border-left:0}
+  .concept-item{min-height:0;border-right:0;padding:9px 8px}
+  .concept-item .name{font-size:1.1rem}
+  .concept-item .concept-status,.concept-item .meta,.concept-item .personal{margin-top:3px}
   .map-heading{align-items:flex-start;flex-wrap:wrap}
   .map-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+  .map-actions .small-button{width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
   .map-shell{height:40vh;min-height:300px}
+  .concept-header{flex-wrap:wrap}
   .concept-header h2{font-size:3.2rem}
-  .route-facts{grid-template-columns:1fr 1fr}
-  .route-facts div:nth-child(2){border:0}
-  .route-facts div:last-child{grid-column:1/-1;border-top:1px solid var(--line);padding-top:8px}
+  .route-facts{grid-template-columns:1fr}
+  .route-facts div,.route-facts div:nth-child(odd),.route-facts div:nth-child(even),.route-facts div:last-child{grid-column:auto;border-right:0;padding:8px 0}
   .beat-current{grid-template-columns:44px 1fr 44px;padding:12px 5px}
+  .image-gallery{grid-template-columns:1fr}
+  .image-gallery img{height:clamp(200px,70vw,320px)}
+  .cost-details div{grid-template-columns:1fr;gap:3px}
   .rail-beat{flex-basis:105px}
   footer{padding:22px 18px;display:block}
   footer .text-button{margin-top:10px}

@@ -16,9 +16,15 @@ No deployment token or other secret belongs in this repository.
 Run from the repository root before deployment:
 
 ```text
+node site/validate-content.js
 node site/validate-coordinates.js
 ```
 
-The check imports the deployed trip data from `site/app.js` and validates all
+The content check validates the four retained trips, all 51 approved itinerary entries and
+116 day-link placements against the approved fixture, verifies image transformation
+disclosures and local files, and proves storage migration keeps only allowlisted trip IDs.
+
+The check imports the shared deployed trip data from `site/trip-data.js` and validates all
 marker IDs, labels, roles, reference distances, route endpoints, segment
-semantics, and itinerary marker references without external geocoding.
+semantics, and itinerary marker references without external geocoding. It also
+runs a negative Lake Como longitude-sign regression.
