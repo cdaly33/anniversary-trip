@@ -4,6 +4,11 @@
       "universe": "descriptive",
       "assignment_id": "anniversary-trip-init-2026-08-23",
       "used_at": "2026-08-23T12:33:15.248-05:00"
+    },
+    {
+      "universe": "descriptive",
+      "assignment_id": "anniversary-trip-web-review-team-expansion-2026-08-23",
+      "used_at": "2026-08-23T13:12:59.719-05:00"
     }
   ],
   "assignment_cast_snapshots": {
@@ -21,6 +26,23 @@
         "fact-checker": "Fact Checker"
       },
       "created_at": "2026-08-23T12:33:15.248-05:00"
+    },
+    "anniversary-trip-web-review-team-expansion-2026-08-23": {
+      "universe": "descriptive",
+      "agents": {
+        "trip-lead": "Trip Lead",
+        "destination-guide": "Destination Guide",
+        "itinerary": "Itinerary",
+        "logistics": "Logistics",
+        "value": "Value",
+        "scribe": "Scribe",
+        "ralph": "Ralph",
+        "rai": "Rai",
+        "fact-checker": "Fact Checker",
+        "visual-designer": "Visual Designer",
+        "web-developer": "Web Developer"
+      },
+      "created_at": "2026-08-23T13:12:59.719-05:00"
     }
   }
 }

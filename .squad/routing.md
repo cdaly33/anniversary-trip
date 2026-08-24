@@ -15,6 +15,8 @@ How to decide who handles what.
 | Queue monitoring | Ralph | Track open questions, dependencies, stalled work, and follow-through |
 | RAI review | Rai | Safety, accessibility, privacy, and responsible travel concerns |
 | Verification and challenge | Fact Checker | Current prices, schedules, closures, source checks, weak assumptions |
+| Visual direction and UX review | Visual Designer | Responsive interaction design, accessibility, visual systems, and design critique |
+| Static web implementation | Web Developer | Accessible HTML/CSS/JavaScript, interactive maps, Azure Static Web Apps, performance, and browser validation |
 
 ## Issue Routing
 
@@ -41,3 +43,4 @@ How to decide who handles what.
 7. **Issue-labeled work** — when a `squad:{member}` label is applied to an issue, route to that member. The Lead handles all `squad` (base label) triage.
 8. **Research is provisional until verified.** Date-sensitive claims route through Fact Checker before being presented as current.
 9. **Planning source of truth.** Accepted direction belongs in `.squad/decisions.md`; personal learnings belong only in the owning agent's append-only `history.md`.
+10. **User-facing web review.** Route interface direction and accessibility review through Visual Designer, and route implementation, map behavior, Azure configuration, performance, and browser validation through Web Developer.

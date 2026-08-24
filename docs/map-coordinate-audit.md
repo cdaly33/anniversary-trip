@@ -95,3 +95,54 @@ Required changes and tests:
 3. Add an automated data test that enumerates every stop, rejects non-finite/out-of-range/zero-default coordinates and exact duplicates, confirms every segment endpoint exists, and checks all fixed city/landmark coordinates against an approved reference fixture with the 10 km threshold (25 km only for explicitly tagged broad regions/natural areas).
 4. Add regression assertions that Lake Como has positive longitude and is within 10 km of the approved Lake Como reference, and that no generic unresolved underground-city marker has a definite coordinate.
 5. Render Northern Italy + Croatia and confirm the fitted bounds and `como → venice` segment remain in northern Italy/Croatia; rerun the complete 37-marker audit, not a spot check.
+
+## Revision-cycle re-review — August 23, 2026
+
+**Verdict: APPROVE.**
+
+The independently revised deployment at commit
+`8a4c312aaaa2451e2c1b2d4cfdaee1ac13f46fa0` resolves both blocking findings.
+
+- **Lake Como:** Production/shared data now stores `[45.9870, 9.2572]`. The
+  longitude is positive-east, and an independent haversine calculation places
+  it **0.80 km** from the audited OSM reference `[45.9917589, 9.2648810]`,
+  within the 10 km landmark threshold. A headless-Chrome render of the live
+  Northern Italy + Croatia route placed Lake Como, Venice, Rovinj, and the
+  Istrian excursion in the expected northern-Italy/Adriatic bounds, with the
+  `como → venice` segment no longer originating in the Atlantic.
+- **Derinkuyu:** The marker is explicit as `Derinkuyu Underground City` at
+  `[38.3735, 34.7348]`, **0.03 km** from the audited reference. Its itinerary
+  beat says `Derinkuyu option + valleys`, `If selected`, and
+  `no timed visit is assumed`; the pace text also says `Before choosing
+  Derinkuyu`. It is therefore presented as an optional excursion, not a booked
+  or timed activity.
+- **Complete data audit:** The validator imported the same `site/app.js` used
+  by the browser and passed **37/37 markers**, **31/31 segments**, and all 7
+  trips. An independent distance recalculation passed all 37 references and
+  thresholds; the largest distance was Douro Valley at 21.38 km against its
+  disclosed 25 km regional threshold. All segment endpoints exist, and the
+  approved ordered route fixture preserves the base, excursion, alternative,
+  rail, road, flight, and uncertain-transfer semantics.
+- **Regression strength:** `site/validate-coordinates.js` checks finite/ranged
+  coordinates, zero defaults, duplicates, labels, roles, reference distances,
+  coordinate signs, complete marker sets, exact segment endpoints/order/types,
+  itinerary references, positive-east Lake Como longitude, and explicit
+  Derinkuyu naming. Running it against an isolated copy with Lake Como changed
+  back to `-9.2572` exited nonzero and reported the wrong longitude sign,
+  1,427.73 km reference error, and failed positive-east invariant.
+- **CI ordering:** Workflow run
+  [32669719665](https://github.com/cdaly33/anniversary-trip/actions/runs/32669719665)
+  checked out the target SHA, passed `Validate map coordinates` with
+  `37 markers, 31 segments, 7 trips`, and only then ran the deploy step. The
+  run and deployment both completed successfully.
+- **Production correspondence:** Live `index.html`, `app.js`, `styles.css`,
+  and `validate-coordinates.js` returned HTTP 200 and matched the corresponding
+  files at the deployment commit byte-for-byte (SHA-256 respectively
+  `632d532d…`, `fc31d7d8…`, `490b251d…`, and `d5490b03…`). Live headless-Chrome
+  renders also showed the corrected Northern Italy route and the Türkiye
+  `Derinkuyu option + valleys` beat.
+
+**Residual caveat:** The approved coordinate references are a committed,
+source-documented fixture rather than live geocoding during CI. This is
+appropriate for deterministic deployment gating, but future intentional map
+changes require updating and independently re-auditing that fixture.

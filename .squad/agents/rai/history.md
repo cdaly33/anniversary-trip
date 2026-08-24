@@ -14,3 +14,5 @@
 ## Learnings
 
 Initial travel-planning RAI context established.
+
+📌 Team update (2026-08-23T13:12:59.719-05:00): Azure SWA review was Yellow/non-blocking; priority advisories were resolved for note debounce behavior, storage and OSM disclosure, utility text sizing, mobility and energy cues, and the responsible-travel prompt — decided by Rai and Visual Designer

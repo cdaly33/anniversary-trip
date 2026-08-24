@@ -18,3 +18,9 @@
 Initial charter and planning guardrails established.
 
 📌 Team update (2026-08-23T12:45:11.098-05:00): The completed council retained Northern Italy + Croatia and Portugal with revisions, while New Zealand + Australia remains structurally rejected; the final synthesis and verification are in `docs\2027-trip-council\07-council-final-report.md` and `08-final-verification.md` — decided by Trip Council and Fact Checker
+
+📌 Team update (2026-08-23T13:12:59.719-05:00): Visual Designer and Web Developer joined the active descriptive roster, and the Azure SWA interactive review site passed final factual, responsible-design, syntax, JSON, and diff checks without a commit — decided by Trip Lead, Fact Checker, and Rai
+
+📌 Team update (2026-08-23T16:56:46.384-05:00): The anniversary-trip review site is live at `https://proud-meadow-00cca3a10.7.azurestaticapps.net/`; its scoped deployment commit and GitHub Actions run completed successfully, with production content independently verified — decided by Web Developer
+
+📌 Team update (2026-08-23T16:56:46.384-05:00): The production map was urgently corrected after a Lake Como longitude sign error; all 37 markers and 31 segments now pass automated verification in CI, and the unchanged production URL was independently revalidated — decided by Fact Checker and Web Developer

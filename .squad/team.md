@@ -21,6 +21,8 @@
 | 🔄 Ralph | Work Monitor | [charter](agents/ralph/charter.md) | Active |
 | 🛡️ Rai | RAI Reviewer | [charter](agents/rai/charter.md) | Active |
 | 🔍 Fact Checker | Verification & Devil's Advocate | [charter](agents/fact-checker/charter.md) | Active |
+| 🎨 Visual Designer | Visual Designer & UX Lead | [charter](agents/visual-designer/charter.md) | Active |
+| 💻 Web Developer | Frontend Web Developer | [charter](agents/web-developer/charter.md) | Active |
 
 
 ## Coding Agent
