@@ -24,3 +24,5 @@ Initial charter and planning guardrails established.
 📌 Team update (2026-08-23T16:56:46.384-05:00): The anniversary-trip review site is live at `https://proud-meadow-00cca3a10.7.azurestaticapps.net/`; its scoped deployment commit and GitHub Actions run completed successfully, with production content independently verified — decided by Web Developer
 
 📌 Team update (2026-08-23T16:56:46.384-05:00): The production map was urgently corrected after a Lake Como longitude sign error; all 37 markers and 31 segments now pass automated verification in CI, and the unchanged production URL was independently revalidated — decided by Fact Checker and Web Developer
+
+📌 Team update (2026-08-23T19:00:01.589-05:00): The published comparison now retains Portugal, Spain, Northern Italy + Croatia, and New Zealand + Australia, with deeper itinerary, STL routing, visual/reference, and broad cost content; final factual review and production deployment passed — decided by @cdaly33, Trip Lead, and Fact Checker

@@ -17,3 +17,5 @@
 Initial itinerary design constraints established.
 
 📌 Team update (2026-08-23T12:45:11.098-05:00): Council itinerary work produced concise outlines for the three original concepts and a balance review with 3 decisions and 12 actions; New Zealand + Australia remains structurally rejected despite its repaired outline — decided by Trip Council and Fact Checker
+
+📌 Team update (2026-08-23T19:00:01.589-05:00): Expanded plans now provide 51 day-level itinerary entries across Portugal, Spain, Northern Italy + Croatia, and New Zealand + Australia; the latter remains structurally high-risk rather than a recommended concept — decided by Itinerary, Trip Lead, and Fact Checker

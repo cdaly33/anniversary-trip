@@ -15,3 +15,5 @@
 ## Learnings
 
 Initial destination research brief established.
+
+📌 Team update (2026-08-23T19:00:01.589-05:00): Deep day-level content and licensed media were curated for the four retained trips; after independent remediation of 8 blocked or misdirected links, the content specification received factual approval — decided by Destination Guide and Fact Checker

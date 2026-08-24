@@ -19,3 +19,7 @@
 Initial visual design and UX review context established for the anniversary-trip web experience.
 
 📌 Team update (2026-08-23T13:12:59.719-05:00): The approved experience uses the `shared route table` aesthetic and `route rehearsal` signature; corrected maps avoid false continuous excursions, clarify gateways and combined stops, distinguish trip-wide flights, and include resolved accessibility, disclosure, mobility, and responsible-travel advisories — decided by Visual Designer, Fact Checker, and Rai
+
+📌 Publication remediation (2026-08-23): Day-level references require fixture-backed parity, browser storage must be rebuilt from the retained-ID allowlist only, and locally converted Commons images use uncropped `contain` presentation with explicit resize/WebP modification notices.
+
+📌 Team update (2026-08-23T19:00:01.589-05:00): Under Web Developer lockout, publication blockers were independently corrected for 21 omitted links, 8 blocked links, removed-trip migration metadata, and undisclosed image cropping; the final implementation received factual approval — decided by Visual Designer and Fact Checker

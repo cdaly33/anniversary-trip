@@ -15,3 +15,5 @@
 ## Learnings
 
 Initial budget and lodging brief established.
+
+📌 Team update (2026-08-23T19:00:01.589-05:00): Comparable provisional 2027 whole-trip ranges for two are Portugal $7.5–10.5K, Spain $8–11K, Northern Italy + Croatia $10.5–15K, and New Zealand + Australia $14–20K, using broad lodging assumptions rather than itemized quotes — decided by Value and Trip Lead

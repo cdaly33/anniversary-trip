@@ -15,3 +15,5 @@
 ## Learnings
 
 Initial logistics principles established.
+
+📌 Team update (2026-08-23T19:00:01.589-05:00): The four retained concepts now use authoritative expected STL flight patterns under shared economy-airfare and provisional-planning assumptions — decided by Logistics and Trip Lead
