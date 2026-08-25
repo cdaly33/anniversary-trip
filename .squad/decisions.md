@@ -89,6 +89,20 @@ Baseline assumption correction: "STL has no transatlantic service" is outdated a
 
 **Verification:** Validators passed (4 trips, 51 entries, 116 day links, 131 production URLs); coordinate validator passed; headless-Chrome smoke confirmed all entries expanded, 20/20 transit rows rendered, 29/29 thumbnails rendered with proper attributes, no toggle/pin UI remaining.
 
+### 2026-08-24T19:55:38.791-05:00: Day-detail polish — bugfix pass (CSP + link rules)
+
+**By:** Web Developer, requested by @cdaly33
+
+**What:**
+
+1. **CSP blocked day thumbnails.** The site's only Content-Security-Policy lives in `staticwebapp.config.json` `globalHeaders` (index.html has no meta CSP). `img-src` allowed `'self' data: https://tile.openstreetmap.org` but not the thumbnail origin, so browsers refused the 29 hotlinked Commons thumbnails. Added `https://upload.wikimedia.org` to `img-src`. Verified by serving the site locally with the production CSP header byte-for-byte (except test-only `frame-ancestors` relaxation for the iframe harness): all 29 thumbnails loaded.
+
+2. **Full-width rules under planning links.** `.itinerary-list li` lacked a child combinator, so the day-entry `border-bottom` bled onto nested `.day-links li` items. Changed the three selectors to `.itinerary-list>li`, scoping separators to top-level day entries. Smoke test asserts 0/116 planning-link items ruled while day-entry separators remain 1px.
+
+**Why:** The thumbnail integration introduced external Wikimedia Commons image origins and CSS descendant-selector bleed that affected nested links. CSP must allow new origins before the asset is deployed. Descendant selectors can collide with nested content — child combinators isolate styling to the intended layer.
+
+**Verification:** `validate-content.js` passed (4 trips, 51 entries, 116 placements, 131 URLs); `validate-coordinates.js` passed; headless-Chrome smoke under production-equivalent CSP: 29/29 thumbnails load; all 51 entries expanded; no link rules; no toggle/pin UI.
+
 ## Governance
 
 - Trip Lead records accepted scope and planning decisions here.

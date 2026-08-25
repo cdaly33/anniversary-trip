@@ -129,10 +129,10 @@ h3{font:600 1.05rem/1.25 var(--utility);margin:0 0 8px}
 .beat-nav{width:44px;height:44px;border:1px solid var(--chart);background:var(--paper);cursor:pointer;font:600 1.2rem/1 var(--utility)}
 .beat-nav:disabled{opacity:.35}
 .itinerary-list{padding:0;margin:0;list-style:none;border-top:1px solid var(--line)}
-.itinerary-list li{border-bottom:1px solid var(--line)}
+.itinerary-list>li{border-bottom:1px solid var(--line)}
 .day-select{display:flex;align-items:center;width:100%;min-height:48px;padding:8px 4px;border:0;background:transparent;cursor:pointer;text-align:left;font:600 .92rem/1.35 var(--utility)}
-.day-select:hover,.itinerary-list li.active .day-select{background:var(--sea)}
-.itinerary-list li.active .day-select{box-shadow:inset 3px 0 0 var(--route)}
+.day-select:hover,.itinerary-list>li.active .day-select{background:var(--sea)}
+.itinerary-list>li.active .day-select{box-shadow:inset 3px 0 0 var(--route)}
 .day-expanded{display:flex;gap:4px 16px;align-items:flex-start;padding:8px 10px 14px}
 .day-expanded p{margin:7px 0}
 .day-text{flex:1;min-width:0}
