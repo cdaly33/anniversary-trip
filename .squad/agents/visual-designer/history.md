@@ -23,3 +23,7 @@ Initial visual design and UX review context established for the anniversary-trip
 📌 Publication remediation (2026-08-23): Day-level references require fixture-backed parity, browser storage must be rebuilt from the retained-ID allowlist only, and locally converted Commons images use uncropped `contain` presentation with explicit resize/WebP modification notices.
 
 📌 Team update (2026-08-23T19:00:01.589-05:00): Under Web Developer lockout, publication blockers were independently corrected for 21 omitted links, 8 blocked links, removed-trip migration metadata, and undisclosed image cropping; the final implementation received factual approval — decided by Visual Designer and Fact Checker
+
+📌 Team update (2026-08-25T20:42:01.924-05:00): When a concept is promoted, imagery and badge/order cues must change with it immediately; temporary asset reuse is acceptable if clearly labeled and less misleading than carrying forward visuals from a demoted destination — decided by Visual Designer
+
+📌 Team update (2026-08-25T21:58:42.851-05:00): Reviewed and approved the new Lake Bled hero image, made a minor alt-text tweak in trip-data.js, and noted the 1800x571 aspect ratio as a non-blocking watch item. — decided by Visual Designer

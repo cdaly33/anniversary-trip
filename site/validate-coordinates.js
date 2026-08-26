@@ -20,9 +20,9 @@ const expectedTrips = {
   ],
   "italy-croatia": [
     ["como", "Lake Como", "base", 45.9917589, 9.264881, 10],
-    ["venice", "Venice", "base", 45.4371908, 12.3345898, 10],
-    ["rovinj", "Rovinj", "base", 45.0807411, 13.6417282, 10],
-    ["istria", "Istrian interior", "excursion", 45.1934345, 13.9150536, 25]
+    ["venice", "Dolomites", "base", 46.5754, 11.6713, 25],
+    ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
+    ["istria", "Piran or Slovenia side trip", "alternative", 45.5286, 13.5684, 10]
   ],
   "new-zealand-australia": [
     ["queenstown", "Queenstown", "base", -45.0321923, 168.661, 10],
@@ -36,7 +36,7 @@ const expectedTrips = {
 const expectedSegments = {
   portugal: ["lisbon>sintra:excursion", "lisbon>porto:rail", "porto>douro:excursion", "porto>guimaraes:alternative", "porto>braga:alternative"],
   spain: ["madrid>toledo:excursion", "madrid>segovia:alternative", "madrid>seville:rail", "seville>cordoba:excursion"],
-  "italy-croatia": ["como>venice:uncertain", "venice>rovinj:uncertain", "rovinj>istria:excursion"],
+  "italy-croatia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
   "new-zealand-australia": ["queenstown>glenorchy:excursion", "queenstown>te-anau:road", "te-anau>milford:road-excursion", "te-anau>queenstown:road", "queenstown>sydney:flight"]
 };
 

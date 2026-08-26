@@ -109,3 +109,43 @@ Baseline assumption correction: "STL has no transatlantic service" is outdated a
 - Agents propose cross-team decisions in `.squad/decisions/inbox/`.
 - Keep agent history focused on durable personal learnings; keep shared direction here.
 - Append corrections or superseding decisions rather than rewriting prior decision meaning.
+
+### 2026-08-25T20:42:01.924-05:00: Italy/Slovenia concept promoted, September 2027 timing confirmed, and transport/coastal-day refinements
+**By:** @cdaly33
+**What:**
+- Croatia concept is superseded as the leading live-site concept. Italy/Slovenia (Como / Dolomites / Bled) is now the active leading concept, while Croatia remains listed as an alternative alongside Portugal, Spain, and New Zealand + Australia.
+- September 2027 timing is confirmed. The actual May 17 wedding anniversary will be celebrated at home separately, so no trip schedule shift is needed.
+- The 3-base structure is confirmed as-is: Como / Dolomites / Bled, with no stay shorter than 3 nights.
+- The car-rental approach changed: the one-way Milan-pickup to Ljubljana-drop rental is dropped. New plan is train travel between bases where possible, with a local rental car only for the Dolomites to Bled leg, picked up around Ortisei/Bolzano and dropped in Bled/Ljubljana.
+- Piran, or a similar Adriatic coastal town, is added as a day-trip option from the Bled base specifically for scenery, walking, and food — not as a swim/beach day, since colder water and swimming are not priorities for this trip.
+**Why:** These decisions reflect confirmed direction from @cdaly33, narrow the live-site lead concept to the current preferred 2027 trip, preserve the already-accepted September timing, keep the pacing comfortable across three bases, reduce cross-border rental friction, and add a coastal option that fits the trip's scenic priorities without changing it into a beach-focused plan.
+
+### 2026-08-25: Fact-check corrections applied to Italy + Slovenia itinerary
+**By:** Fact Checker
+**What:** Updated `docs/30th-anniversary-italy-slovenia-itinerary.md` to replace overconfident flight-frequency wording with date-scoped hedged language, correct September foliage expectations in the Dolomites, revise Villa del Balbianello access wording to reservation/guided-access language, correct cited Bled/Vintgar prices, and soften Croatia comparison tone.
+**Why:** The itinerary should avoid false precision on schedules, seasonal color, and attraction access while keeping cost references and comparative framing defensible.
+
+### 2026-08-25: Shortened car-rental window for Italy + Slovenia itinerary
+**By:** Itinerary
+**What:** Reworked the anniversary itinerary so Lake Como → Dolomites uses rail/local transfer, with a one-way rental car only for the Dolomites → Bled → Ljubljana segment; also framed Piran as an optional scenic Adriatic stop during the Bled leg rather than a swim day.
+**Why:** This keeps the three-base structure intact while reducing parking friction, lowering rental cost, and matching the couple's priorities: scenic pacing, castles, food, and photos over forcing a beach component.
+
+### 2026-08-25: Logistics + value verification for train-first Dolomites/Bled revision
+**By:** Logistics and Value
+**What:** Verified the revised train-first plan as workable with a longer Como→Bolzano rail day and a short local car-rental leg only for Dolomites→Bled/Ljubljana. Confirmed the Bled-based Piran add-on is geographically sound as a long scenic coast day, and raised the short one-way rental budget allowance to better cover cross-border and drop fees.
+**Why:** The revised routing is materially more elegant than the older Milan→Ljubljana full-trip rental, but it needed a realism check on transfer burden and on whether the shorter rental really lowers cost after one-way and cross-border charges. The document now reflects a more defensible drive-time range and a more conservative rental-cost band while preserving the overall savings versus the old full one-way car plan.
+
+### 2026-08-25: Italy + Slovenia lead visual review
+**By:** Visual Designer
+**What:** Confirmed the promoted Italy + Slovenia concept reads as the lead pick through ordering, badge copy, and default selection. Replaced the leftover Croatia gallery image in the Italy + Slovenia concept with a second temporary reuse of the existing Italy Canaletto asset, and explicitly labeled it as temporary until Como, Dolomites, or Bled-specific photography is added. Confirmed the surfaced Piran mention reads as scenic harbor/seafood time rather than a swim or beach day.
+**Why:** The active lead concept should not visually inherit Croatia imagery after the framing changed. Reusing the only available Italy asset was less misleading than keeping Rovinj in the lead gallery, while the note makes the content gap visible for a future asset pass.
+
+### 2026-08-25: Italy + Slovenia promoted on live site
+**By:** Web Developer
+**What:** Promoted the existing `italy-croatia` site concept into the active Italy + Slovenia lead, replacing its Croatia/Venice framing with a Lake Como → Dolomites → Lake Bled itinerary, updated the default selected trip, and kept Portugal/Spain/New Zealand + Australia as alternatives. The updated day plan now reflects three bases, rail-first transfers, a short Dolomites → Bled rental-car leg, revised Lake Como villa language, Predjama/Postojna and Bled anchors, and the optional Piran coastal stop as a non-swim excursion.
+**Why:** The revised itinerary document made Italy + Slovenia the strongest anniversary concept, while Croatia needed to remain available only as background comparison rather than the co-equal lead narrative previously implied by the site.
+
+### 2026-08-25: Italy + Slovenia hero-image replacement
+**By:** Web Developer
+**What:** Replaced the temporary duplicate Canaletto placeholder in the Italy + Slovenia concept gallery with a real Lake Bled hero image from Wikimedia Commons (`site/assets/images/italy-bled.webp`).
+**Why:** Lake Bled gives the strongest single visual summary of the promoted Como → Dolomites → Bled itinerary because it combines the trip's storybook lake, island, and castle payoff in one scenic frame; it is more representative than a generic Italy placeholder and keeps licensing/attribution aligned with the site's Commons-based image convention.

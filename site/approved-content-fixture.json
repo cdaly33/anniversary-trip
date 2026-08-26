@@ -1,6 +1,4 @@
 {
-  "description": "Approved rendered day-content snapshot after removing day-detail toggles, adding Getting-there transit notes, and merging 29 verified Wikimedia Commons day thumbnails from the image-sourcing agent.",
-  "sha256": "edc4e0061073cabb251da254bed99b50a75d367c19d97d29c35e01ac70b2b101",
   "trips": [
     {
       "id": "portugal",
@@ -15,12 +13,13 @@
     {
       "id": "italy-croatia",
       "entries": 13,
-      "dayLinkPlacements": 33
+      "dayLinkPlacements": 28
     },
     {
       "id": "new-zealand-australia",
       "entries": 14,
       "dayLinkPlacements": 32
     }
-  ]
+  ],
+  "sha256": "bf8c0a3fa5b088e1ae66e307912bcab08f7a17c81d83d1d6ad2729c7293d417b"
 }
