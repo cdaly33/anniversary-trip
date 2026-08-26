@@ -43,9 +43,9 @@ This is a self-contained brief for the leading 30th anniversary trip concept: a 
 ### Air routing (verified)
 
 - **Outbound:** STL → Frankfurt (Lufthansa nonstop, A330-300) → Milan Malpensa
-- **Return:** Ljubljana → Frankfurt (Lufthansa, **3x daily**, 1hr 25m) → STL nonstop
+- **Return:** Ljubljana → Frankfurt (Lufthansa; currently often up to **3 daily flights**, ~1hr 25m, but verify the 2027 timetable) → STL nonstop
 - Single ticket, single alliance, Terminal 1 at both ends in FRA
-- **STL–FRA runs 5x weekly June 1 – Oct 20**, dropping to 3x weekly outside that window — September falls inside the high-frequency season
+- **STL–FRA is currently scheduled at 5x weekly June 1 – Oct 20, 2026**, dropping to 3x weekly outside that window; treat September 2027 timing as likely but still to be re-verified when schedules open
 
 ### Base 1 — Lake Como (Varenna) · 3 nights
 
@@ -53,26 +53,26 @@ This is a self-contained brief for the leading 30th anniversary trip concept: a 
 |---|---|
 | **1** | Depart STL → FRA → Milan Malpensa |
 | **2** | Land AM. Train to Varenna (~2 hrs, no car needed). **Deliberate recovery day:** lakeside lunch, easy stroll, early dinner. |
-| **3** | **Anchor: Villa Carlotta + Villa del Balbianello** by ferry. Gardens, terraces, lakeside palaces. Afternoon in Bellagio. |
+| **3** | **Anchor: Villa Carlotta + Villa del Balbianello** by ferry. Gardens, terraces, and a Balbianello visit that typically requires advance FAI reservation; villa interiors are usually guided-tour access rather than free-roam, so re-check current rules before booking. Afternoon in Bellagio. |
 | **4** | **Anchor: private classic-boat cruise** on the lake. Morning free — funicular to Brunate or the Greenway del Lago walk. |
 
 ### Base 2 — Val Gardena / Ortisei, Dolomites · 3 nights
 
 | Day | Plan |
 |---|---|
-| **5** | Train Varenna → Milan, pick up rental car there (avoids Lake Como parking problems). Drive ~4 hrs to Ortisei. Alpine dinner (half-board). |
+| **5** | Train Varenna → Milan → Bolzano, then local transfer to Ortisei. Longer transit day, but keeps the trip car-free until the cross-border leg. Alpine dinner (half-board). |
 | **6** | **Anchor: Seceda cable car** — the iconic knife-edge ridge. Ridge walk, rifugio lunch. Afternoon in Ortisei village. |
-| **7** | **Anchor: Alpe di Siusi** by cable car, or drive to **Lago di Braies**. Larches begin turning gold in mid-September. |
+| **7** | **Anchor: Alpe di Siusi** by cable car, or drive to **Lago di Braies**. In September expect mostly late-summer/early-autumn alpine scenery; the classic golden larch peak in the Dolomites is more often early-to-mid October, varying by altitude and weather. |
 
 ### Base 3 — Lake Bled, Slovenia · 4 nights
 
 | Day | Plan |
 |---|---|
-| **8** | **Drive Ortisei → Bled, ~3h45m** (285 km). Scenic option: detour via Tarvisio → Kranjska Gora through the Julian Alps. Schengen — no border stop. **Buy Austrian + Slovenian vignettes.** |
-| **9** | **Anchor: Bled Castle** (clifftop, ~€15) + **pletna boat to Bled Island** (hand-rowed gondola, €15–18) — 99 steps to the Church of the Assumption, ring the wishing bell. Kremšnita cream cake. |
+| **8** | Pick up a **local rental car near Ortisei/Bolzano**, then **drive Ortisei/Bolzano → Bled, roughly 3.75–4.5 hrs depending on pickup point and route**. Scenic option: detour via Tarvisio → Kranjska Gora through the Julian Alps. Schengen — no border stop. **Buy Austrian + Slovenian vignettes.** |
+| **9** | **Anchor: Bled Castle** (clifftop, currently ~€19 adult) + **pletna boat to Bled Island** (hand-rowed gondola, currently about €20 round-trip adult) — 99 steps to the Church of the Assumption, ring the wishing bell. Kremšnita cream cake. |
 | **10** | **Anchor: Predjama Castle** (~1.5 hrs) — a castle built into the mouth of a cliff cave, with the Erazem Lueger outlaw legend. Pair with **Postojna Cave** next door. |
-| **11** | **Anchor: Vintgar Gorge** boardwalks over emerald water (~€8, ~2 hrs) — go early to beat crowds. Afternoon **Lake Bohinj** + Vogel cable car, *or* **Ljubljana** old town + castle funicular. **Anniversary dinner** lakeside in Bled. |
-| **12** | Drive to Ljubljana airport (~35 min), drop car. **LJU → FRA → STL.** |
+| **11** | **Anchor: Vintgar Gorge** boardwalks over emerald water (currently about **€15 adult**, ~2 hrs) — go early to beat crowds. Afternoon **Piran** option: Adriatic harbor walk, seafood, and photos on Tartini Square and the seafront walls — a scenic coast day, **not** a swim day; September water is cooler and warm-water beach time is not a priority here. Alternative: **Lake Bohinj** + Vogel cable car, *or* **Ljubljana** old town + castle funicular. **Anniversary dinner** lakeside in Bled. |
+| **12** | Drive to Ljubljana airport (~35 min), drop the short-leg rental car. **LJU → FRA → STL.** |
 
 ---
 
@@ -87,20 +87,21 @@ This is a self-contained brief for the leading 30th anniversary trip concept: a 
 | Ortisei hotel — 3 nights (~€145 pp/nt, **half-board**) | $900 | $1,000 |
 | Lake Bled hotel — 4 nights (€80–150/nt) | $400 | $700 |
 | Internal flights | **$0** | **$0** |
-| Car rental (7 days, one-way fee, vignettes, fuel, tolls) | $600 | $800 |
+| Car rental (3–4 days, one-way regional drop, cross-border fee, vignettes, fuel, tolls) | $350 | $650 |
 | Trains, ferries, local transport | $200 | $250 |
 | Activities & anchor experiences | $650 | $800 |
 | Food (Dolomites dinners already included in half-board) | $1,000 | $1,250 |
 | Misc / tips / incidentals | $200 | $300 |
-| **TOTAL** | **$6,670** | **$8,620** |
+| **TOTAL** | **$6,420** | **$8,470** |
 
-**Midpoint: ~$7,645 total · ~$3,820 per person**
+**Midpoint: ~$7,445 total · ~$3,723 per person**
 
 ### Cost notes
 
 - Lake Bled is the cheapest base at €80–150/night — well below Split ($150–200) or Lisbon ($200–280 in May)
 - Dolomites half-board is the best value on the trip: ~€145 pp/night **including a multi-course dinner and spa access**
 - Eliminating the internal flight saves $120–200 and removes a travel-day risk
+- Shortening the car rental to the Dolomites → Bled segment cuts both total cost and parking friction on the Como/Dolomites transfer days
 - STL carries a **$200–400 pp premium vs. Chicago**; positioning to ORD would save $400–800/couple but adds friction and separate-ticket risk. Recommendation: pay the STL premium.
 
 ---
@@ -113,7 +114,7 @@ The original concept was Lake Como → Dolomites → **Split, Croatia**. It was 
 
 1. **Rome-repeat risk.** Croatia's single best attraction is Diocletian's Palace — Roman ruins. They already did Rome and loved it, including a full Vatican day. Their own planning principles warn against repeating a recent trip concept.
 2. **Thin on Rachel's actual interests.** She responds to castles, palaces, and royal monuments (Edinburgh Castle, Windsor). Croatia has essentially no equivalent — it is a coastline-and-atmosphere destination, not a monument destination.
-3. **Documented overtourism.** Diocletian's Palace routinely exceeds recommended visitor capacity. Dubrovnik has ~41,000 residents against 1.3M+ annual visitors and is a textbook overtourism case; critics describe it as "an open-air museum." This undercuts the authenticity pitch.
+3. **Heavier tourism pressure.** Parts of Croatia's best-known coast and old towns, especially Dubrovnik, are widely discussed as overtourism pressure points; that does not make the whole country a write-off, but it weakens the "more relaxed anniversary base" case for this specific trip.
 4. **No longer a bargain.** Split hotels run $150–200/night. The value argument has largely evaporated.
 
 **What Croatia genuinely has:** Diocletian's Palace *is* remarkable — the best-preserved Roman imperial palace anywhere, and uniquely, ~3,000 people still live inside its walls. But it is one great half-day. It does not carry four nights or a 30th anniversary.
@@ -125,9 +126,9 @@ The original concept was Lake Como → Dolomites → **Split, Croatia**. It was 
 | Answer to "why go?" | Weak | **3 castles, one built into a cliff** |
 | Internal flights | 1 (Split → Venice) | **0** |
 | Rome-repeat risk | High | **None** |
-| Overtourism | Documented crisis | Far lighter |
-| Return flight reliability | Split seasonal, awkward | **LJU→FRA 3x daily, year-round** |
-| Midpoint cost | $8,150 | **$7,645** |
+| Tourism pressure | Heavier in headline hotspots | Generally lighter |
+| Return flight reliability | Split seasonal, awkward | **LJU→FRA frequent year-round Lufthansa service (verify 2027 schedule)** |
+| Midpoint cost | $8,150 | **$7,445** |
 | Warm-water swimming | Yes (Adriatic ~24–25°C) | No (Bled 19–23°C) |
 
 **Geography also improves:** the route now runs west→east in a straight line — Como → Dolomites → Julian Alps → Bled. No backtracking, each drive ~4 hrs and genuinely scenic.
@@ -138,11 +139,11 @@ The original concept was Lake Como → Dolomites → **Split, Croatia**. It was 
 
 | | Item |
 |---|---|
-| 🟡 | **No warm-water swimming.** Bled is 19–23°C in September — beautiful, not beach. This is the real loss vs. Croatia. Partial fix if desired: Piran, a Venetian-era town on Slovenia's small coast, ~1.5 hrs from Ljubljana. |
+| 🟡 | **No warm-water swimming.** Bled is 19–23°C in September — beautiful, not beach. Partial fix: make **Piran** a scenic Adriatic walk/food/photo day from the Bled leg, without pretending it is a swim stop. |
 | 🟡 | **Still 3 bases**, one more than the stated preference. Mitigated: no stay is under 3 nights, and there are no 1-night stops. |
-| 🟡 | **7 days of car rental** (vs 4 in the Croatia version), plus Austrian and Slovenian vignettes required. |
+| 🟡 | **Short one-way car rental still required** for the Dolomites → Bled segment, plus Austrian and Slovenian vignettes. |
 | 🟡 | **Off-anniversary timing** — September vs. the actual May 17 date. Suggested handling: celebrate the date at home, take the trip in September. |
-| 🟢 | **September is the right month.** Dolomites lifts and trails fully open (often not in May); Lake Como still warm; Bled explicitly better than August — shorter pletna queues, thinner crowds, still warm. |
+| 🟢 | **September is a strong practical month.** Dolomites lifts and trails are typically still operating (often not in May); Lake Como is usually pleasant; Bled is often less crowded than August. Just do not expect peak Dolomites fall color yet — that more often arrives in October. |
 | 🟢 | **2027 schedules not yet published.** Verify STL–FRA frequency and LJU–FRA times when booking opens. |
 
 ---
@@ -164,13 +165,15 @@ The original concept was Lake Como → Dolomites → **Split, Croatia**. It was 
 
 1. Confirm September 2027 vs. May 2027 with Rachel, and how to mark the actual May 17 date.
 2. Verify 2027 Lufthansa schedules (STL–FRA frequency; LJU–FRA times) once published.
-3. Decide whether to add a Piran or Adriatic coast day to recover some warm-water time.
-4. Book early: Lake Como and Bled mid-range hotels sell out well in advance for September.
-5. Reserve anchor experiences — private Como boat cruise, Seceda/Alpe di Siusi lifts, pletna boat, and the anniversary dinner.
-6. Arrange one-way car rental (Milan pickup → Ljubljana airport drop) and confirm cross-border fees plus Austrian and Slovenian vignettes.
+3. Book early: Lake Como and Bled mid-range hotels sell out well in advance for September.
+4. Reserve anchor experiences — private Como boat cruise, Seceda/Alpe di Siusi lifts, pletna boat, and the anniversary dinner.
+5. Arrange a short one-way car rental for the Dolomites → Bled leg (pickup near Ortisei/Bolzano; drop in Bled or Ljubljana) and confirm cross-border fees plus Austrian and Slovenian vignettes.
+6. Decide whether the Bled-leg free afternoon should lean coastal (**Piran**) or inland (**Bohinj/Ljubljana**) once their energy level is clearer.
 
 ---
 
 ## 8. Short portable brief
 
-> Rachel and Chris are planning a 30th anniversary trip for September 2027 (married May 17, 1997), departing from STL. The leading plan is 12 days / 10 nights with three bases and no internal flights: Lake Como (3 nts) → Val Gardena/Ortisei in the Dolomites (3 nts) → Lake Bled, Slovenia (4 nts). They fly STL–Frankfurt–Milan out and Ljubljana–Frankfurt–STL home on Lufthansa, driving between the Dolomites and Bled (~3h45m). Anchors include Villa Carlotta and Villa del Balbianello, a private Como boat cruise, the Seceda cable car and Alpe di Siusi, Bled Castle and the pletna boat to Bled Island, Predjama Castle and Postojna Cave, and Vintgar Gorge. Estimated at ~$7,645 for two. This version replaced an earlier Croatia-based plan because Croatia's main draw is Roman ruins (a repeat of their beloved Rome trip), it is thin on the castles Rachel actually likes, it has documented overtourism problems, and it is no longer cheap. Slovenia is cheaper, less crowded, castle-rich, and removes the internal flight. Main remaining tradeoff: no warm-water swimming. They prefer 1–2 meaningful experiences per day, 2–3 bases maximum, warm or pleasant weather, comfort over luxury, and good value; they dislike frequent hotel changes and unnecessary flights.
+> Rachel and Chris are planning a 30th anniversary trip for September 2027 (married May 17, 1997), departing from STL. The leading plan is 12 days / 10 nights with three bases and no internal flights: Lake Como (3 nts) → Val Gardena/Ortisei in the Dolomites (3 nts) → Lake Bled, Slovenia (4 nts). They fly STL–Frankfurt–Milan out and Ljubljana–Frankfurt–STL home on Lufthansa, use trains for the Como → Dolomites transfer, then rent a car only for the Dolomites → Bled segment (~3h45m) and airport drop. Anchors include Villa Carlotta and Villa del Balbianello, a private Como boat cruise, the Seceda cable car and Alpe di Siusi, Bled Castle and the pletna boat to Bled Island, Predjama Castle and Postojna Cave, Vintgar Gorge, and an optional Piran Adriatic walk/food/photo afternoon. Estimated at ~$7,445 for two. This version replaced an earlier Croatia-based plan because Croatia's main draw here leaned more Roman/coastal than castle-focused for this couple, some headline destinations now face heavier tourism pressure, and the value gap is not as large as it once was. Slovenia stays castle-rich, generally calmer, and removes the internal flight. Main remaining tradeoff: no warm-water swimming. They prefer 1–2 meaningful experiences per day, 2–3 bases maximum, warm or pleasant weather, comfort over luxury, and good value; they dislike frequent hotel changes and unnecessary flights.
+
+

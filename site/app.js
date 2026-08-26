@@ -23,7 +23,7 @@
   ];
   const els = Object.fromEntries(ids.map(id => [id, byId(id)]));
 
-  let selectedId = "portugal";
+  let selectedId = "italy-croatia";
   let dayIndex = 0;
   let map;
   let tileLayer;
@@ -274,7 +274,7 @@
   }
 
   function selectTrip(id, newDay = 0, updateHash = false) {
-    selectedId = RETAINED_IDS.has(id) ? id : "portugal";
+    selectedId = RETAINED_IDS.has(id) ? id : "italy-croatia";
     dayIndex = Math.min(Math.max(newDay, 0), currentTrip().daysPlan.length - 1);
     renderConcepts();
     renderEvidence();
@@ -308,7 +308,7 @@
 
   function readUrl() {
     const match = location.hash.match(/^#([a-z-]+)\/(?:day|beat)-(\d+)$/);
-    if (!match || !RETAINED_IDS.has(match[1])) return ["portugal", 0];
+    if (!match || !RETAINED_IDS.has(match[1])) return ["italy-croatia", 0];
     return [match[1], Number(match[2]) - 1];
   }
 

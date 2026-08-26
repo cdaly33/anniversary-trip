@@ -14,11 +14,11 @@
   return [
     {
       id: "portugal",
-      order: 0,
+      order: 1,
       name: "Portugal",
       short: "Lisbon → Porto",
-      status: "Provisional leading fit",
-      statusDetail: "Best current blend of comfort, distinctiveness, pace, and value, but still dependent on a satisfying Douro anniversary day and a practical Porto departure.",
+      status: "Alternative concept",
+      statusDetail: "Still an appealing low-friction option, but now trails Italy + Slovenia on anniversary distinctiveness and castle-and-scenery payoff.",
       days: 11,
       calendarEntries: 12,
       nights: 10,
@@ -105,7 +105,7 @@
     },
     {
       id: "spain",
-      order: 1,
+      order: 2,
       name: "Spain",
       short: "Madrid → Seville",
       status: "Strongest challenger",
@@ -180,76 +180,76 @@
     },
     {
       id: "italy-croatia",
-      order: 2,
-      name: "Northern Italy + Croatia",
-      short: "Como → Venice ⇢ Rovinj",
-      status: "Conditional on routing",
-      statusDetail: "A romantic, high-wow concept that advances only if Venice–Rovinj and the final regional gateway are verified as humane, resilient, and compatible with the stated nights.",
+      order: 0,
+      name: "Italy + Slovenia",
+      short: "Como → Dolomites → Bled",
+      status: "Provisional leading fit",
+      statusDetail: "Best current anniversary concept: three scenic bases, no internal flights, castle-and-landscape anchors, and a shorter car rental used only for the Dolomites → Bled leg.",
       days: 12,
       calendarEntries: 13,
-      nights: 11,
+      nights: 10,
       bases: 3,
       transfers: 2,
       timing: "September 2027",
-      shape: "Travel Day 0 + Days 1–12 · Lake Como 4 + Venice 3 + Rovinj 4",
-      route: "Lake Como (4 nights) → Venice (3 nights) ⇢ Rovinj (4 nights)",
-      why: "A romantic progression from lake scenery to historic Venice and the Adriatic, with strong scenery, history, and regional food.",
-      question: "Could the unresolved Venice–Rovinj link and final airport consume two vacation days?",
-      repair: "Confirm the cross-border route, door-to-door ceiling, and departure gateway before nonrefundable lodging. If a gateway night is required, revise the shape instead of hiding it.",
+      shape: "Travel Day 0 + Days 1–12 · Lake Como 3 nights + Dolomites 3 + Lake Bled 4",
+      route: "Lake Como (3 nights) → Dolomites (3 nights) → Lake Bled (4 nights)",
+      why: "It delivers the strongest mix of anniversary scenery, castle-and-villa visits, alpine drama, and a calmer final base while keeping the route linear and dropping the internal-flight burden.",
+      question: "Is the third base and short cross-border rental-car segment acceptable in exchange for the richer castle-and-scenery payoff?",
+      repair: "Keep the Como and Dolomites legs rail-first, use the rental car only from Ortisei or Bolzano to Bled, and treat Piran as an optional coast day rather than a required swim stop.",
       mobility: {
-        hardest: "Venice–Rovinj: luggage, border, dock or vehicle boarding, cobbles, and old-town access.",
-        walking: "Moderate overall; ferry docks, bridges, stairs, slopes, polished cobbles, and luggage are recurring barriers.",
-        lower: "Vaporetto orientation, one-interior days, harbor-centered Rovinj, seated food, and no-swimming options.",
-        recovery: "Lake Day 4 is protected; both transfer evenings stay empty; Rovinj Day 11 is flex."
+        hardest: "Dolomites and Vintgar days: cable cars, uneven paths, boardwalks, and some stairs or gradients.",
+        walking: "Moderate overall; ferry docks, Alpine viewpoints, castle approaches, and gorge boardwalks add effort but no day requires forced speed.",
+        lower: "Recovery arrival at Como, village-level Dolomite afternoons, lakefront Bled time, and Ljubljana or Piran as selective low-intensity alternatives.",
+        recovery: "Day 1 stays light, Day 7 allows a gentler Dolomites alternative, and Day 11 keeps multiple lower-effort Bled-region options."
       },
-      responsible: "Prefer rail and shared transfers, keep Venice visits resident-aware and unhurried, choose one Istrian hill town rather than a circuit, and do not let seasonal ferry marketing substitute for verified transport.",
+      responsible: "Prefer rail for the first two legs, keep the rental only for the cross-border Alpine transfer, respect pressure-sensitive villa and gorge sites with timed or early entry, and avoid framing the Adriatic stop as a warm-water beach obligation.",
       flight: {
-        summary: "Expected pattern — STL–MXP inbound with one connection (JFK, EWR, ATL seasonal, MIA, or seasonal STL–Frankfurt); return from Rovinj is easiest via VCE, the only one-stop gateway, with TRS and ZAG at two stops and PUY the least useful.",
-        detail: "Allow roughly 12–20 hours to MXP plus a 1–1.5 hour lake transfer and 14–24 hours home including Rovinj ground travel. VCE relies on seasonal nonstops to JFK/EWR/PHL/ATL/ORD; keep VCE with a ground transfer as the planning default and treat PUY as check-when-dates-publish. Seasonal Venice–Rovinj ferry service is not confirmed for 2027. Use a daytime coach or prebooked ground transfer as the dependable planning fallback.",
-        burden: "Two load-bearing regional transfers plus the longest and least certain European return.",
+        summary: "Expected pattern — open jaw on Lufthansa via Frankfurt: STL–FRA–MXP outbound and LJU–FRA–STL return, with a single alliance and no internal flights.",
+        detail: "Current planning assumes STL–Frankfurt nonstop on Lufthansa when the seasonal service operates, then Frankfurt–Milan Malpensa outbound and Ljubljana–Frankfurt return. The FRA–LJU segment is currently often up to three daily flights of about 1 hour 25 minutes, but exact 2027 schedules still need verification. If STL–FRA timing shifts, keep the same Europe gateway rather than introducing a second alliance or separate ticket.",
+        burden: "One transatlantic connection each way plus a three-base land itinerary; materially easier than adding an internal European flight.",
         links: [
-          L("Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train"),
-          L("Adriatic Lines schedule", "https://adriatic-lines.com/schedule"),
-          L("Pula live flight timetable", "https://airport-pula.hr/en/flight-info/flight-timetable/")
+          L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm"),
+          L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train"),
+          L("Ljubljana Airport", "https://www.lju-airport.si/en/")
         ]
       },
       cost: {
-        range: "$10,500–$15,000",
-        hotels: "Lake Como $250–$420 · Venice $240–$400 · Rovinj $180–$310/night",
-        buys: "Ferry-useful lake lodging, comfortable quieter-central Venice, and strong Rovinj midrange; compact rooms, stairs, and transit walks are normal tradeoffs.",
-        pressure: "Higher: premium Como/Venice lodging, cross-border transfer, gateway choice, luggage handling, and exchange rates.",
-        confidence: "Medium",
-        verdict: "The romance and variety justify the premium only if Croatia routing is solved without expensive improvisation."
+        range: "$6,400–$8,500",
+        hotels: "Lake Como $240–$340/night · Dolomites about €145 pp/night half-board · Lake Bled €80–€150/night",
+        buys: "Comfortable lake lodging, a Dolomites stay with dinners included, and a well-located Bled base with room for castles, scenery, and one celebratory dinner.",
+        pressure: "Moderate: open-jaw airfare, Lake Como demand, Dolomites lift/weather timing, and the short one-way rental with vignettes.",
+        confidence: "Medium-high",
+        verdict: "Currently the best balance of wow factor, usable time, and value — stronger and more distinctive than the Croatia version without costing more."
       },
       images: [
         { file: "assets/images/italy-venice-canaletto.webp", alt: "Canaletto painting of a busy eighteenth-century Piazza San Marco beneath a bright sky.", credit: "Canaletto, The Piazza San Marco in Venice, public domain, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg", license: "https://commons.wikimedia.org/wiki/File:Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg", note: "Historical artwork, not a present-day view. Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." },
-        { file: "assets/images/croatia-rovinj-sunset.webp", alt: "Warm sunset light on Rovinj’s waterfront buildings and hilltop church.", credit: "Sunset in old town Rovinj, Valerii Tkachenko, CC BY 2.0, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Sunset_in_old_town_Rovinj_%288093140959%29.jpg", license: "https://creativecommons.org/licenses/by/2.0/", note: "Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." }
+        { file: "assets/images/italy-bled.webp", alt: "Lake Bled with the pilgrimage church on Bled Island and Bled Castle on the cliff above.", credit: "Bled Island & Bled Castle, Lake Bled, Slovenia, Krzysztof Golik, CC BY-SA 4.0, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Bled_Island_%26_Bled_Castle_(1).jpg", license: "https://creativecommons.org/licenses/by-sa/4.0/", note: "Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." }
       ],
       stops: [
         { id: "como", name: "Lake Como", lat: 45.987, lng: 9.2572, role: "base" },
-        { id: "venice", name: "Venice", lat: 45.4408, lng: 12.3155, role: "base" },
-        { id: "rovinj", name: "Rovinj", lat: 45.0812, lng: 13.6387, role: "base" },
-        { id: "istria", name: "Istrian interior", lat: 45.25, lng: 13.82, role: "excursion" }
+        { id: "venice", name: "Dolomites", lat: 46.5754, lng: 11.6713, role: "base" },
+        { id: "rovinj", name: "Lake Bled", lat: 46.3683, lng: 14.1146, role: "base" },
+        { id: "istria", name: "Piran or Slovenia side trip", lat: 45.5286, lng: 13.5684, role: "alternative" }
       ],
       segments: [
-        { from: "como", to: "venice", type: "uncertain" },
-        { from: "venice", to: "rovinj", type: "uncertain" },
-        { from: "rovinj", to: "istria", type: "excursion" }
+        { from: "como", to: "venice", type: "rail" },
+        { from: "venice", to: "rovinj", type: "road" },
+        { from: "rovinj", to: "istria", type: "alternative" }
       ],
       daysPlan: [
-        D("Travel Day 0", "Depart STL", "Begin overnight travel toward MXP.", "None.", "Keeps the true airport and recovery load visible.", "Connection, airport walking, and prolonged sitting.", "Protect Day 1 recovery after disruption.", "como", [L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Sample routing: seasonal STL–FRA–MXP on Lufthansa is the one-stop option when operating; otherwise connect via JFK, EWR, ATL (seasonal), or MIA. Anticipate roughly 12–20 hours to MXP."),
-        D("Day 1", "Arrive Lake Como", "Transfer from MXP to the selected lake base and check in.", "Short lakefront orientation and early dinner.", "Immediate scenic romance without a first-day checklist.", "Very light after a long multi-stage transfer.", "Direct hotel arrival, indoor meal, and sleep.", "como", [L("Malpensa train", "https://www.milanomalpensa-airport.com/en/from-to/by-train"), L("Lake Como destination guide", "https://www.visitlakecomo.info/en/")], "recovery", "MXP to the lake: Malpensa Express to Milano Centrale (~50 minutes), then train to Como S. Giovanni (~1 hour); driving direct takes about 1.5 hours.", I("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Varenna_Italy%2C_waterfront_at_sunset.jpg/500px-Varenna_Italy%2C_waterfront_at_sunset.jpg", "Varenna’s waterfront houses on Lake Como at sunset.", "Jmatazzoni, CC BY-SA 4.0", 500, 334)),
-        D("Day 2", "Ferry-linked lake villages", "Visit Varenna waterfront and Villa Monastero.", "Add Bellagio waterfront and a long lunch; only two villages.", "Scenery, exploration, and food without a hotel move.", "Moderate; docks, boarding, steps, slopes, and standing.", "One town, one interior, and lunch.", "como", [L("Villa Monastero — official site", "https://www.villamonastero.eu/en/home_en/"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/"), L("Lake Como destination guide", "https://www.visitlakecomo.info/en/")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Varenna%2CVilla_Monastero_-_panoramio_%285%29.jpg/500px-Varenna%2CVilla_Monastero_-_panoramio_%285%29.jpg", "Villa Monastero’s gardens along the Varenna lakefront.", "Halina Frederiksen, CC BY 3.0", 500, 375)),
-        D("Day 3", "Anniversary lake anchor", "Visit Villa del Balbianello subject to verified access and calendar.", "Add a scheduled ferry or quiet lake-view meal; do not promise a private boat.", "Combines architecture, gardens, water, and celebration.", "Moderate; slopes, paths, boat access, and timed entry can matter.", "Another villa interior or covered lunch; preserve dinner.", "como", [L("Villa del Balbianello", "https://fondoambiente.it/luoghi/villa-del-balbianello?lang=en"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Villa_del_Balbianello_in_Italy.jpg/500px-The_Villa_del_Balbianello_in_Italy.jpg", "Villa del Balbianello’s loggia above Lake Como.", "Sheeba Samuel, CC BY-SA 4.0", 500, 375)),
-        D("Day 4", "Protected lake recovery", "Keep the day open; Villa Carlotta only if desired.", "Use Como cathedral or silk-history options in poor ferry weather.", "Absorbs arrival fatigue and weather.", "Fully adjustable; gardens include gradients.", "Hotel, café, spa if available, or no formal activity.", "como", [L("Villa Carlotta", "https://www.villacarlotta.it/en/"), L("Silk Museum", "https://www.museosetacomo.com/", "Italian metadata")], "recovery", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Villa_Carlotta_%28Tremezzo%29_-_Sala_dei_gessi.jpg/500px-Villa_Carlotta_%28Tremezzo%29_-_Sala_dei_gessi.jpg", "Plaster-cast gallery inside Villa Carlotta.", "Pierre André Leclercq, CC BY-SA 4.0", 500, 436)),
-        D("Day 5", "Lake Como to Venice", "Transfer, use a luggage-assisted hotel approach, and reset.", "Nearest canal corridor or seated vaporetto orientation.", "Earns a major shift from lake scenery to a singular city.", "Transfer day; bridges, steps, crowds, and luggage make short distances tiring.", "Direct hotel arrival and nearby dinner.", "venice", [L("Visit Venezia", "https://www.visitvenezia.eu/en"), L("ACTV", "https://actv.avmspa.it/en")], "transfer", "Lake Como to Venice: rail via Milan, about 3.5–4 hours total."),
-        D("Day 6", "Historic Venice", "Tour the Doge’s Palace.", "Add St Mark’s Basilica or square, paced separately with a long break.", "Dense political, religious, and artistic history.", "Moderate; standing, stairs, bridges, queues, and acqua alta controls.", "Prioritize the main interior and a sheltered neighborhood.", "venice", [L("Doge’s Palace", "https://palazzoducale.visitmuve.it/en/home/"), L("St Mark’s Basilica", "https://www.basilicasanmarco.it/?lang=en", "Italian metadata"), L("Visit Venezia", "https://www.visitvenezia.eu/en")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/%28Venice%29_Doge%27s_Palace_facing_the_sea.jpg/500px-%28Venice%29_Doge%27s_Palace_facing_the_sea.jpg", "The Doge’s Palace arcade facing the Venice lagoon.", "Didier Descouens, CC BY-SA 4.0", 500, 306)),
-        D("Day 7", "Venice character choice", "Choose Murano’s Glass Museum or an in-city food and neighborhood experience.", "Leave café, canal, or rest time unstructured.", "Adds craft and lived-city character before transfer.", "Adjustable; lagoon boats and bridges make Murano higher effort.", "Remain in Venice for Ca’ Rezzonico.", "venice", [L("Glass Museum", "https://museovetro.visitmuve.it/en/home/", "Italian metadata"), L("Ca’ Rezzonico", "https://carezzonico.visitmuve.it/en/home/"), L("Visit Venezia", "https://www.visitvenezia.eu/en")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Murano_Venice.jpg/500px-Murano_Venice.jpg", "A canal lined with houses on Murano.", "Vivupadi, CC BY-SA 4.0", 500, 375)),
-        D("Day 8", "Venice to Rovinj", "Use a verified cross-border ferry or ground transfer and check in.", "Harbor meal or very short square orientation.", "Rovinj earns its place only if the move creates contrast rather than friction.", "Travel-heavy; luggage, border, dock or vehicle, cobbles, and old-town access.", "Prebooked daytime ground transfer and no evening plan.", "rovinj", [L("Adriatic Lines schedule", "https://adriatic-lines.com/schedule"), L("Rovinj Tourist Board", "https://www.rovinj-tourism.com/en/"), L("Batana Eco-Museum", "https://www.batana.org/en/")], "transfer", "Venice to Rovinj: prebooked daytime coach/ground transfer about 3.5–4.5 hours; the seasonal ferry takes about 3 hours if 2027 operation is confirmed."),
-        D("Day 9", "Rovinj old town and waterfront", "Explore old town and the St Euphemia viewpoint.", "Choose a short Golden Cape segment or seated harbor time.", "Historic texture and Adriatic atmosphere distinct from Venice.", "Moderate; polished cobbles, slopes, and steps.", "Harbor-centered low-walking route, Batana interpretation, and a long meal.", "rovinj", [L("Rovinj Tourist Board", "https://www.rovinj-tourism.com/en/"), L("Istria tourism — Rovinj", "https://www.istra.hr/en/destinations/rovinj"), L("Batana Eco-Museum", "https://www.batana.org/en/")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Sunset_in_old_town_Rovinj_%288093140959%29.jpg/500px-Sunset_in_old_town_Rovinj_%288093140959%29.jpg", "Rovinj’s waterfront and hilltop church at sunset.", "Valerii Tkachenko, CC BY 2.0", 500, 375)),
-        D("Day 10", "Istrian interior and food", "Choose Motovun or Grožnjan, never both.", "Add a seated food experience; wine is optional.", "Adds hill-town history, landscape, and food beyond the coast.", "Moderate to high; grades and access restrictions require a drop-off strategy.", "Food-focused Rovinj day or sheltered heritage stop.", "istria", [L("Motovun", "https://www.istra.hr/en/destinations/motovun"), L("Istria gastronomy", "https://www.istra.hr/en/experience/gourmet")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Aerial_view_to_Motovun.jpg/500px-Aerial_view_to_Motovun.jpg", "The hill town of Motovun above the Istrian countryside.", "Ekaterina Polischuk, CC BY-SA 4.0", 500, 333)),
-        D("Day 11", "Adriatic flex", "Rest, hold for weather, or visit Pula’s amphitheater and old-city core.", "Final Istrian dinner and unhurried packing; Brijuni is optional.", "Ends with place and food rather than a compulsory excursion.", "Light in Rovinj; moderate and exposed if Pula is chosen.", "Café, museum, hotel rest, and dinner.", "rovinj", [L("Pula tourism", "https://www.pulainfo.hr/"), L("Archaeological Museum of Istria", "https://www.ami-pula.hr/en/"), L("Brijuni National Park", "https://www.np-brijuni.hr/en")], "recovery"),
-        D("Day 12", "Regional gateway and return to STL", "Use the reserved transfer to PUY, TRS, VCE, or ZAG and return internationally.", "None.", "Viability depends on avoiding a hidden fourth base or punishing final day.", "Travel-only with substantial ground time and one or two air connections.", "If a humane same-day route is unavailable, change the trip shape.", "rovinj", [L("Pula timetable", "https://airport-pula.hr/en/flight-info/flight-timetable/"), L("Trieste direct flights", "https://triesteairport.it/en/airport/flights-and-destinations/direct-flights/"), L("Venice airport-to-city transport", "https://www.visitvenezia.eu/en/venetianity/walk-venice/all-the-way-to-get-from-marco-polo-airport-to-venice"), L("Zagreb airlines", "https://www.zagreb-airport.hr/en/passengers/flight-information/airlines/66")], "travel", "Return routing: ground transfer to Venice (VCE, about 3 hours) gives the only one-stop pattern via seasonal US nonstops; TRS or ZAG mean two stops. Anticipate roughly 14–24 hours home.")
+        D("Travel Day 0", "Depart STL", "Begin the overnight Lufthansa-oriented trip to Milan via Frankfurt.", "Meals, hydration, movement, and sleep are the plan.", "Keeps the true long-haul load visible and protects the first lake day.", "Airport walking, one transatlantic connection, and prolonged sitting.", "After disruption, protect Day 1 recovery instead of pushing scenery.", "como", [L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Sample routing: STL–FRA nonstop on Lufthansa when seasonal service operates, then FRA–MXP. Keep September 2027 timing tied to Lufthansa's published schedule when it opens."),
+        D("Day 1", "Arrive Lake Como and recover", "Train from Milan Malpensa to Varenna, check in, and keep the day intentionally light.", "Lakeside lunch, short waterfront stroll, and early dinner.", "Gives the trip romance immediately without spending a major anchor on jet lag.", "Very light; rail transfer plus gentle walking only.", "Direct hotel arrival and sleep.", "como", [L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "recovery", "MXP to Varenna by rail usually runs about 2 hours with the Milan connection."),
+        D("Day 2", "Lake Como villas by ferry", "Use Villa Carlotta and Villa del Balbianello as the focused lake anchor, moving by ferry and keeping Bellagio secondary.", "Bellagio waterfront and lunch if energy stays good.", "Combines gardens, classic lake scenery, and one of the trip's most cinematic villa visits.", "Moderate; ferry boarding, paths, and some slopes matter.", "Keep one villa only if weather, reservations, or energy require it.", "como", [L("Villa Carlotta", "https://www.villacarlotta.it/en/"), L("Villa del Balbianello", "https://fondoambiente.it/luoghi/villa-del-balbianello?lang=en"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "day", "Use lake ferries between Varenna, Tremezzo, Lenno, and Bellagio; Balbianello typically needs advance FAI booking. Villa interiors are usually guided rather than free-roam, so re-check current rules before booking."),
+        D("Day 3", "Como boat day", "Take the private classic-boat cruise as the celebratory lake experience.", "Keep the morning free for Brunate or an easy Greenway segment before the cruise.", "Supplies the clearest anniversary-only splurge without adding another transfer.", "Light to moderate depending on the morning option.", "Skip Brunate and keep only the cruise plus a long meal.", "como", [L("Lake Como destination guide", "https://www.visitlakecomo.info/en/"), L("Brunate funicular", "https://www.funicularcomobrunate.it/en")], "day"),
+        D("Day 4", "Rail to the Dolomites", "Travel Varenna → Milan → Bolzano and continue to Ortisei for the Alpine base.", "Check in, settle, and use the evening for a simple village walk and included dinner.", "Keeps the trip car-free until the cross-border leg and makes the route feel progressively grander.", "Longer transfer day with luggage handling.", "Go straight to the hotel and treat dinner as the full plan.", "venice", [L("Trenitalia", "https://www.trenitalia.com/en.html"), L("Val Gardena", "https://www.valgardena.it/en/")], "transfer", "Varenna to Bolzano by rail is the main move; continue locally to Ortisei after arrival."),
+        D("Day 5", "Seceda ridge day", "Ride the Seceda cable car for the signature Dolomites panorama and a selective ridge walk.", "Rifugio lunch and an easy Ortisei village afternoon.", "This is the trip's biggest alpine wow moment.", "Moderate; cable cars, high-altitude walking, and weather exposure.", "Keep only the cable car viewpoint and lunch if a full walk feels too ambitious.", "venice", [L("Seceda", "https://www.seceda.it/en/"), L("Val Gardena", "https://www.valgardena.it/en/")], "day"),
+        D("Day 6", "Alpe di Siusi or Lago di Braies", "Use Alpe di Siusi as the primary broad-meadow Dolomites day, with Lago di Braies as the scenic alternative.", "Keep the evening easy with half-board dinner and spa time if offered.", "Adds a second distinct Dolomites landscape without forcing a fourth base.", "Moderate; cable cars or a scenic drive, with weather affecting exposure.", "Stay village-based if conditions turn poor.", ["venice"], [L("Seiser Alm / Alpe di Siusi", "https://www.seiseralm.it/en"), L("Pragser Wildsee / Lago di Braies", "https://www.prags.bz/en")], "day", "September usually reads as late summer to early autumn here; classic golden larch color is more often early to mid-October, depending on altitude and weather."),
+        D("Day 7", "Drive to Lake Bled", "Pick up a local rental near Ortisei or Bolzano and drive across the Alps to Bled.", "Use the scenic Tarvisio → Kranjska Gora route if timing and weather are favorable.", "The short rental keeps the route linear and drops the earlier internal-flight problem.", "Transfer day with driving, luggage, and vignette logistics.", "Take the simplest direct route and keep the evening quiet.", "rovinj", [L("Ljubljana Airport", "https://www.lju-airport.si/en/"), L("Bled official tourism", "https://www.bled.si/en/")], "transfer", "Ortisei/Bolzano to Bled is roughly 3.75–4.5 hours depending on pickup point and route. Buy Austrian and Slovenian vignettes; there is no Schengen border stop."),
+        D("Day 8", "Bled Castle and island", "Use Bled Castle and the pletna boat to Bled Island as the core lake day.", "Finish with kremšnita and a flexible lakeside afternoon.", "Pairs storybook scenery with the trip's strongest castle-on-a-lake image.", "Moderate; castle approach, boat boarding, and the island's 99 steps matter.", "Keep only the castle or only the island if energy runs lower.", "rovinj", [L("Bled Castle", "https://www.blejski-grad.si/en/"), L("Bled official tourism", "https://www.bled.si/en/")], "day", "Lakefront movement within Bled is simple; the pletna adds a short hand-rowed crossing to the island."),
+        D("Day 9", "Predjama Castle and Postojna Cave", "Make the castle-in-a-cliff day the principal inland excursion, pairing Predjama with nearby Postojna Cave.", "Keep dinner back in Bled simple after the longer outing.", "This is the clearest answer to why Slovenia belongs in the leading concept.", "Moderate; driving, cave routes, and castle terrain add effort.", "Use only Predjama if a shorter history-focused day is preferable.", "rovinj", [L("Predjama Castle", "https://www.postojnska-jama.eu/en/predjama-castle/"), L("Postojna Cave", "https://www.postojnska-jama.eu/en/postojna-cave/")], "day", "Drive time from Bled is roughly 1.5 hours each way."),
+        D("Day 10", "Vintgar Gorge and a coast-or-city option", "Walk Vintgar Gorge early, then choose Piran for an Adriatic harbor afternoon or stay inland with Bohinj or Ljubljana.", "Use Piran for seafood, Tartini Square, and photos rather than a swim agenda.", "Builds in flexibility without hiding the new coast option.", "Light to moderate if you keep only one afternoon option after the gorge.", "Skip the afternoon drive and keep only Bled or Bohinj time.", ["rovinj", "istria"], [L("Vintgar Gorge", "https://www.vintgar.si/en/"), L("Piran tourism", "https://www.portoroz.si/en/discover/piran"), L("Visit Ljubljana", "https://www.visitljubljana.com/en/"), L("Lake Bohinj", "https://www.bohinj.si/en/")], "day", "Go to Vintgar early to beat crowds. Piran is a scenic harbor stop, not a warm-water beach day; Ljubljana and Bohinj remain equal-status alternatives."),
+        D("Day 11", "Bled anniversary flex day", "Keep the final full day adjustable around weather, energy, or any moved Slovenia anchor.", "Use a lakeside anniversary dinner as the one fixed element.", "Protects the trip from over-scripting the third base.", "Light by design.", "Stay entirely in Bled and rest.", "rovinj", [L("Bled official tourism", "https://www.bled.si/en/"), L("Lake Bohinj", "https://www.bohinj.si/en/")], "recovery"),
+        D("Day 12", "Ljubljana departure and return to STL", "Drive to Ljubljana Airport, drop the short rental, and fly home via Frankfurt.", "None.", "Ends the trip without a hidden repositioning day.", "Travel-only with airport walking and one Europe connection.", "If flight timing changes, keep the same open-jaw structure rather than adding a fourth base.", "rovinj", [L("Ljubljana Airport", "https://www.lju-airport.si/en/"), L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Bled to Ljubljana Airport is about 35 minutes by car; current planning assumes LJU–FRA–STL on Lufthansa.")
       ]
     },
     {
@@ -332,3 +332,4 @@
     }
   ];
 });
+

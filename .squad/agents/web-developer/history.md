@@ -41,3 +41,6 @@ Initial frontend implementation and deployment context established for the anniv
 
 📌 Team update (2026-08-24T19:55:38.791-05:00): Bugfix pass shipped uncommitted — added `https://upload.wikimedia.org` to `img-src` CSP in `staticwebapp.config.json` to unblock 29 Commons thumbnail loads; fixed `.itinerary-list li` descendant-selector bleed onto nested `.day-links li` by converting to child-combinator form `.itinerary-list>li`. Production-equivalent CSP smoke test: 29/29 thumbnails load, 0/116 link rules. Decision merged into `.squad/decisions.md`. — decided by Web Developer, requested by @cdaly33
 
+📌 Team update (2026-08-25T20:42:01.924-05:00): Italy + Slovenia replaced Croatia as the live-site lead concept; default selection, gallery framing, and itinerary copy now center Lake Como → Dolomites → Lake Bled with rail-first transfers and an optional non-swim Piran day — decided by Web Developer, Visual Designer, and @cdaly33
+
+📌 Team update (2026-08-25T21:58:42.851-05:00): Lake Bled Commons hero image replaced the temporary duplicate Canaletto placeholder for the Italy + Slovenia concept; validators passed and attribution stayed aligned with the site's Commons convention. — decided by Web Developer
