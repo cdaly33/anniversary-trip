@@ -27,3 +27,6 @@ Initial visual design and UX review context established for the anniversary-trip
 📌 Team update (2026-08-25T20:42:01.924-05:00): When a concept is promoted, imagery and badge/order cues must change with it immediately; temporary asset reuse is acceptable if clearly labeled and less misleading than carrying forward visuals from a demoted destination — decided by Visual Designer
 
 📌 Team update (2026-08-25T21:58:42.851-05:00): Reviewed and approved the new Lake Bled hero image, made a minor alt-text tweak in trip-data.js, and noted the 1800x571 aspect ratio as a non-blocking watch item. — decided by Visual Designer
+
+### 2026-08-26: Reversed Italy + Slovenia card review
+Reviewed the new reversed-routing comparison card. I tightened its status/disclosure copy in `site\trip-data.js` so it reads as a side-by-side variant of the lead rather than a competing duplicate, confirmed the order renumbering keeps the shortlist hierarchy intact, and noted a follow-up for Web Developer: the page shell still says "Four routes" even though five concepts now exist.

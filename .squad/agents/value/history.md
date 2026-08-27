@@ -19,3 +19,5 @@ Initial budget and lodging brief established.
 📌 Team update (2026-08-23T19:00:01.589-05:00): Comparable provisional 2027 whole-trip ranges for two are Portugal $7.5–10.5K, Spain $8–11K, Northern Italy + Croatia $10.5–15K, and New Zealand + Australia $14–20K, using broad lodging assumptions rather than itemized quotes — decided by Value and Trip Lead
 
 📌 Team update (2026-08-25T20:42:01.924-05:00): For Northern Italy/Slovenia, a shorter cross-border rental can still be the better option if rail absorbs Como→Dolomites first; budget bands should stay conservative because one-way and border/drop fees remain material even on a reduced rental window — decided by Logistics and Value
+
+📌 Team update (2026-08-25T22:44:54.452-05:00): Reversed LJU-in / MXP-out ordering for the Italy + Slovenia concept is effectively cost-equivalent to the current forward version; hold airfare, hotel, activity, train, and food bands, but allow a slightly wider car-rental high end because Slovenia-pickup / Italy-drop one-way quotes can be a bit less favorable than the reverse.

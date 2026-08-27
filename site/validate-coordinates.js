@@ -24,6 +24,12 @@ const expectedTrips = {
     ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
     ["istria", "Piran or Slovenia side trip", "alternative", 45.5286, 13.5684, 10]
   ],
+  "italy-slovenia-reversed": [
+    ["como", "Lake Como", "base", 45.9917589, 9.264881, 10],
+    ["venice", "Dolomites", "base", 46.5754, 11.6713, 25],
+    ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
+    ["istria", "Piran or Slovenia side trip", "alternative", 45.5286, 13.5684, 10]
+  ],
   "new-zealand-australia": [
     ["queenstown", "Queenstown", "base", -45.0321923, 168.661, 10],
     ["glenorchy", "Glenorchy area", "excursion", -44.849749, 168.3851983, 25],
@@ -37,6 +43,7 @@ const expectedSegments = {
   portugal: ["lisbon>sintra:excursion", "lisbon>porto:rail", "porto>douro:excursion", "porto>guimaraes:alternative", "porto>braga:alternative"],
   spain: ["madrid>toledo:excursion", "madrid>segovia:alternative", "madrid>seville:rail", "seville>cordoba:excursion"],
   "italy-croatia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
+  "italy-slovenia-reversed": ["rovinj>venice:road", "venice>como:rail", "rovinj>istria:alternative"],
   "new-zealand-australia": ["queenstown>glenorchy:excursion", "queenstown>te-anau:road", "te-anau>milford:road-excursion", "te-anau>queenstown:road", "queenstown>sydney:flight"]
 };
 
@@ -50,14 +57,12 @@ function haversineKm(aLat, aLng, bLat, bLng) {
 }
 function validate(data) {
   const errors = [];
-  const globalIds = new Set();
-  const coordinateKeys = new Map();
   const allowedRoles = new Set(["base", "excursion", "alternative"]);
   const fail = message => errors.push(message);
   const tripIds = data.map(trip => trip.id);
 
   if (new Set(tripIds).size !== tripIds.length) fail("Duplicate trip ID found.");
-  if (tripIds.length !== 4) fail(`Expected exactly 4 trips, found ${tripIds.length}.`);
+  if (tripIds.length !== 5) fail(`Expected exactly 5 trips, found ${tripIds.length}.`);
 
   for (const trip of data) {
     const expected = expectedTrips[trip.id];
@@ -67,12 +72,11 @@ function validate(data) {
     }
     const expectedById = new Map(expected.map(item => [item[0], item]));
     const localIds = new Set();
+    const coordinateKeys = new Map();
     for (const stop of trip.stops) {
       const path = `${trip.id}/${stop.id}`;
       if (localIds.has(stop.id)) fail(`Duplicate marker ID in trip: ${path}`);
-      if (globalIds.has(stop.id)) fail(`Duplicate marker ID across trips: ${stop.id}`);
       localIds.add(stop.id);
-      globalIds.add(stop.id);
       const reference = expectedById.get(stop.id);
       if (!reference) {
         fail(`Unknown marker ID: ${path}`);
@@ -85,7 +89,7 @@ function validate(data) {
       if (Math.abs(stop.lat) > 90 || Math.abs(stop.lng) > 180) fail(`${path} is outside latitude/longitude ranges.`);
       if (stop.lat === 0 && stop.lng === 0) fail(`${path} uses the zero/default coordinate.`);
       const key = `${stop.lat},${stop.lng}`;
-      if (coordinateKeys.has(key)) fail(`${path} duplicates coordinates used by ${coordinateKeys.get(key)}.`);
+      if (coordinateKeys.has(key)) fail(`${path} duplicates coordinates used by ${coordinateKeys.get(key)} within the same trip.`);
       coordinateKeys.set(key, path);
       if (Math.abs(refLat) > 1 && Math.sign(stop.lat) !== Math.sign(refLat)) fail(`${path} latitude sign differs from its reference.`);
       if (Math.abs(refLng) > 1 && Math.sign(stop.lng) !== Math.sign(refLng)) fail(`${path} longitude sign differs from its reference.`);

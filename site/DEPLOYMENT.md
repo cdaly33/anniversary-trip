@@ -20,8 +20,8 @@ node site/validate-content.js
 node site/validate-coordinates.js
 ```
 
-The content check validates the four retained trips, all 51 approved itinerary entries and
-116 day-link placements against the approved fixture, and verifies image transformation
+The content check validates the current trip concepts, approved itinerary entries, and
+day-link placements against the approved fixture, and verifies image transformation
 disclosures and local files.
 
 The check imports the shared deployed trip data from `site/trip-data.js` and validates all
