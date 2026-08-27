@@ -44,3 +44,7 @@ Initial frontend implementation and deployment context established for the anniv
 📌 Team update (2026-08-25T20:42:01.924-05:00): Italy + Slovenia replaced Croatia as the live-site lead concept; default selection, gallery framing, and itinerary copy now center Lake Como → Dolomites → Lake Bled with rail-first transfers and an optional non-swim Piran day — decided by Web Developer, Visual Designer, and @cdaly33
 
 📌 Team update (2026-08-25T21:58:42.851-05:00): Lake Bled Commons hero image replaced the temporary duplicate Canaletto placeholder for the Italy + Slovenia concept; validators passed and attribution stayed aligned with the site's Commons convention. — decided by Web Developer
+
+📌 Team update (2026-08-26T21:22:27.091-05:00): Added a separate `italy-slovenia-reversed` comparison card with reversed Bled → Dolomites → Como sequencing, reused the forward concept's two existing gallery images with explicit shared-photo notes, shifted later `order` values to keep the new card adjacent to the forward entry, and updated validators/fixtures so stop IDs are treated as trip-scoped rather than globally unique.
+
+📌 Team update (2026-08-26T21:27:46.966-05:00): Replaced stale "Four routes" count copy in `site\index.html` and the dynamic page title in `site\app.js` with trip-concept wording, refreshed the no-JavaScript concept list to include the reversed Italy + Slovenia option, and made the deployment note count-agnostic to avoid future drift. Validators passed.

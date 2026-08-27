@@ -21,3 +21,8 @@ Initial itinerary design constraints established.
 📌 Team update (2026-08-23T19:00:01.589-05:00): Expanded plans now provide 51 day-level itinerary entries across Portugal, Spain, Northern Italy + Croatia, and New Zealand + Australia; the latter remains structurally high-risk rather than a recommended concept — decided by Itinerary, Trip Lead, and Fact Checker
 
 📌 Team update (2026-08-25T20:42:01.924-05:00): Italy + Slovenia is now the active lead concept with September 2027 timing confirmed, the three-base Como/Dolomites/Bled structure retained, rail-first transfers between early bases, and only a short Dolomites→Bled/Ljubljana rental-car leg plus optional scenic Piran time — decided by @cdaly33, Itinerary, Logistics and Value
+
+📌 Team update (2026-08-25): Appended a reversed-order Slovenia → Dolomites → Lake Como variant to the master itinerary doc without altering the forward version. Preserved the same anchor experiences, used hedged/date-scoped Ljubljana arrival wording, updated the cost table to the reversal bands, and framed the ending-in-Italy vs. ending-in-Slovenia choice as a real taste tradeoff with a slight logistics lean toward Milan.
+
+📌 Team update (2026-08-26T21:27:47.439-05:00): Applied Rai's two advisory wording tweaks in Section 9 only — softened the reversed-routing outbound air opener to current-planning language and expanded the Piran note to match the document's cooler-water / not-a-swim-day framing.
+

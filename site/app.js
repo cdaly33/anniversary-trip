@@ -101,7 +101,7 @@
   function renderEvidence() {
     const trip = currentTrip();
     const day = trip.daysPlan[dayIndex];
-    document.title = `${trip.name} · Four anniversary routes`;
+    document.title = `${trip.name} · Anniversary trip concepts`;
     els["current-concept"].textContent = trip.name;
     els["map-heading"].textContent = `${trip.name} route`;
     els["concept-kicker"].textContent = trip.status;

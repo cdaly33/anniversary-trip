@@ -17,3 +17,6 @@
 Initial destination research brief established.
 
 📌 Team update (2026-08-23T19:00:01.589-05:00): Deep day-level content and licensed media were curated for the four retained trips; after independent remediation of 8 blocked or misdirected links, the content specification received factual approval — decided by Destination Guide and Fact Checker
+
+### 2026-08-25: Reversed-routing destination arc
+Confirmed that reversing the route changes the sequence from a calm-then-castle payoff to a storybook opening, alpine peak, and softer Lake Como romantic coda, while the Slovenia-over-Croatia case stays unchanged because it is about destination fit rather than direction.

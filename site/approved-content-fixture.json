@@ -16,10 +16,15 @@
       "dayLinkPlacements": 28
     },
     {
+      "id": "italy-slovenia-reversed",
+      "entries": 13,
+      "dayLinkPlacements": 29
+    },
+    {
       "id": "new-zealand-australia",
       "entries": 14,
       "dayLinkPlacements": 32
     }
   ],
-  "sha256": "bf8c0a3fa5b088e1ae66e307912bcab08f7a17c81d83d1d6ad2729c7293d417b"
+  "sha256": "be502972c9441b63557c00f647ac9ee3e5122e46e1df557204883e65d0c767b1"
 }

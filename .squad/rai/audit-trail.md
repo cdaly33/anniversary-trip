@@ -9,3 +9,10 @@
 - Verdict: 🟢 Green
 - Findings: No blocking or advisory RAI issues found. Croatia comparison language is now specific to traveler fit rather than country-shaming, Piran is framed as an optional scenic coast stop rather than a safety/swimmability warning, and schedule/access claims that remain uncertain are hedged with re-verification language.
 - Verification: node site\validate-coordinates.js passed.
+### 2026-08-26T21:26:01.482-05:00: RAI pass — reversed routing option content review
+- Reviewer: Rai
+- Scope: docs\30th-anniversary-italy-slovenia-itinerary.md (Section 9 only); site\trip-data.js (`italy-slovenia-reversed` only)
+- Verdict: 🟡 Yellow
+- Findings: Advisory only. No harmful or exclusionary language, no deceptive citations, no PII, and no credential leakage detected. Mobility/recovery framing and responsible-travel cues are present in both artifacts, and the new site card follows the established mobility/responsible schema. Minor consistency gap: Section 9 still leads with `Air routing (verified)` plus exact Lufthansa/aircraft wording before the later hedge, which reads slightly stronger than the document's date-scoped flight-language convention; the Section 9 Piran note also says `not a swim day` but does not repeat the forward version's clearer cooler-September-water framing.
+- Recommendations: 1. Soften the Section 9 air-routing opener to a sample/current-planning framing or add `as of Aug. 2026` directly in the opening bullets. 2. Mirror the forward section's explicit cooler-water / scenic-harbor phrasing for Piran to maximize consistency.
+- Verification: `node site\validate-content.js` passed; `node site\validate-coordinates.js` passed.

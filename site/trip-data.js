@@ -14,7 +14,7 @@
   return [
     {
       id: "portugal",
-      order: 1,
+      order: 2,
       name: "Portugal",
       short: "Lisbon → Porto",
       status: "Alternative concept",
@@ -105,7 +105,7 @@
     },
     {
       id: "spain",
-      order: 2,
+      order: 3,
       name: "Spain",
       short: "Madrid → Seville",
       status: "Strongest challenger",
@@ -253,8 +253,82 @@
       ]
     },
     {
+      id: "italy-slovenia-reversed",
+      order: 1,
+      name: "Italy + Slovenia (Reversed)",
+      short: "Bled → Dolomites → Como",
+      status: "Comparison variant of the lead",
+      statusDetail: "Side-by-side variant of the lead: the same three bases and anchor experiences in reverse order, ending in Italy instead of Slovenia for a stronger homebound gateway and a calmer lake finish. The gallery temporarily reuses the lead card's two images until reversed-route photography is added.",
+      days: 12,
+      calendarEntries: 13,
+      nights: 10,
+      bases: 3,
+      transfers: 2,
+      timing: "September 2027",
+      shape: "Travel Day 0 + Days 1–12 · Lake Bled 4 nights + Dolomites 3 + Lake Como 3",
+      route: "Lake Bled (4 nights) → Dolomites (3 nights) → Lake Como (3 nights)",
+      why: "It keeps the same best-fit castles, Alpine drama, and villa-and-lake anchors while testing a more immediately distinctive Slovenia opening and a more forgiving Milan-area finish.",
+      question: "Does the stronger Milan finish outweigh starting on the thinner FRA → LJU feeder side and the fussier Slovenia → Italy one-way rental pattern?",
+      repair: "Treat it as a true comparison variant: keep the same anchors, scrutinize the Slovenia-pickup / Italy-drop rental before booking, and stay with the forward order if supplier rules or pricing look worse.",
+      mobility: {
+        hardest: "Dolomites and Vintgar days: cable cars, uneven paths, boardwalks, and some stairs or gradients.",
+        walking: "Moderate overall; ferry docks, Alpine viewpoints, castle approaches, and gorge boardwalks add effort but no day requires forced speed.",
+        lower: "Recovery arrival at Bled, village-level Dolomite afternoons, lakefront Como time, and Ljubljana or Piran as selective low-intensity alternatives.",
+        recovery: "Day 1 keeps Bled intentionally light, Day 7 allows a gentler Dolomites alternative, and Day 11 is a low-effort Como coda before the airport day."
+      },
+      responsible: "Keep the same rail-first logic where it works best, use the rental only for the Slovenia-to-Dolomites cross-border leg, respect pressure-sensitive villa and gorge sites with timed or early entry, and frame the Piran stop as scenic harbor time rather than a beach obligation.",
+      flight: {
+        summary: "Expected pattern — Lufthansa-oriented open jaw via Frankfurt: STL–FRA–LJU outbound and MXP–FRA–STL return, swapping the gateway order while keeping a single alliance and zero internal flights.",
+        detail: "Current planning assumes STL–Frankfurt nonstop on Lufthansa when the seasonal service operates, then Frankfurt–Ljubljana outbound and Milan Malpensa–Frankfurt return. As of Aug. 2026, FRA↔LJU service appears directionally similar in both directions, but exact 2027 frequencies should not be treated as guaranteed. Ending at MXP gives the reversed version a denser major-hub gateway for the trip home. If STL–FRA timing shifts, keep the same Europe gateway rather than introducing a second alliance or separate ticket.",
+        burden: "One transatlantic connection each way plus a thinner arrival feeder into Slovenia and a stronger Milan gateway for the trip home.",
+        links: [
+          L("Ljubljana Airport", "https://www.lju-airport.si/en/"),
+          L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train"),
+          L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")
+        ]
+      },
+      cost: {
+        range: "$6,420–$8,520",
+        hotels: "Lake Bled €80–€150/night · Dolomites about €145 pp/night half-board · Lake Como $240–$340/night",
+        buys: "The same comfortable three-base midrange shape as the forward lead, with room for castles, Alpine lift days, a private boat splurge, and one polished final dinner on Como.",
+        pressure: "Moderate: open-jaw airfare, Lake Como demand, Dolomites lift/weather timing, and extra supplier scrutiny on the Slovenia-pickup / Italy-drop rental.",
+        confidence: "Medium-high",
+        verdict: "Essentially the same price as the forward lead; choose it for the emotional arc and Milan finish, not because it is materially cheaper."
+      },
+      images: [
+        { file: "assets/images/italy-venice-canaletto.webp", alt: "Canaletto painting of a busy eighteenth-century Piazza San Marco beneath a bright sky.", credit: "Canaletto, The Piazza San Marco in Venice, public domain, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg", license: "https://commons.wikimedia.org/wiki/File:Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg", note: "Shared with the forward Italy + Slovenia entry pending dedicated reversed-route photography; the identical gallery is temporary comparison scaffolding. Historical artwork, not a present-day view. Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." },
+        { file: "assets/images/italy-bled.webp", alt: "Lake Bled with the pilgrimage church on Bled Island and Bled Castle on the cliff above.", credit: "Bled Island & Bled Castle, Lake Bled, Slovenia, Krzysztof Golik, CC BY-SA 4.0, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Bled_Island_%26_Bled_Castle_(1).jpg", license: "https://creativecommons.org/licenses/by-sa/4.0/", note: "Shared with the forward Italy + Slovenia entry pending dedicated reversed-route photography; the identical gallery is temporary comparison scaffolding. Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." }
+      ],
+      stops: [
+        { id: "como", name: "Lake Como", lat: 45.987, lng: 9.2572, role: "base" },
+        { id: "venice", name: "Dolomites", lat: 46.5754, lng: 11.6713, role: "base" },
+        { id: "rovinj", name: "Lake Bled", lat: 46.3683, lng: 14.1146, role: "base" },
+        { id: "istria", name: "Piran or Slovenia side trip", lat: 45.5286, lng: 13.5684, role: "alternative" }
+      ],
+      segments: [
+        { from: "rovinj", to: "venice", type: "road" },
+        { from: "venice", to: "como", type: "rail" },
+        { from: "rovinj", to: "istria", type: "alternative" }
+      ],
+      daysPlan: [
+        D("Travel Day 0", "Depart STL", "Begin the overnight Lufthansa-oriented trip to Ljubljana via Frankfurt.", "Meals, hydration, movement, and sleep are the plan.", "Keeps the true long-haul load visible and lets Bled serve as the recovery arrival.", "Airport walking, one transatlantic connection, and prolonged sitting.", "After disruption, protect Day 1 recovery instead of pushing straight into sightseeing.", "rovinj", [L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm"), L("Ljubljana Airport", "https://www.lju-airport.si/en/")], "travel", "Sample routing: STL–FRA nonstop on Lufthansa when seasonal service operates, then FRA–LJU. September remains the right target window, but the 2027 schedule still needs re-verification when booking opens."),
+        D("Day 1", "Arrive Lake Bled and recover", "Transfer from Ljubljana Airport to Bled, check in, and keep the day intentionally light.", "Lakeside lunch, short waterfront stroll, and early dinner.", "Starts with the storybook lake setting while respecting jet lag and avoiding a long first-day drive.", "Very light; short airport transfer plus gentle walking only.", "Direct hotel arrival and sleep.", "rovinj", [L("Ljubljana Airport", "https://www.lju-airport.si/en/"), L("Bled official tourism", "https://www.bled.si/en/")], "recovery", "Ljubljana Airport to Bled is roughly 35–45 minutes by car or transfer."),
+        D("Day 2", "Bled Castle and island", "Use Bled Castle and the pletna boat to Bled Island as the core opening anchor.", "Finish with kremšnita and a flexible lakeside afternoon.", "Announces the storybook-castle logic immediately instead of saving it for the end.", "Moderate; castle approach, boat boarding, and the island's 99 steps matter.", "Keep only the castle or only the island if energy runs lower.", "rovinj", [L("Bled Castle", "https://www.blejski-grad.si/en/"), L("Bled official tourism", "https://www.bled.si/en/")], "day", "Lakefront movement within Bled is simple; the pletna adds a short hand-rowed crossing to the island."),
+        D("Day 3", "Predjama Castle and Postojna Cave", "Make the castle-in-a-cliff day the principal inland excursion, pairing Predjama with nearby Postojna Cave.", "Keep dinner back in Bled simple after the longer outing.", "Preserves the clearest answer to why Slovenia belongs in this concept regardless of routing direction.", "Moderate; driving, cave routes, and castle terrain add effort.", "Use only Predjama if a shorter history-focused day is preferable.", "rovinj", [L("Predjama Castle", "https://www.postojnska-jama.eu/en/predjama-castle/"), L("Postojna Cave", "https://www.postojnska-jama.eu/en/postojna-cave/")], "day", "Drive time from Bled is roughly 1.5 hours each way."),
+        D("Day 4", "Vintgar Gorge and a coast-or-city option", "Walk Vintgar Gorge early, then choose Piran for an Adriatic harbor afternoon or stay inland with Bohinj or Ljubljana.", "Use Piran for seafood, Tartini Square, and photos rather than a swim agenda.", "Keeps the same flexible Slovenia finish material, just moved earlier in the trip.", "Light to moderate if you keep only one afternoon option after the gorge.", "Skip the afternoon drive and keep only Bled or Bohinj time.", ["rovinj", "istria"], [L("Vintgar Gorge", "https://www.vintgar.si/en/"), L("Piran tourism", "https://www.portoroz.si/en/discover/piran"), L("Visit Ljubljana", "https://www.visitljubljana.com/en/"), L("Lake Bohinj", "https://www.bohinj.si/en/")], "day", "Go to Vintgar early to beat crowds. Piran is a scenic harbor stop, not a warm-water beach day; Ljubljana and Bohinj remain equal-status alternatives."),
+        D("Day 5", "Drive to the Dolomites", "Pick up a short one-way rental in the Bled or Ljubljana area and drive across the Alps to Ortisei.", "Use the scenic Tarvisio → Kranjska Gora route if timing and weather are favorable.", "The same short rental keeps the route linear while testing the reversed cross-border direction.", "Transfer day with driving, luggage, vignette logistics, and the Karawanks Tunnel toll on the Austria route.", "Take the simplest direct route and keep the evening quiet.", "venice", [L("Ljubljana Airport", "https://www.lju-airport.si/en/"), L("Val Gardena", "https://www.valgardena.it/en/")], "transfer", "Bled/Ljubljana to Ortisei or Val Gardena is roughly 3.75–4.5 hours depending on pickup point and route. Buy Slovenian and Austrian vignettes; no routine Schengen border stop is expected."),
+        D("Day 6", "Seceda ridge day", "Ride the Seceda cable car for the signature Dolomites panorama and a selective ridge walk.", "Rifugio lunch and an easy Ortisei village afternoon.", "Still the trip's biggest alpine wow moment, now functioning as the middle-act crescendo.", "Moderate; cable cars, high-altitude walking, and weather exposure.", "Keep only the cable car viewpoint and lunch if a full walk feels too ambitious.", "venice", [L("Seceda", "https://www.seceda.it/en/"), L("Val Gardena", "https://www.valgardena.it/en/")], "day"),
+        D("Day 7", "Alpe di Siusi or Lago di Braies", "Use Alpe di Siusi as the primary broad-meadow Dolomites day, with Lago di Braies as the scenic alternative.", "Keep the evening easy with half-board dinner and spa time if offered.", "Adds the second distinct Dolomites landscape without changing the proven middle section.", "Moderate; cable cars or a scenic drive, with weather affecting exposure.", "Stay village-based if conditions turn poor.", ["venice"], [L("Seiser Alm / Alpe di Siusi", "https://www.seiseralm.it/en"), L("Pragser Wildsee / Lago di Braies", "https://www.prags.bz/en")], "day", "September usually reads as late summer to early autumn here; classic golden larch color is more often early to mid-October, depending on altitude and weather."),
+        D("Day 8", "Rail to Lake Como", "Drop the rental near Bolzano or Bozen, then take rail via Milan to Varenna for the Como base.", "Check in, exhale, and keep the evening focused on a quiet lakefront dinner.", "Restores the elegant car-free finish and starts the trip's calmer romantic coda.", "Longer transfer day with luggage handling and the rental drop.", "Go straight to the hotel and treat dinner as the full plan.", ["venice", "como"], [L("Trenitalia", "https://www.trenitalia.com/en.html"), L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train")], "transfer", "Drop the car near Bolzano/Bozen before rail onward via Milan to Varenna-Esino."),
+        D("Day 9", "Lake Como villas by ferry", "Use Villa Carlotta and Villa del Balbianello as the focused lake anchor, moving by ferry and keeping Bellagio secondary.", "Bellagio waterfront and lunch if energy stays good.", "Preserves the classic villa-and-gardens day while letting Como feel like the trip's polished last act.", "Moderate; ferry boarding, paths, and some slopes matter.", "Keep one villa only if weather, reservations, or energy require it.", "como", [L("Villa Carlotta", "https://www.villacarlotta.it/en/"), L("Villa del Balbianello", "https://fondoambiente.it/luoghi/villa-del-balbianello?lang=en"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "day", "Use lake ferries between Varenna, Tremezzo, Lenno, and Bellagio; Balbianello typically needs advance FAI booking. Villa interiors are usually guided rather than free-roam, so re-check current rules before booking."),
+        D("Day 10", "Como boat day", "Take the private classic-boat cruise as the celebratory lake experience.", "Keep the morning free for Brunate or an easy Greenway segment before the cruise.", "Delivers the refined lakeside finish that makes the reversed option feel emotionally different from the forward version.", "Light to moderate depending on the morning option.", "Skip Brunate and keep only the cruise plus a long meal.", "como", [L("Lake Como destination guide", "https://www.visitlakecomo.info/en/"), L("Brunate funicular", "https://www.funicularcomobrunate.it/en")], "day"),
+        D("Day 11", "Como finale and flex time", "Keep the final full day intentionally light around weather, energy, shopping, or one last easy lakefront outing.", "Use the final celebratory dinner on the Como side as the fixed element.", "Matches Section 9's case for a more polished Italy ending without forcing one more big commitment.", "Light by design.", "Stay in Varenna, take a slow lunch, and rest before the airport day.", "como", [L("Lake Como destination guide", "https://www.visitlakecomo.info/en/"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "recovery"),
+        D("Day 12", "Milan departure and return to STL", "Transfer to Milan Malpensa and fly home via Frankfurt.", "None.", "Ends the trip from the denser major-hub gateway that makes the reversed option logistically attractive.", "Travel-only with airport walking and one Europe connection.", "If schedules shift, keep the same open-jaw structure rather than introducing a separate ticket.", "como", [L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train"), L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Varenna to Milan Malpensa is a rail transfer via Milan; current planning assumes MXP–FRA–STL on Lufthansa.")
+      ]
+    },
+    {
       id: "new-zealand-australia",
-      order: 3,
+      order: 4,
       name: "New Zealand + Australia",
       short: "Queenstown → Te Anau ⇢ Sydney",
       status: "Highest burden · not recommended in this shape",

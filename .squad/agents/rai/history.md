@@ -22,3 +22,5 @@ Initial travel-planning RAI context established.
 📌 Team update (2026-08-25T20:42:01.924-05:00): Rai gave the promoted Italy + Slovenia package a final green verdict after itinerary corrections, logistics/value verification, live-site promotion, and visual cleanup aligned the concept framing with the confirmed trip direction — decided by Rai
 
 📌 Team update (2026-08-25T21:58:42.851-05:00): Completed RAI review of the Lake Bled hero-image change and logged a green verdict with no responsible-AI concerns. — decided by Rai
+
+📌 Team update (2026-08-26T21:26:01.482-05:00): Reviewed the new reversed-routing doc section and site card. Issued a Yellow/advisory verdict: no safety, privacy, or accessibility blockers, but recommended softer date-scoped flight phrasing in Section 9's opener and fuller Piran cooler-water wording to match the corrected forward-version convention. — decided by Rai
