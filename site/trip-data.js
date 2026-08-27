@@ -13,94 +13,86 @@
 
   return [
     {
-      id: "portugal",
+      id: "northern-italy",
       order: 2,
-      name: "Portugal",
-      short: "Lisbon → Porto",
-      status: "Alternative concept",
-      statusDetail: "Still an appealing low-friction option, but now trails Italy + Slovenia on anniversary distinctiveness and castle-and-scenery payoff.",
-      days: 11,
-      calendarEntries: 12,
+      name: "Northern Italy",
+      short: "Venice → Dolomites → Lake Como",
+      status: "Focused Italy concept",
+      statusDetail: "A north-Italy-only route built around Venice, alpine scenery, lake romance, and a straightforward finish near Milan; no cross-border move or internal flight required.",
+      days: 12,
+      calendarEntries: 13,
       nights: 10,
-      bases: 2,
-      transfers: 1,
-      timing: "Late September–early October 2027",
-      shape: "Travel Day 0 + Days 1–11 · Lisbon 5 nights + Porto 5 nights",
-      route: "Lisbon (5 nights) → rail → Porto (5 nights)",
-      why: "Two bases protect usable time while preserving layered history, food, palaces, river and coast scenery. A defined Douro day gives the anniversary a specific centerpiece.",
-      question: "Could an efficient two-city trip become a generic sequence of old towns and day trips?",
-      repair: "Keep Sintra disciplined, choose only one Lisbon-region contrast and one northern-history trip, protect a true flex day, and test the open-jaw return before booking.",
+      bases: 3,
+      transfers: 2,
+      timing: "September 2027",
+      shape: "Travel Day 0 + Days 1–12 · Venice 3 nights + Dolomites 3 + Lake Como 4",
+      route: "Venice (3 nights) → Dolomites (3 nights) → Lake Como (4 nights)",
+      why: "It concentrates the trip's strongest Italian ingredients—Venice's historic atmosphere, the Dolomites' alpine drama, and Lake Como's villas and water—without adding Croatia or another country to the route.",
+      question: "Does a three-base Italy-only route deliver enough contrast while keeping the longer Dolomites-to-Como transfer comfortable?",
+      repair: "Keep Venice to one clear landmark day plus one lagoon choice, use the Dolomites as the scenery anchor, and protect the final Como days for villas, a boat experience, and recovery rather than more transfers.",
       mobility: {
-        hardest: "Sintra: slopes, stairs, queues, shuttles, and uneven paths.",
-        walking: "Moderate overall; Lisbon and Porto hills, cobbles, and slick paving need selective rides.",
-        lower: "Level riverfront time, one-interior days, seated food experiences, and a zero-activity flex day.",
-        recovery: "Arrival day stays light; Day 10 is protected flex/recovery."
+        hardest: "Seceda and Lago di Braies days: cable cars, high-altitude exposure, uneven paths, and weather-dependent walking.",
+        walking: "Moderate overall; Venice bridges and cobbles, alpine terrain, ferry boarding, and villa gardens require selective pacing.",
+        lower: "Seated lagoon and lake rides, one-interior Venice days, village-level Dolomite time, and flexible Como waterfront afternoons.",
+        recovery: "Arrival in Venice stays light, the transfer days are intentionally simple, and Day 11 protects a full Como flex day."
       },
-      responsible: "Prefer rail between bases, visit pressure-sensitive Sintra with timed entry and restraint, choose locally owned food/guide options, and treat the long-haul aviation burden as part of the decision.",
+      responsible: "Use rail wherever practical, favor timed entry at Venice and villa sites, choose resident-aware lagoon and mountain operators, and avoid turning fragile alpine areas into a checklist of viewpoints.",
       flight: {
-        summary: "Expected pattern — STL–LIS / OPO–STL open jaw with one connection each way (typically ORD, EWR, JFK, or IAD); two connections possible from Porto on weaker dates. No direct STL–Lisbon flight exists.",
-        detail: "STL–ORD–LIS (TAP, year-round ORD–LIS nonstop) is the cleanest one-stop; alternates include STL–EWR/JFK/IAD/BOS–LIS (TAP/United; BOS and MIA are TAP-served). When operating, seasonal STL–Frankfurt (Lufthansa) and STL–London Heathrow (British Airways, from April 2026) nonstops add FRA/LHR one-stop gateways. Return best case is OPO–EWR (United, seasonal) for one stop; OPO–LIS or a European hub means two stops on weaker dates. Allow roughly 11–15 hours outbound and 13–17 hours home. If OPO is poor, position by rail to Lisbon the prior day and add the airport-area night openly.",
-        burden: "Overnight outbound; airport walking, connection time, and prolonged sitting.",
+        summary: "Expected pattern — open jaw via Frankfurt: STL–FRA–VCE outbound and MXP–FRA–STL return, with one Europe connection each way and no internal flights.",
+        detail: "Current planning assumes Lufthansa-oriented routing through Frankfurt, with rail transfers inside Italy and a Milan-area return gateway. Exact September 2027 schedules, seasonal STL–FRA operation, protected-ticket status, and the final Venice/Milan airport pairing still require verification.",
+        burden: "One transatlantic connection each way plus two substantial rail transfers; materially simpler than adding Croatia or an internal flight.",
         links: [
           L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm"),
-          L("Lisbon Metro", "https://www.metrolisboa.pt/en/"),
-          L("Metro do Porto maps and timetables", "https://en.metrodoporto.pt/pages/396", "Portuguese metadata")
+          L("Venice Marco Polo Airport", "https://www.veneziaairport.it/en/"),
+          L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train")
         ]
       },
       cost: {
-        range: "$7,500–$10,500",
-        hotels: "Lisbon $180–$300/night · Porto $160–$270/night",
-        buys: "Comfortable, well-reviewed midrange near useful historic-core transit; lower prices may mean smaller rooms, more hill exposure, or no view.",
-        pressure: "Lower: open-jaw airfare, Lisbon demand, Douro format, events, and exchange rates.",
-        confidence: "Medium-high",
-        verdict: "Strongest probability of a comfortable, distinctive anniversary trip without paying heavily for logistical complexity."
+        range: "$7,000–$9,500",
+        hotels: "Venice $240–$360/night · Dolomites about €145 pp/night half-board · Lake Como $240–$340/night",
+        buys: "Comfortable, well-located midrange stays with room for a Venice landmark, alpine lodging with meals, and a celebratory lake experience.",
+        pressure: "Moderate-high: Venice and Como demand, Dolomites lift/weather timing, open-jaw airfare, and the longer north-to-lake transfer.",
+        confidence: "Medium",
+        verdict: "The cleanest way to keep Venice and the Dolomites while dropping the cost and uncertainty of a cross-border extension."
       },
       images: [
-        {
-          file: "assets/images/portugal-pena-palace.webp",
-          alt: "Colorful red-and-yellow Pena Palace rising above wooded Sintra hills.",
-          credit: "Palacio Nacional da Pena, Sintra, Portugal, Diego Delso, CC BY-SA 4.0, via Wikimedia Commons.",
-          source: "https://commons.wikimedia.org/wiki/File:Palacio_Nacional_da_Pena,_Sintra,_Portugal,_2019-05-25,_DD_131.jpg",
-          license: "https://creativecommons.org/licenses/by-sa/4.0/",
-          note: "Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP."
-        },
-        {
-          file: "assets/images/portugal-douro-valley.webp",
-          alt: "Steep green vineyard terraces descending toward the Douro River.",
-          credit: "Douro Valley, Portugal, flowcomm, CC BY 2.0, via Wikimedia Commons.",
-          source: "https://commons.wikimedia.org/wiki/File:Douro_Valley,_Portugal_%2853975017619%29.jpg",
-          license: "https://creativecommons.org/licenses/by/2.0/",
-          note: "Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP."
-        }
+        { file: "assets/images/italy-venice-canaletto.webp", alt: "Canaletto painting of a busy eighteenth-century Piazza San Marco beneath a bright sky.", credit: "Canaletto, The Piazza San Marco in Venice, public domain, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg", license: "https://commons.wikimedia.org/wiki/File:Canaletto_-_The_Piazza_San_Marco_in_Venice_-_Google_Art_Project.jpg", note: "Historical artwork, not a present-day view. Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." }
       ],
       stops: [
-        { id: "lisbon", name: "Lisbon", lat: 38.7223, lng: -9.1393, role: "base" },
-        { id: "sintra", name: "Sintra", lat: 38.8029, lng: -9.3817, role: "excursion" },
-        { id: "porto", name: "Porto", lat: 41.1579, lng: -8.6291, role: "base" },
-        { id: "douro", name: "Douro Valley", lat: 41.1621, lng: -7.7898, role: "excursion" },
-        { id: "guimaraes", name: "Guimarães — alternative", lat: 41.4425, lng: -8.2918, role: "alternative" },
-        { id: "braga", name: "Braga — alternative", lat: 41.5454, lng: -8.4265, role: "alternative" }
+        { id: "venice", name: "Venice", lat: 45.4372, lng: 12.3346, role: "base" },
+        { id: "murano", name: "Murano", lat: 45.4581, lng: 12.3566, role: "excursion" },
+        { id: "burano", name: "Burano — alternative", lat: 45.4853, lng: 12.4167, role: "alternative" },
+        { id: "dolomites", name: "Dolomites", lat: 46.5754, lng: 11.6713, role: "base" },
+        { id: "seceda", name: "Seceda", lat: 46.5987, lng: 11.729, role: "excursion" },
+        { id: "braies", name: "Lago di Braies — alternative", lat: 46.6944, lng: 12.085, role: "alternative" },
+        { id: "como", name: "Lake Como", lat: 45.987, lng: 9.2572, role: "base" },
+        { id: "villa-carlotta", name: "Villa Carlotta", lat: 45.9864, lng: 9.225, role: "excursion" },
+        { id: "bellagio", name: "Bellagio — alternative", lat: 45.9869, lng: 9.261, role: "alternative" }
       ],
       segments: [
-        { from: "lisbon", to: "sintra", type: "excursion" },
-        { from: "lisbon", to: "porto", type: "rail" },
-        { from: "porto", to: "douro", type: "excursion" },
-        { from: "porto", to: "guimaraes", type: "alternative" },
-        { from: "porto", to: "braga", type: "alternative" }
+        { from: "venice", to: "murano", type: "excursion" },
+        { from: "venice", to: "burano", type: "alternative" },
+        { from: "venice", to: "dolomites", type: "rail" },
+        { from: "dolomites", to: "seceda", type: "excursion" },
+        { from: "dolomites", to: "braies", type: "alternative" },
+        { from: "dolomites", to: "como", type: "rail" },
+        { from: "como", to: "villa-carlotta", type: "excursion" },
+        { from: "como", to: "bellagio", type: "alternative" }
       ],
       daysPlan: [
-        D("Travel Day 0", "Depart STL", "Begin the overnight international itinerary to Lisbon.", "Meals, hydration, movement, and sleep are the plan.", "Makes the true calendar burden visible and protects arrival.", "Airport walking, one connection (two on weaker dates), and prolonged sitting.", "After disruption, discard Day 1 orientation rather than borrow from sleep.", "lisbon", [L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Sample routing: STL–ORD–LIS on TAP is the cleanest one-stop; alternates connect via EWR, JFK, IAD, or BOS, and seasonal STL–FRA or STL–LHR work when operating. Anticipate roughly 11–15 hours total."),
-        D("Day 1", "Lisbon arrival and recovery", "Transfer, check in, and take a short Baixa or Praça do Comércio orientation only if energy permits.", "Early meal near the hotel or a seated Tagus-side pause.", "Immediate atmosphere without turning jet lag into a checklist.", "Very light; choose the level riverfront and avoid optional hills.", "Hotel meal and sleep.", "lisbon", [L("Visit Lisboa", "https://www.visitlisboa.com/en"), L("Lisbon Metro", "https://www.metrolisboa.pt/en/")], "recovery", "LIS airport to the historic center: about 30 minutes by metro or taxi.", I("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG/500px-Arco_Triunfal_da_Rua_Augusta%2C_Plaza_del_Comercio%2C_Lisboa%2C_Portugal%2C_2012-05-12%2C_DD_02.JPG", "Rua Augusta Arch framing Lisbon’s Praça do Comércio.", "Diego Delso, CC BY-SA 3.0", 500, 339)),
-        D("Day 2", "Historic Lisbon and local food", "Explore Alfama and the castle district, starting uphill by transit and descending selectively.", "Fado Museum or Lisboa Story Centre, then a focused food evening.", "Layered history, neighborhood character, and food.", "Moderate; steep grades, cobbles, and steps require rides and a seated break.", "One historic interior and nearby dinner.", "lisbon", [L("São Jorge Castle", "https://castelodesaojorge.pt/en/"), L("Fado Museum", "https://www.museudofado.pt/en"), L("Lisboa Story Centre", "https://www.lisboastorycentre.pt/en")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/View_of_Castelo_de_S%C3%A3o_Jorge_from_S%C3%A3o_Pedro_de_Alc%C3%A2ntara%2C_Lisbon%2C_20250604_1614_9358.jpg/500px-View_of_Castelo_de_S%C3%A3o_Jorge_from_S%C3%A3o_Pedro_de_Alc%C3%A2ntara%2C_Lisbon%2C_20250604_1614_9358.jpg", "São Jorge Castle’s walls and towers above Lisbon’s rooftops.", "Jakub Hałun, CC BY 4.0", 500, 334)),
-        D("Day 3", "Sintra palace day", "Use Pena Palace and park as the single timed anchor.", "Add Monserrate only as the lighter second stop.", "Portugal’s clearest palace-and-castle day.", "High-moderate; slopes, stairs, queues, shuttles, and uneven paths.", "Shorten gardens or replace severe weather with a Lisbon museum day.", "sintra", [L("Pena Palace", "https://www.parquesdesintra.pt/en/parks-monuments/park-and-national-palace-of-pena/"), L("Pena ticket guidance", "https://www.parquesdesintra.pt/en/plan-your-visit/tickets-palace-of-pena/"), L("Monserrate", "https://www.parquesdesintra.pt/en/parks-monuments/park-and-palace-of-monserrate/")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Pena_Palace%2C_Sintra%2C_Portugal%2C_20250606_1031_9983.jpg/500px-Pena_Palace%2C_Sintra%2C_Portugal%2C_20250606_1031_9983.jpg", "Colorful terraces and towers of Pena Palace above Sintra.", "Jakub Hałun, CC BY 4.0", 500, 334)),
-        D("Day 4", "Easier Lisbon and free afternoon", "Visit the National Tile Museum as a compact indoor anchor.", "Keep the afternoon genuinely free; Belém is optional.", "Adds Portuguese visual history while protecting breathing room.", "Light and adjustable; Belém is flatter but involves distance.", "Cafés, laundry, a nap, or independent wandering.", "lisbon", [L("National Tile Museum", "https://www.museusemonumentos.pt/en/museus-e-monumentos/national-tile-museum", "Portuguese metadata"), L("Belém Tower", "https://en.wikipedia.org/wiki/Bel%C3%A9m_Tower")], "recovery", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Museu_Nacional_do_Azulejo%2C_Lisbon%2C_townscape_azulejo.jpg/500px-Museu_Nacional_do_Azulejo%2C_Lisbon%2C_townscape_azulejo.jpg", "Blue-and-white azulejo tile panel of Lisbon at the National Tile Museum.", "Gerda Arendt, CC0", 500, 383)),
-        D("Day 5", "One Lisbon-region contrast", "Choose Évora for concentrated history or Cascais for coast and recovery.", "Final Lisbon dinner in a new neighborhood.", "Adds history or scenic contrast without a third base.", "Moderate; Évora has uneven paving, while the coast is exposed.", "Gulbenkian Museum and a long Lisbon lunch.", "lisbon", [L("Évora historic city", "https://en.wikipedia.org/wiki/%C3%89vora"), L("Visit Cascais", "https://www.visitcascais.com/en"), L("Gulbenkian Museum", "https://gulbenkian.pt/museu/en/")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Roman_Temple_Evora_Portugal_01.jpg/500px-Roman_Temple_Evora_Portugal_01.jpg", "Granite columns of Évora’s Roman temple.", "Norbert Nagel, CC BY-SA 3.0", 500, 343)),
-        D("Day 6", "Rail to Porto", "Take intercity rail, check in, and reset luggage.", "Brief Ribeira orientation or São Bento’s tiled hall.", "One straightforward move earns a different northern base.", "Transfer day; hills, stairs, and slick paving increase luggage effort.", "Direct hotel arrival and nearby dinner.", "porto", [L("Porto historic center — official tourism", "https://visitporto.travel/en-GB")], "transfer", "Intercity rail Lisbon–Porto (Campanhã): about 3 hours."),
-        D("Day 7", "Historic Porto", "Tour Palácio da Bolsa.", "Choose a cathedral-to-river sequence or a lower-walking riverfront version.", "Ceremonial architecture, lived-in history, food, and exploration.", "Moderate; start high, work downhill, and use transport back.", "One interior and a covered food experience.", "porto", [L("Palácio da Bolsa", "https://palaciodabolsa.com/en/"), L("Visit Porto", "https://visitporto.travel/en-GB")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Palacio_da_Bolsa_%28Porto%29.JPG/500px-Palacio_da_Bolsa_%28Porto%29.JPG", "Neoclassical facade of Porto’s Palácio da Bolsa.", "Manuel de Sousa, public domain", 500, 375)),
-        D("Day 8", "Anniversary Douro day", "Take a defined small-group or private landscape day centered on scenery, river, and regional food.", "Keep the special dinner simple enough to avoid an endurance day.", "Supplies the singular landscape-and-food occasion; wine is optional.", "Mostly seated transport with selected viewpoints.", "Serralves, sheltered river views, and anniversary dinner in Porto.", "douro", [L("Douro Valley — Visit Portugal", "https://www.visitportugal.com/en/content/douro-valley"), L("Serralves", "https://www.serralves.pt/en/")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Douro_Valley%2C_Portugal_%2853975017619%29.jpg/500px-Douro_Valley%2C_Portugal_%2853975017619%29.jpg", "Vineyard terraces stepping down toward the Douro River.", "flowcomm, CC BY 2.0", 500, 333)),
-        D("Day 9", "Northern Portugal history", "Visit Guimarães historic center and castle zone.", "Have one regional lunch; Braga is an alternative, never an addition.", "Adds concentrated medieval and early-national history.", "Moderate; old paving and grades require a shortened core route.", "Porto museum, historic interior, or food experience.", ["guimaraes", "braga"], [L("Guimarães historic center — official tourism", "https://www.visitguimaraes.travel/", "Portuguese metadata"), L("Bom Jesus do Monte — official site", "https://bomjesus.pt/", "Portuguese")], "day", "", I("https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Castelo_de_Guimaraes.jpg/500px-Castelo_de_Guimaraes.jpg", "Stone keep and battlements of Guimarães Castle.", "Filipe Fortes, CC BY-SA 2.0", 500, 250)),
-        D("Day 10", "Porto flex and recovery", "Make no required booking; move a weather anchor, revisit a favorite area, or rest.", "Slow Serralves visit or short river experience if energy is good.", "Protects the trip from rain and excursion fatigue.", "Fully adjustable, including zero formal activity.", "Rest, pack, and eat nearby.", "porto", [L("Serralves", "https://www.serralves.pt/en/"), L("Visit Porto", "https://visitporto.travel/en-GB")], "recovery"),
-        D("Day 11", "Porto departure and return to STL", "Transfer to OPO and begin the international return.", "None.", "A travel-only final day protects the long-haul connection.", "Luggage, airport walking, and roughly 13–17 hours expected travel.", "If OPO fails the booking gate, revise to a Lisbon positioning night and update counts.", "porto", [L("Metro do Porto", "https://en.metrodoporto.pt/pages/396"), L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Return routing: OPO–EWR (United, seasonal) is the one-stop best case; weaker dates route via Lisbon or a European hub with two stops. Anticipate roughly 13–17 hours home.")
+        D("Travel Day 0", "Depart STL", "Begin the overnight international itinerary to Venice via Frankfurt.", "Meals, hydration, movement, and sleep are the plan.", "Makes the true calendar burden visible and protects arrival recovery.", "Airport walking, one transatlantic connection, and prolonged sitting.", "After disruption, protect Day 1 recovery instead of pushing the first landmark day.", "venice", [L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Sample routing: STL–FRA–VCE on a Lufthansa-oriented itinerary when the seasonal STL–FRA service operates; verify the September 2027 timetable."),
+        D("Day 1", "Arrive Venice and recover", "Transfer from VCE, check in, and keep the first Venetian orientation intentionally light.", "A seated cicchetti lunch or short canal-side pause if energy permits.", "Delivers immediate atmosphere without spending a major anchor on jet lag.", "Very light; bridges, cobbles, and luggage handling require restraint.", "Direct hotel arrival, nearby meal, and sleep.", "venice", [L("Venice Marco Polo Airport", "https://www.veneziaairport.it/en/"), L("Venice official tourism", "https://www.veneziaunica.it/en")], "recovery", "VCE to central Venice by Alilaguna, water taxi, or land transfer depending on lodging location."),
+        D("Day 2", "Historic Venice", "Use St. Mark's Basilica and the Doge's Palace as the focused historic anchor, then slow down in quieter sestieri.", "Choose one additional interior or a seated lagoon-facing meal rather than stacking monuments.", "Puts Venice's architecture, civic history, and sense of place at the center of the trip.", "Moderate; timed entry, standing, bridges, and uneven paving need breaks.", "One major interior, a vaporetto ride, and a long lunch.", "venice", [L("Doge's Palace", "https://palazzoducale.visitmuve.it/en/"), L("St. Mark's Basilica", "https://www.basilicasanmarco.it/en/")], "day", "Use vaporetto routes between the main sestieri; exact access and timed-entry rules require verification.", I("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Venice_-_Canal_Grande_-_Santa_Maria_della_Salute_-_2022.jpg/500px-Venice_-_Canal_Grande_-_Santa_Maria_della_Salute_-_2022.jpg", "Grand Canal and Santa Maria della Salute in Venice.", "Jakub Hałun, CC BY 4.0", 500, 333)),
+        D("Day 3", "Venetian lagoon and anniversary evening", "Choose Murano for glass and a calmer island rhythm, or Burano as the equal-status colorful lagoon alternative.", "Keep the afternoon open for a gondola, neighborhood wandering, or a special dinner.", "Gives the anniversary a distinctive Venetian day without forcing two islands into one schedule.", "Light to moderate; boat boarding and island paving vary.", "Stay in central Venice for a museum, café, and celebratory meal.", ["venice", "murano", "burano"], [L("Murano glass museum", "https://museovetro.visitmuve.it/en/"), L("Venice lagoon transport", "https://actv.avmspa.it/en"), L("Venice official tourism", "https://www.veneziaunica.it/en")], "day", "Murano and Burano are reached by vaporetto; choose one island rather than combining both."),
+        D("Day 4", "Rail to the Dolomites", "Travel north to Bolzano and continue to the Val Gardena base, settling in for an alpine evening.", "Keep the first night simple with village time and the included hotel dinner.", "Moves from Venice's historic density into the trip's main scenery act without a car or flight.", "Long transfer day with luggage handling and a local connection.", "Go straight to the hotel and treat dinner as the full plan.", "dolomites", [L("Trenitalia", "https://www.trenitalia.com/en.html"), L("Val Gardena", "https://www.valgardena.it/en/")], "transfer", "Venice to Bolzano by rail, then local transfer onward to Ortisei or the selected Val Gardena base."),
+        D("Day 5", "Seceda alpine anchor", "Ride the Seceda cable car for the signature Dolomites panorama and choose a terrain-appropriate ridge walk.", "Rifugio lunch and an easy Ortisei afternoon.", "This is the route's clearest mountain wow moment.", "Moderate; cable cars, altitude, uneven paths, and weather exposure matter.", "Keep only the cable-car viewpoint and lunch if a full walk feels too ambitious.", "seceda", [L("Seceda", "https://www.seceda.it/en/"), L("Val Gardena", "https://www.valgardena.it/en/")], "day", "Lift operation and trail access are seasonal; verify September 2027 hours and conditions."),
+        D("Day 6", "Alpine landscape choice", "Use Alpe di Siusi as the primary broad-meadow day, with Lago di Braies as the scenic alternative.", "Keep the evening easy with half-board dinner and recovery time.", "Adds a second distinct alpine landscape without adding another base.", "Moderate; cable cars or a scenic drive, with weather affecting exposure.", "Stay village-based if conditions turn poor.", ["dolomites", "braies"], [L("Seiser Alm / Alpe di Siusi", "https://www.seiseralm.it/en"), L("Pragser Wildsee / Lago di Braies", "https://www.prags.bz/en")], "day", "Choose one landscape rather than attempting both; September is usually late summer to early autumn here."),
+        D("Day 7", "Rail to Lake Como", "Travel west through Milan to the Lake Como base and reset after the longer transfer.", "A short waterfront orientation or hotel terrace dinner only if energy permits.", "Ends the route in the most forgiving lake-and-villa base.", "Transfer day; protect the evening from extra sightseeing.", "Direct hotel arrival and rest.", "como", [L("Trenitalia", "https://www.trenitalia.com/en.html"), L("Lake Como destination guide", "https://www.visitlakecomo.info/en/")], "transfer", "The Dolomites to Lake Como requires a Bolzano–Milan rail connection and a final regional train or ferry leg; confirm the chosen base before booking."),
+        D("Day 8", "Lake Como villas", "Use Villa Carlotta and Villa del Balbianello as the focused lake anchor, moving by ferry and keeping Bellagio secondary.", "A long lakeside lunch and gentle waterfront time.", "Combines gardens, classic scenery, and a cinematic villa day after the alpine act.", "Moderate; ferry boarding, gardens, paths, and some slopes matter.", "Keep one villa only if weather, reservations, or energy require it.", ["como", "villa-carlotta"], [L("Villa Carlotta", "https://www.villacarlotta.it/en/"), L("Villa del Balbianello", "https://fondoambiente.it/luoghi/villa-del-balbianello?lang=en"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "day", "Use lake ferries between the selected base, Tremezzo, Lenno, and Bellagio; check advance FAI booking requirements."),
+        D("Day 9", "Classic boat anniversary anchor", "Take a private classic-boat cruise as the celebratory Lake Como experience.", "Keep the morning free for a short village visit or simply a slow breakfast.", "Supplies the clearest anniversary-only splurge without another hotel move.", "Light to moderate depending on the morning option and water conditions.", "Skip the morning outing and keep only the cruise plus a long meal.", "como", [L("Lake Como destination guide", "https://www.visitlakecomo.info/en/"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "day", "Treat boat timing and weather as provisional; retain a seated lakefront dinner as the fixed celebration."),
+        D("Day 10", "Bellagio or lakeside history", "Choose Bellagio for a compact village-and-waterfront outing, or stay near the base for a museum, garden, or long lunch.", "Use the afternoon for rest before the final full day.", "Adds a final lake contrast without requiring another transfer or a fourth base.", "Light to moderate; ferry access, paving, and crowding vary.", "Stay in one village and protect the afternoon.", ["como", "bellagio"], [L("Bellagio official tourism", "https://www.bellagiolakecomo.com/en"), L("Navigazione Laghi", "https://www.navigazionelaghi.it/en/")], "day", "Choose the easier waterfront version if ferry conditions, hills, or energy are unfavorable."),
+        D("Day 11", "Lake Como flex and close", "Keep the final full day adjustable around weather, energy, and any moved villa or boat anchor.", "Use the lakeside anniversary dinner as the one fixed element if it did not happen on Day 9.", "Protects the route from over-scripting after two scenic bases and two long transfers.", "Light by design.", "Stay entirely near the hotel, rest, and pack.", "como", [L("Lake Como destination guide", "https://www.visitlakecomo.info/en/")], "recovery"),
+        D("Day 12", "Milan-area departure and return to STL", "Transfer to Milan Malpensa and begin the international return via Frankfurt.", "None.", "Uses the Italy-only route's strongest practical homebound gateway.", "Travel-only with airport walking and one Europe connection.", "If the airport pairing changes, keep a prior positioning night visible rather than borrowing from the final lake day.", "como", [L("Milan Malpensa train access", "https://www.milanomalpensa-airport.com/en/from-to/by-train"), L("St. Louis Lambert airport overview", "https://www.stlouis-mo.gov/government/departments/airport/index.cfm")], "travel", "Lake Como to MXP commonly requires a regional train, airport train, or car transfer depending on the base; current planning assumes MXP–FRA–STL.")
       ]
     },
     {
@@ -144,7 +136,7 @@
         buys: "Polished central or near-central midrange; the lowest prices may mean smaller rooms or more transit.",
         pressure: "Moderate: airfare/gateway choice, events, guided day trips, rail timing, and centrality.",
         confidence: "Medium-high if the return does not silently add a Madrid night",
-        verdict: "A modest premium over Portugal converts into an especially strong history, royal-site, food, and independent-exploration fit."
+        verdict: "The premium converts into an especially strong history, royal-site, food, and independent-exploration fit."
       },
       images: [
         { file: "assets/images/spain-segovia-alcazar.webp", alt: "Stone towers and slate roofs of Segovia’s castle above autumn trees.", credit: "Alcázar de Segovia, Rafa Esteve, CC BY-SA 4.0, via Wikimedia Commons.", source: "https://commons.wikimedia.org/wiki/File:Segovia_-_Alc%C3%A1zar_de_Segovia_22_2017-10-24.jpg", license: "https://creativecommons.org/licenses/by-sa/4.0/", note: "Displayed uncropped. Local file is an uncropped resized derivative, converted from the original JPEG to WebP." },
@@ -406,4 +398,3 @@
     }
   ];
 });
-

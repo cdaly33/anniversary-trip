@@ -3,13 +3,16 @@
 const trips = require("./trip-data.js");
 
 const expectedTrips = {
-  portugal: [
-    ["lisbon", "Lisbon", "base", 38.7077507, -9.1365919, 10],
-    ["sintra", "Sintra", "excursion", 38.8355446, -9.3522371, 10],
-    ["porto", "Porto", "base", 41.1502195, -8.6103497, 10],
-    ["douro", "Douro Valley", "excursion", 41.1822538, -7.5357745, 25],
-    ["guimaraes", "Guimarães — alternative", "alternative", 41.4417677, -8.2955712, 10],
-    ["braga", "Braga — alternative", "alternative", 41.5510583, -8.4280045, 10]
+  "northern-italy": [
+    ["venice", "Venice", "base", 45.4372, 12.3346, 10],
+    ["murano", "Murano", "excursion", 45.4581, 12.3566, 10],
+    ["burano", "Burano — alternative", "alternative", 45.4853, 12.4167, 10],
+    ["dolomites", "Dolomites", "base", 46.5754, 11.6713, 25],
+    ["seceda", "Seceda", "excursion", 46.5987, 11.729, 10],
+    ["braies", "Lago di Braies — alternative", "alternative", 46.6944, 12.085, 25],
+    ["como", "Lake Como", "base", 45.987, 9.2572, 10],
+    ["villa-carlotta", "Villa Carlotta", "excursion", 45.9864, 9.225, 10],
+    ["bellagio", "Bellagio — alternative", "alternative", 45.9869, 9.261, 10]
   ],
   spain: [
     ["madrid", "Madrid", "base", 40.416782, -3.703507, 10],
@@ -40,7 +43,7 @@ const expectedTrips = {
 };
 
 const expectedSegments = {
-  portugal: ["lisbon>sintra:excursion", "lisbon>porto:rail", "porto>douro:excursion", "porto>guimaraes:alternative", "porto>braga:alternative"],
+  "northern-italy": ["venice>murano:excursion", "venice>burano:alternative", "venice>dolomites:rail", "dolomites>seceda:excursion", "dolomites>braies:alternative", "dolomites>como:rail", "como>villa-carlotta:excursion", "como>bellagio:alternative"],
   spain: ["madrid>toledo:excursion", "madrid>segovia:alternative", "madrid>seville:rail", "seville>cordoba:excursion"],
   "italy-croatia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
   "italy-slovenia-reversed": ["rovinj>venice:road", "venice>como:rail", "rovinj>istria:alternative"],

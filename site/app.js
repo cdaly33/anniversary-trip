@@ -43,6 +43,7 @@
   function sortedTrips() {
     const list = [...trips];
     const sort = els["sort-concepts"].value;
+    if (sort === "council") list.sort((a, b) => a.order - b.order);
     if (sort === "alpha") list.sort((a, b) => a.name.localeCompare(b.name));
     if (sort === "bases") list.sort((a, b) => a.bases - b.bases || a.order - b.order);
     if (sort === "days") list.sort((a, b) => a.days - b.days || a.order - b.order);

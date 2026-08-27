@@ -1,9 +1,9 @@
 {
   "trips": [
     {
-      "id": "portugal",
-      "entries": 12,
-      "dayLinkPlacements": 25
+      "id": "northern-italy",
+      "entries": 13,
+      "dayLinkPlacements": 26
     },
     {
       "id": "spain",
@@ -26,5 +26,5 @@
       "dayLinkPlacements": 32
     }
   ],
-  "sha256": "be502972c9441b63557c00f647ac9ee3e5122e46e1df557204883e65d0c767b1"
+  "sha256": "2a5568b9e11bd2d5e76acf607b16780dc578720fe3b451ef8645457f5d097506"
 }
