@@ -7,9 +7,12 @@ const expectedTrips = {
     ["venice", "Venice", "base", 45.4372, 12.3346, 10],
     ["murano", "Murano", "excursion", 45.4581, 12.3566, 10],
     ["burano", "Burano — alternative", "alternative", 45.4853, 12.4167, 10],
-    ["dolomites", "Dolomites", "base", 46.5754, 11.6713, 25],
-    ["seceda", "Seceda", "excursion", 46.5987, 11.729, 10],
-    ["braies", "Lago di Braies — alternative", "alternative", 46.6944, 12.085, 25],
+    ["cinque-terre", "Cinque Terre", "base", 44.11, 9.72, 10],
+    ["monterosso", "Monterosso", "excursion", 44.1461, 9.6536, 10],
+    ["vernazza", "Vernazza", "excursion", 44.1345, 9.6842, 10],
+    ["manarola", "Manarola", "excursion", 44.1067, 9.7275, 10],
+    ["riomaggiore", "Riomaggiore — alternative", "alternative", 44.0989, 9.7383, 10],
+    ["portovenere", "Portovenere — alternative", "alternative", 44.0491, 9.8397, 10],
     ["como", "Lake Como", "base", 45.987, 9.2572, 10],
     ["villa-carlotta", "Villa Carlotta", "excursion", 45.9864, 9.225, 10],
     ["bellagio", "Bellagio — alternative", "alternative", 45.9869, 9.261, 10]
@@ -43,7 +46,7 @@ const expectedTrips = {
 };
 
 const expectedSegments = {
-  "northern-italy": ["venice>murano:excursion", "venice>burano:alternative", "venice>dolomites:rail", "dolomites>seceda:excursion", "dolomites>braies:alternative", "dolomites>como:rail", "como>villa-carlotta:excursion", "como>bellagio:alternative"],
+  "northern-italy": ["venice>murano:excursion", "venice>burano:alternative", "venice>cinque-terre:rail", "cinque-terre>monterosso:excursion", "cinque-terre>vernazza:excursion", "cinque-terre>manarola:excursion", "cinque-terre>riomaggiore:alternative", "cinque-terre>portovenere:alternative", "cinque-terre>como:rail", "como>villa-carlotta:excursion", "como>bellagio:alternative"],
   spain: ["madrid>toledo:excursion", "madrid>segovia:alternative", "madrid>seville:rail", "seville>cordoba:excursion"],
   "italy-croatia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
   "italy-slovenia-reversed": ["rovinj>venice:road", "venice>como:rail", "rovinj>istria:alternative"],

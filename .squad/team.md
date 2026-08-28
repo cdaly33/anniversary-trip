@@ -64,7 +64,7 @@
 - **Project:** Plan Rachel and Chris's 30th wedding anniversary trip for 2027.
 - **Occasion:** Married May 17, 1997; anniversary May 17, 2027.
 - **Planning brief:** 10–12 days, up to 14 when justified; usually 2 bases and no more than 3; 1–2 meaningful experiences daily; warm or pleasant weather; safe, comfortable, good-value travel over luxury.
-- **Current shortlist:** Northern Italy + Croatia; New Zealand + Australia; Portugal, including a compact Paris + Lisbon concept.
+- **Current shortlist:** All-Italy (Venice, Lake Como, Cinque Terre); New Zealand + Australia; Portugal, including a compact Paris + Lisbon concept.
 - **Naming universe:** Descriptive
 - **State backend:** Local
 - **Created:** 2026-08-23T12:33:15.248-05:00

@@ -3,7 +3,7 @@
     {
       "id": "northern-italy",
       "entries": 13,
-      "dayLinkPlacements": 26
+      "dayLinkPlacements": 27
     },
     {
       "id": "spain",
@@ -26,5 +26,5 @@
       "dayLinkPlacements": 32
     }
   ],
-  "sha256": "2a5568b9e11bd2d5e76acf607b16780dc578720fe3b451ef8645457f5d097506"
+  "sha256": "6fa307b6d94069b3ee392a61d192cfdcf8a3d5ad8deb979cfd017950cecdde5a"
 }
