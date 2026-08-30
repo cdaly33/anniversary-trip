@@ -18,6 +18,15 @@ test("malformed persisted JSON recovers to safe defaults", () => {
   assert.ok(state.compareTripIds.length >= stateStore.MIN_COMPARE_TRIPS);
 });
 
+test("missing persisted state initializes defaults without recovery", () => {
+  const adapter = stateStore.createMemoryAdapter(null);
+  const { state, recovered } = stateStore.loadState(adapter, stateModel);
+  assert.equal(recovered, false);
+  assert.equal(state.version, stateStore.SCHEMA_VERSION);
+  assert.equal(state.selectedTripId, stateModel.defaultTripId);
+  assert.equal(adapter.read(), null);
+});
+
 test("outdated version recovers and rewrites normalized state", () => {
   const adapter = stateStore.createMemoryAdapter(JSON.stringify({
     version: 0,

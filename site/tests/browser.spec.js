@@ -145,6 +145,16 @@ test("malformed localStorage state is recovered safely", async ({ page }) => {
   await expect(errors).toEqual([]);
 });
 
+test("first visit with no localStorage payload does not show recovery notice", async ({ page }) => {
+  const errors = trackClientErrors(page);
+  await page.addInitScript(key => localStorage.removeItem(key), STORAGE_KEY);
+  await page.goto("/");
+  await expect(page.locator("#state-recovery-note")).toHaveText("");
+  await expect(page.locator("#live-region")).toHaveText("");
+  await expect(page.locator("#concept-title")).toBeVisible();
+  await expect(errors).toEqual([]);
+});
+
 for (const viewport of VIEWPORTS) {
   test(`${viewport.name} responsive layout keeps map and decision controls usable`, async ({ page }) => {
     const errors = trackClientErrors(page);
@@ -168,6 +178,47 @@ for (const viewport of VIEWPORTS) {
     if (viewport.mode === "desktop") {
       expect(overflow.mapPosition).toBe("sticky");
       await expect(page.locator("#compare-table .matrix-table")).toBeVisible();
+      await page.locator(".budget-panel details summary").click();
+      const budgetFitDefault = await page.evaluate(() => {
+        const fields = Array.from(document.querySelectorAll("#budget-categories .budget-input"));
+        const inputs = fields.map(field => field.querySelector("input")).filter(Boolean);
+        return {
+          rootOverflow: document.documentElement.scrollWidth - window.innerWidth,
+          bodyOverflow: document.body.scrollWidth - window.innerWidth,
+          labelsFit: fields.every(field => field.scrollWidth - field.clientWidth <= 1),
+          inputsInsideField: inputs.every(input => {
+            const inputRect = input.getBoundingClientRect();
+            const fieldRect = input.parentElement.getBoundingClientRect();
+            return inputRect.right <= fieldRect.right + 1;
+          })
+        };
+      });
+      expect(budgetFitDefault.rootOverflow).toBeLessThanOrEqual(1);
+      expect(budgetFitDefault.bodyOverflow).toBeLessThanOrEqual(1);
+      expect(budgetFitDefault.labelsFit).toBe(true);
+      expect(budgetFitDefault.inputsInsideField).toBe(true);
+      await page.locator("#expand-map").click();
+      await expect(page.locator(".route-table")).toHaveClass(/map-expanded/);
+      const budgetFitExpanded = await page.evaluate(() => {
+        const fields = Array.from(document.querySelectorAll("#budget-categories .budget-input"));
+        const inputs = fields.map(field => field.querySelector("input")).filter(Boolean);
+        return {
+          rootOverflow: document.documentElement.scrollWidth - window.innerWidth,
+          bodyOverflow: document.body.scrollWidth - window.innerWidth,
+          labelsFit: fields.every(field => field.scrollWidth - field.clientWidth <= 1),
+          inputsInsideField: inputs.every(input => {
+            const inputRect = input.getBoundingClientRect();
+            const fieldRect = input.parentElement.getBoundingClientRect();
+            return inputRect.right <= fieldRect.right + 1;
+          })
+        };
+      });
+      expect(budgetFitExpanded.rootOverflow).toBeLessThanOrEqual(1);
+      expect(budgetFitExpanded.bodyOverflow).toBeLessThanOrEqual(1);
+      expect(budgetFitExpanded.labelsFit).toBe(true);
+      expect(budgetFitExpanded.inputsInsideField).toBe(true);
+      await page.locator("#expand-map").click();
+      await expect(page.locator(".route-table")).not.toHaveClass(/map-expanded/);
     } else if (viewport.mode === "tablet") {
       expect(overflow.mapPosition).toBe("static");
       expect(overflow.routeDisplay).toBe("flex");

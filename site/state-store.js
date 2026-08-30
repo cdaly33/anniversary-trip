@@ -179,11 +179,12 @@
   }
 
   function safeJsonParse(raw) {
-    if (typeof raw !== "string" || !raw.trim()) return { ok: true, value: null };
+    if (raw === null || typeof raw === "undefined") return { ok: true, value: null, absent: true };
+    if (typeof raw !== "string") return { ok: false, value: null, absent: false };
     try {
-      return { ok: true, value: JSON.parse(raw) };
+      return { ok: true, value: JSON.parse(raw), absent: false };
     } catch (error) {
-      return { ok: false, value: null, error };
+      return { ok: false, value: null, absent: false, error };
     }
   }
 
@@ -237,7 +238,8 @@
   function loadState(adapter, model) {
     const parsed = safeJsonParse(adapter.read());
     const normalized = normalizeState(parsed.value, model);
-    const recovered = !parsed.ok || !parsed.value || Number(parsed.value.version) !== SCHEMA_VERSION;
+    const recovered = !parsed.absent
+      && (!parsed.ok || Number(parsed.value && parsed.value.version) !== SCHEMA_VERSION);
     if (recovered) adapter.write(JSON.stringify(normalized));
     return { state: normalized, recovered };
   }
