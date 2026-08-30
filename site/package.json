@@ -1,0 +1,13 @@
+{
+  "name": "anniversary-trip-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "validate:content": "node validate-content.js",
+    "validate:coordinates": "node validate-coordinates.js",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
+  }
+}

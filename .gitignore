@@ -8,3 +8,8 @@
 .squad/.cache/
 # Squad: SubSquad activation file (local to this machine)
 .squad-workstream
+
+# Browser test artifacts
+site/node_modules/
+site/playwright-report/
+site/test-results/

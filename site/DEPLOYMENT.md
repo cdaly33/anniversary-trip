@@ -28,3 +28,16 @@ The check imports the shared deployed trip data from `site/trip-data.js` and val
 marker IDs, labels, roles, reference distances, route endpoints, segment
 semantics, and itinerary marker references without external geocoding. It also
 runs a negative Lake Como longitude-sign regression.
+
+## Browser/device regression check
+
+Run from the repository root:
+
+```text
+npm --prefix site install
+npm --prefix site run test:browser
+```
+
+The Playwright suite verifies clean default-trip selection, invalid-hash fallback,
+trip/day selection synchronization, no horizontal overflow at 390×844, 820×1180,
+1180×820, and 1440×900, plus key control usability and map-interaction safety.

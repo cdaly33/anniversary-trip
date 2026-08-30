@@ -11,9 +11,9 @@
       "dayLinkPlacements": 26
     },
     {
-      "id": "italy-croatia",
+      "id": "italy-slovenia",
       "entries": 13,
-      "dayLinkPlacements": 28
+      "dayLinkPlacements": 30
     },
     {
       "id": "italy-slovenia-reversed",
@@ -26,5 +26,5 @@
       "dayLinkPlacements": 32
     }
   ],
-  "sha256": "6fa307b6d94069b3ee392a61d192cfdcf8a3d5ad8deb979cfd017950cecdde5a"
+  "sha256": "da63454e31e100924d31cc1e7c1c68bfacd952b6c3bd959d328344f06dab850e"
 }

@@ -60,14 +60,16 @@ h1 em{color:var(--route);font-style:normal}
 .concept-item .meta{display:block;margin-top:5px;font:500 .875rem/1.3 var(--utility);overflow-wrap:anywhere}
 
 .map-heading{align-items:end;margin-bottom:12px}
-.map-actions{display:flex;gap:8px}
+.map-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .small-button{min-height:44px;border:1px solid var(--chart);background:transparent;padding:8px 10px;font-size:.875rem;font-weight:600;cursor:pointer}
+.legend-button{display:none}
 .map-shell{position:relative;min-height:520px;height:min(64vh,720px);border:1px solid var(--chart);overflow:hidden;background-color:#cbdfe0;background-image:linear-gradient(rgba(18,48,68,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(18,48,68,.08) 1px,transparent 1px);background-size:44px 44px}
 #map{height:100%;z-index:1;background:transparent}
 .map-shell.interaction-off #map{pointer-events:none}
 .map-fallback{position:absolute;inset:0;z-index:5;display:grid;place-content:center;text-align:center;padding:40px;background:rgba(220,235,236,.93);font-family:var(--utility)}
 .map-fallback[hidden]{display:none}
 .map-legend{position:absolute;z-index:500;left:10px;bottom:10px;display:flex;gap:8px 12px;flex-wrap:wrap;max-width:calc(100% - 20px);padding:8px 10px;background:rgba(248,250,248,.96);border:1px solid var(--line);font:600 .875rem/1.25 var(--utility)}
+.map-legend[hidden]{display:none}
 .map-legend span{display:flex;align-items:center;gap:5px}
 .line{display:inline-block;width:25px;height:4px;background:var(--route)}
 .rail-line{height:3px}
@@ -101,6 +103,8 @@ h3{font:600 1.05rem/1.25 var(--utility);margin:0 0 8px}
 .planning-panel,.image-section{margin:24px 0;border-top:1px solid var(--line);padding-top:20px}
 .planning-panel{padding:18px;background:rgba(220,235,236,.5);border-left:4px solid var(--teal);border-top:0}
 .cost-panel{border-left-color:var(--brass);background:rgba(166,111,22,.07)}
+.rental-panel{border-left-color:var(--route);background:rgba(217,74,56,.08)}
+#rental-status{color:var(--route-text);font:700 .92rem/1.2 var(--utility);text-transform:uppercase;letter-spacing:.05em}
 .planning-panel .panel-lead{font-weight:600;margin:0 0 10px}
 .planning-panel details summary{min-height:44px;display:flex;align-items:center;font:600 .9rem/1.3 var(--utility);color:var(--teal);cursor:pointer}
 .planning-panel details p{margin:8px 0}
@@ -170,6 +174,23 @@ h3{font:600 1.05rem/1.25 var(--utility);margin:0 0 8px}
 footer{display:flex;justify-content:space-between;padding:25px 48px;background:var(--chart);color:var(--paper);font:500 .875rem/1.4 var(--utility)}
 footer p{margin:0}
 
+@media (min-width:760px) and (max-width:1099px){
+  .masthead{padding:18px 28px 16px;gap:18px;grid-template-columns:76px minmax(0,1fr)}
+  .provisional{padding:10px 28px}
+  .route-table{display:flex;flex-direction:column;align-items:stretch}
+  .route-table.map-expanded .map-shell{height:min(74vh,820px)}
+  .concept-region{padding:18px 28px}
+  .map-region{position:static;padding:20px 28px 18px;align-self:stretch;width:100%}
+  .evidence-region{padding:26px 28px 34px;border-left:0;border-top:1px solid var(--line)}
+  .itinerary-rail{margin:18px -28px -18px;padding:12px 28px}
+  .concept-list.open{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .map-heading{display:grid;gap:10px}
+  .map-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+  .map-actions .small-button{width:100%;min-width:0}
+  .map-shell{height:48vh;min-height:360px}
+  footer{padding:24px 28px}
+}
+
 @media (max-width:759px){
   body{font-size:16px}
   .masthead,.provisional,.route-table,.concept-region,.map-region,.evidence-region,footer{width:100%;min-width:0}
@@ -191,10 +212,12 @@ footer p{margin:0}
   .concept-item{min-height:0;border-right:0;padding:9px 8px}
   .concept-item .name{font-size:1.1rem}
   .concept-item .concept-status,.concept-item .meta{margin-top:3px}
-  .map-heading{align-items:flex-start;flex-wrap:wrap}
+  .map-heading{display:grid;gap:10px}
   .map-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
   .map-actions .small-button{width:100%;min-width:0;white-space:normal;overflow-wrap:anywhere}
-  .map-shell{height:40vh;min-height:300px}
+  .legend-button{display:block}
+  .map-shell{height:34vh;min-height:250px}
+  .map-legend{left:8px;right:8px;bottom:8px;max-width:none;font-size:.82rem}
   .concept-header{flex-wrap:wrap}
   .concept-header h2{font-size:3.2rem}
   .route-facts{grid-template-columns:1fr}
