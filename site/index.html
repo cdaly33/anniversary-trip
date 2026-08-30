@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="styles.css">
   <script src="assets/leaflet/leaflet.js" defer></script>
   <script src="trip-data.js" defer></script>
+  <script src="trip-model.js" defer></script>
+  <script src="state-store.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -21,7 +23,7 @@
     <div>
       <p class="eyebrow">Rachel + Chris · 2027 route table</p>
       <h1>Trip concepts.<br><em>One</em> 30th anniversary.</h1>
-      <p class="thesis">Trace each trip, test the tradeoffs, and talk through what feels right.</p>
+      <p class="thesis">Compare tradeoffs, align preferences, and keep the final choice inspectable.</p>
     </div>
   </header>
 
@@ -33,15 +35,14 @@
   <noscript>
     <section class="no-script">
       <h2>Route review without JavaScript</h2>
-      <p>The interactive map needs JavaScript, but the trip concepts still remain available:</p>
+      <p>The interactive comparison tools need JavaScript, but all concepts still remain available:</p>
       <ul>
-        <li><strong>Italy + Slovenia:</strong> provisional leading fit; Travel Day 0 + Days 1–12, Lake Como, the Dolomites, and Lake Bled.</li>
-        <li><strong>Italy + Slovenia (Reversed):</strong> alternate lead variant; Travel Day 0 + Days 1–12, Lake Bled, the Dolomites, and Lake Como.</li>
-        <li><strong>Northern Italy:</strong> focused Italy-only concept; Travel Day 0 + Days 1–12, Venice, Cinque Terre, and Lake Como.</li>
-        <li><strong>Spain:</strong> strongest challenger; Travel Day 0 + Days 1–11, Madrid and Seville.</li>
-        <li><strong>New Zealand + Australia:</strong> highest burden and not recommended in this shape; Days 1–14.</li>
+        <li><strong>Italy + Slovenia:</strong> one concept with route direction choice (Como → Dolomites → Bled or Bled → Dolomites → Como).</li>
+        <li><strong>Northern Italy:</strong> Venice, Cinque Terre, and Lake Como.</li>
+        <li><strong>Spain:</strong> Madrid and Seville with optional Toledo/Segovia balance.</li>
+        <li><strong>New Zealand + Australia:</strong> highest burden concept with long-haul and internal-flight dependency.</li>
       </ul>
-      <p>The complete daily outlines, flight expectations, costs, and links return when JavaScript is enabled.</p>
+      <p>Enable JavaScript for the map, side-by-side comparison matrix, local vote capture, itinerary alternatives, and editable budget model.</p>
     </section>
   </noscript>
 
@@ -118,9 +119,31 @@
 
       <dl id="route-facts" class="route-facts"></dl>
 
+      <section class="decision-hub" aria-labelledby="compare-heading">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Structured comparison</p>
+            <h3 id="compare-heading">Compare 2–3 trips side by side</h3>
+          </div>
+        </div>
+        <p id="compare-warning" class="section-note"></p>
+        <div id="compare-selection" class="choice-row" aria-label="Select trips to compare"></div>
+        <div id="compare-table" class="matrix-wrap" aria-label="Desktop comparison matrix"></div>
+        <div id="compare-cards" class="snap-row" aria-label="Mobile comparison cards"></div>
+      </section>
+
       <section class="reading-section">
         <h3>Why it could fit</h3>
         <p id="why-fit"></p>
+      </section>
+
+      <section id="direction-panel" class="planning-panel direction-panel" aria-labelledby="direction-heading" hidden>
+        <p class="eyebrow">Italy + Slovenia route direction</p>
+        <h3 id="direction-heading">Route direction preference</h3>
+        <p class="section-note">Switch direction without duplicating concept cards. The selection updates map order, day sequence, friction, and budget model.</p>
+        <div id="direction-options" class="choice-row" role="radiogroup" aria-label="Route direction options"></div>
+        <div id="direction-compare-table" class="matrix-wrap" aria-label="Desktop direction comparison"></div>
+        <div id="direction-cards" class="snap-row" aria-label="Mobile direction comparison cards"></div>
       </section>
 
       <section class="planning-panel flight-panel" aria-labelledby="flight-heading">
@@ -147,7 +170,28 @@
           <div><dt>Confidence</dt><dd id="cost-confidence"></dd></div>
           <div><dt>Value verdict</dt><dd id="cost-verdict"></dd></div>
         </dl>
-        <p class="cost-disclaimer">Includes economy travel from STL, stated midrange hotel nights, required route transport, ordinary meals, representative anchors, insurance, and contingency. Excludes shopping, premium upgrades, and unlisted extras. Recalculate after any gateway, positioning-night, season, or hotel-night change.</p>
+        <p class="cost-disclaimer">These are planning estimates. Recalculate after any gateway, base-night, season, transport, or route-direction change.</p>
+      </section>
+
+      <section class="planning-panel budget-panel" aria-labelledby="budget-heading">
+        <p class="eyebrow">Editable planning budget · local only</p>
+        <div class="section-title-row">
+          <h3 id="budget-heading">Budget model (all categories)</h3>
+          <button id="reset-budget" class="small-button" type="button">Reset overrides</button>
+        </div>
+        <div id="budget-totals" class="budget-totals"></div>
+        <details>
+          <summary>Edit category estimates and optional low/high overrides</summary>
+          <div id="budget-categories" class="budget-categories"></div>
+        </details>
+      </section>
+
+      <section class="planning-panel friction-panel" aria-labelledby="friction-heading">
+        <p class="eyebrow">Deterministic logistics model</p>
+        <h3 id="friction-heading">Trip friction score</h3>
+        <p class="score-line"><strong id="friction-score">0 / 5</strong></p>
+        <p id="friction-summary"></p>
+        <div id="friction-breakdown" class="matrix-wrap"></div>
       </section>
 
       <section id="rental-panel" class="planning-panel rental-panel" aria-labelledby="rental-heading" hidden>
@@ -160,6 +204,29 @@
         <ul id="rental-fallbacks" class="source-list"></ul>
       </section>
 
+      <section class="decision-panel" aria-labelledby="decision-heading">
+        <p class="eyebrow">Shared preference capture</p>
+        <h3 id="decision-heading">Decision summary and votes</h3>
+        <p id="state-recovery-note" class="state-note" role="status" aria-live="polite"></p>
+        <div id="decision-summary" class="decision-summary"></div>
+        <div id="selected-variants-summary" class="selected-variants"></div>
+
+        <details open>
+          <summary>Vote each trip (Chris + Rachel)</summary>
+          <table class="vote-table">
+            <thead>
+              <tr><th>Trip</th><th>Chris</th><th>Rachel</th></tr>
+            </thead>
+            <tbody id="trip-vote-rows"></tbody>
+          </table>
+        </details>
+
+        <details>
+          <summary>Vote major anchor experiences (Love / Like / Meh / No)</summary>
+          <div id="anchor-vote-groups"></div>
+        </details>
+      </section>
+
       <section class="image-section" aria-labelledby="image-heading">
         <p class="eyebrow">Open-license images · locally hosted</p>
         <h3 id="image-heading">A grounded view of the route</h3>
@@ -169,7 +236,7 @@
       <section class="itinerary-section" aria-labelledby="itinerary-heading">
         <div class="section-title-row">
           <div>
-            <p class="eyebrow" id="plan-kind">Daily plan</p>
+            <p class="eyebrow">Daily plan</p>
             <h3 id="itinerary-heading">Rehearse the route</h3>
           </div>
         </div>
@@ -179,6 +246,7 @@
             <p id="beat-position" class="beat-position"></p>
             <h4 id="beat-title"></h4>
             <p id="beat-detail"></p>
+            <div id="beat-variant-controls"></div>
             <div id="beat-extra" class="beat-extra"></div>
           </div>
           <button id="next-beat" class="beat-nav" type="button" aria-label="Next itinerary beat">→</button>
@@ -192,7 +260,7 @@
           <p id="hard-question"></p>
         </div>
         <div>
-          <p class="eyebrow" id="repair-label">What would make it work</p>
+          <p class="eyebrow">What would make it work</p>
           <p id="repair"></p>
         </div>
       </section>
@@ -204,7 +272,6 @@
         <p id="responsible-copy"></p>
       </section>
     </article>
-
   </main>
 
   <footer>

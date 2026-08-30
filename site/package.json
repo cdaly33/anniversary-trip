@@ -5,7 +5,9 @@
   "scripts": {
     "validate:content": "node validate-content.js",
     "validate:coordinates": "node validate-coordinates.js",
-    "test:browser": "playwright test"
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:browser": "playwright test",
+    "test": "npm run validate:content && npm run validate:coordinates && npm run test:unit && npm run test:browser"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1"

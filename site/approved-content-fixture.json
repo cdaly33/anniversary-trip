@@ -1,6 +1,11 @@
 {
   "trips": [
     {
+      "id": "italy-slovenia",
+      "entries": 13,
+      "dayLinkPlacements": 30
+    },
+    {
       "id": "northern-italy",
       "entries": 13,
       "dayLinkPlacements": 27
@@ -11,20 +16,18 @@
       "dayLinkPlacements": 26
     },
     {
-      "id": "italy-slovenia",
-      "entries": 13,
-      "dayLinkPlacements": 30
-    },
-    {
-      "id": "italy-slovenia-reversed",
-      "entries": 13,
-      "dayLinkPlacements": 29
-    },
-    {
       "id": "new-zealand-australia",
       "entries": 14,
       "dayLinkPlacements": 32
     }
   ],
-  "sha256": "da63454e31e100924d31cc1e7c1c68bfacd952b6c3bd959d328344f06dab850e"
+  "directionVariants": [
+    {
+      "tripId": "italy-slovenia",
+      "directionId": "bled-to-como",
+      "entries": 13,
+      "dayLinkPlacements": 29
+    }
+  ],
+  "sha256": "7a8b6c25fffb1deb09ebbc999fba2fd47e1af85cb14f481038fe5823202a8c88"
 }

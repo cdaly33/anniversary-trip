@@ -30,12 +30,6 @@ const expectedTrips = {
     ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
     ["istria", "Piran or Slovenia finale option", "alternative", 45.5286, 13.5684, 10]
   ],
-  "italy-slovenia-reversed": [
-    ["como", "Lake Como", "base", 45.9917589, 9.264881, 10],
-    ["venice", "Dolomites", "base", 46.5754, 11.6713, 25],
-    ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
-    ["istria", "Piran or Slovenia finale option", "alternative", 45.5286, 13.5684, 10]
-  ],
   "new-zealand-australia": [
     ["queenstown", "Queenstown", "base", -45.0321923, 168.661, 10],
     ["glenorchy", "Glenorchy area", "excursion", -44.849749, 168.3851983, 25],
@@ -49,7 +43,7 @@ const expectedSegments = {
   "northern-italy": ["venice>murano:excursion", "venice>burano:alternative", "venice>cinque-terre:rail", "cinque-terre>monterosso:excursion", "cinque-terre>vernazza:excursion", "cinque-terre>manarola:excursion", "cinque-terre>riomaggiore:alternative", "cinque-terre>portovenere:alternative", "cinque-terre>como:rail", "como>villa-carlotta:excursion", "como>bellagio:alternative"],
   spain: ["madrid>toledo:excursion", "madrid>segovia:alternative", "madrid>seville:rail", "seville>cordoba:excursion"],
   "italy-slovenia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
-  "italy-slovenia-reversed": ["rovinj>venice:road", "venice>como:rail", "rovinj>istria:alternative"],
+  "italy-slovenia:bled-to-como": ["rovinj>venice:road", "venice>como:rail", "rovinj>istria:alternative"],
   "new-zealand-australia": ["queenstown>glenorchy:excursion", "queenstown>te-anau:road", "te-anau>milford:road-excursion", "te-anau>queenstown:road", "queenstown>sydney:flight"]
 };
 
@@ -61,61 +55,111 @@ function haversineKm(aLat, aLng, bLat, bLng) {
     + Math.cos(radians(aLat)) * Math.cos(radians(bLat)) * Math.sin(dLng / 2) ** 2;
   return 6371.0088 * 2 * Math.atan2(Math.sqrt(value), Math.sqrt(1 - value));
 }
+
+function validateSegments(trip, segments, localIds, expected, errors, label) {
+  const actualSegments = segments.map(segment => `${segment.from}>${segment.to}:${segment.type}`);
+  if (JSON.stringify(actualSegments) !== JSON.stringify(expected)) {
+    errors.push(`${label} segment order/endpoints/types differ from approved route.`);
+  }
+  segments.forEach(segment => {
+    if (!localIds.has(segment.from) || !localIds.has(segment.to)) {
+      errors.push(`${label} segment references an unknown marker.`);
+    }
+  });
+}
+
+function validateDays(days, localIds, errors, label) {
+  days.forEach((day, dayIndex) => {
+    if (!Array.isArray(day.stops) || !day.stops.length) {
+      errors.push(`${label} day ${dayIndex + 1} has no stop references.`);
+      return;
+    }
+    day.stops.forEach(stopId => {
+      if (!localIds.has(stopId)) errors.push(`${label} day ${dayIndex + 1} references unknown marker "${stopId}".`);
+    });
+  });
+}
+
 function validate(data) {
   const errors = [];
   const allowedRoles = new Set(["base", "excursion", "alternative"]);
-  const fail = message => errors.push(message);
   const tripIds = data.map(trip => trip.id);
 
-  if (new Set(tripIds).size !== tripIds.length) fail("Duplicate trip ID found.");
-  if (tripIds.length !== 5) fail(`Expected exactly 5 trips, found ${tripIds.length}.`);
+  if (tripIds.includes("italy-slovenia-reversed")) {
+    errors.push("Legacy top-level trip ID italy-slovenia-reversed is still present.");
+  }
+  if (tripIds.length !== Object.keys(expectedTrips).length) {
+    errors.push(`Expected exactly ${Object.keys(expectedTrips).length} trips, found ${tripIds.length}.`);
+  }
+  if (new Set(tripIds).size !== tripIds.length) errors.push("Duplicate trip IDs found.");
 
   for (const trip of data) {
     const expected = expectedTrips[trip.id];
     if (!expected) {
-      fail(`Unknown or removed trip ID: ${trip.id}`);
+      errors.push(`Unknown trip ID: ${trip.id}`);
       continue;
     }
+
     const expectedById = new Map(expected.map(item => [item[0], item]));
     const localIds = new Set();
     const coordinateKeys = new Map();
+
     for (const stop of trip.stops) {
       const path = `${trip.id}/${stop.id}`;
-      if (localIds.has(stop.id)) fail(`Duplicate marker ID in trip: ${path}`);
+      if (localIds.has(stop.id)) errors.push(`Duplicate marker ID in trip: ${path}`);
       localIds.add(stop.id);
       const reference = expectedById.get(stop.id);
       if (!reference) {
-        fail(`Unknown marker ID: ${path}`);
+        errors.push(`Unknown marker ID: ${path}`);
         continue;
       }
       const [, expectedName, expectedRole, refLat, refLng, maxKm] = reference;
-      if (stop.name !== expectedName) fail(`${path} label is "${stop.name}", expected "${expectedName}".`);
-      if (stop.role !== expectedRole || !allowedRoles.has(stop.role)) fail(`${path} has invalid role "${stop.role}".`);
-      if (!Number.isFinite(stop.lat) || !Number.isFinite(stop.lng)) fail(`${path} has a non-finite coordinate.`);
-      if (Math.abs(stop.lat) > 90 || Math.abs(stop.lng) > 180) fail(`${path} is outside latitude/longitude ranges.`);
-      if (stop.lat === 0 && stop.lng === 0) fail(`${path} uses the zero/default coordinate.`);
+      if (stop.name !== expectedName) errors.push(`${path} label is "${stop.name}", expected "${expectedName}".`);
+      if (stop.role !== expectedRole || !allowedRoles.has(stop.role)) errors.push(`${path} has invalid role "${stop.role}".`);
+      if (!Number.isFinite(stop.lat) || !Number.isFinite(stop.lng)) errors.push(`${path} has a non-finite coordinate.`);
+      if (Math.abs(stop.lat) > 90 || Math.abs(stop.lng) > 180) errors.push(`${path} is outside latitude/longitude ranges.`);
+      if (stop.lat === 0 && stop.lng === 0) errors.push(`${path} uses the zero/default coordinate.`);
       const key = `${stop.lat},${stop.lng}`;
-      if (coordinateKeys.has(key)) fail(`${path} duplicates coordinates used by ${coordinateKeys.get(key)} within the same trip.`);
+      if (coordinateKeys.has(key)) errors.push(`${path} duplicates coordinates used by ${coordinateKeys.get(key)} within the same trip.`);
       coordinateKeys.set(key, path);
-      if (Math.abs(refLat) > 1 && Math.sign(stop.lat) !== Math.sign(refLat)) fail(`${path} latitude sign differs from its reference.`);
-      if (Math.abs(refLng) > 1 && Math.sign(stop.lng) !== Math.sign(refLng)) fail(`${path} longitude sign differs from its reference.`);
+      if (Math.abs(refLat) > 1 && Math.sign(stop.lat) !== Math.sign(refLat)) errors.push(`${path} latitude sign differs from reference.`);
+      if (Math.abs(refLng) > 1 && Math.sign(stop.lng) !== Math.sign(refLng)) errors.push(`${path} longitude sign differs from reference.`);
       const distance = haversineKm(stop.lat, stop.lng, refLat, refLng);
-      if (distance > maxKm) fail(`${path} is ${distance.toFixed(2)} km from its reference (limit ${maxKm} km).`);
+      if (distance > maxKm) errors.push(`${path} is ${distance.toFixed(2)} km from reference (limit ${maxKm} km).`);
       const swappedDistance = haversineKm(stop.lng, stop.lat, refLat, refLng);
-      if (swappedDistance <= maxKm && distance > maxKm) fail(`${path} appears to have latitude and longitude swapped.`);
+      if (swappedDistance <= maxKm && distance > maxKm) errors.push(`${path} appears to have latitude/longitude swapped.`);
     }
-    expectedById.forEach((_, id) => { if (!localIds.has(id)) fail(`Missing marker ID: ${trip.id}/${id}`); });
-    const actualSegments = trip.segments.map(segment => `${segment.from}>${segment.to}:${segment.type}`);
-    if (JSON.stringify(actualSegments) !== JSON.stringify(expectedSegments[trip.id])) fail(`${trip.id} segment order/endpoints/types differ from the approved route.`);
-    trip.segments.forEach(segment => {
-      if (!localIds.has(segment.from) || !localIds.has(segment.to)) fail(`${trip.id} segment references an unknown marker.`);
+
+    expectedById.forEach((_, id) => {
+      if (!localIds.has(id)) errors.push(`Missing marker ID: ${trip.id}/${id}`);
     });
-    trip.daysPlan.forEach(day => day.stops.forEach(id => {
-      if (!localIds.has(id)) fail(`${trip.id} itinerary day references unknown marker "${id}".`);
-    }));
+
+    validateSegments(trip, trip.segments, localIds, expectedSegments[trip.id], errors, trip.id);
+    validateDays(trip.daysPlan, localIds, errors, trip.id);
+
+    if (trip.id === "italy-slovenia") {
+      const reversed = (trip.routeDirections || []).find(direction => direction.id === "bled-to-como");
+      if (!reversed || !reversed.overrides) {
+        errors.push("italy-slovenia is missing the bled-to-como route direction overrides.");
+      } else {
+        const reversedSegments = reversed.overrides.segments;
+        if (!Array.isArray(reversedSegments)) {
+          errors.push("italy-slovenia reversed route direction is missing segments.");
+        } else {
+          validateSegments(trip, reversedSegments, localIds, expectedSegments["italy-slovenia:bled-to-como"], errors, "italy-slovenia:bled-to-como");
+        }
+        if (!Array.isArray(reversed.overrides.daysPlan)) {
+          errors.push("italy-slovenia reversed route direction is missing daysPlan.");
+        } else {
+          validateDays(reversed.overrides.daysPlan, localIds, errors, "italy-slovenia:bled-to-como");
+        }
+      }
+    }
   }
 
-  Object.keys(expectedTrips).forEach(id => { if (!tripIds.includes(id)) fail(`Missing trip ID: ${id}`); });
+  Object.keys(expectedTrips).forEach(id => {
+    if (!tripIds.includes(id)) errors.push(`Missing trip ID: ${id}`);
+  });
   return errors;
 }
 
@@ -134,5 +178,5 @@ if (errors.length) {
 } else {
   const markerCount = trips.reduce((sum, trip) => sum + trip.stops.length, 0);
   const segmentCount = trips.reduce((sum, trip) => sum + trip.segments.length, 0);
-  console.log(`Coordinate validation passed: ${markerCount} markers, ${segmentCount} segments, ${trips.length} trips; sign regression detected.`);
+  console.log(`Coordinate validation passed: ${markerCount} markers, ${segmentCount} top-level segments, ${trips.length} trips; reversed direction and sign regression verified.`);
 }
