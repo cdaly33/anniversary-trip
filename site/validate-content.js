@@ -9,8 +9,20 @@ const fixture = require("./approved-content-fixture.json");
 const errors = [];
 const fail = message => errors.push(message);
 const expectedDayKeys = ["companion", "fallback", "fit", "image", "kind", "label", "links", "main", "pace", "stops", "title", "transit"];
+const compareTripOrder = (a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER)
+  || a.name.localeCompare(b.name);
 
 if (trips.length !== fixture.trips.length) fail(`Expected ${fixture.trips.length} trips, found ${trips.length}.`);
+if (trips.some(trip => trip.id === "italy-croatia")) fail("Removed trip ID italy-croatia is still present in active trip data.");
+
+const explicitDefaults = trips.filter(trip => trip.isDefault || trip.default === true).sort(compareTripOrder);
+if (explicitDefaults.length > 1) fail(`Expected at most one explicit default trip, found ${explicitDefaults.length}.`);
+const fallbackDefault = [...trips].sort(compareTripOrder)[0];
+const resolvedDefault = explicitDefaults[0] || fallbackDefault;
+if (!resolvedDefault || !resolvedDefault.id) fail("No usable default trip could be resolved from trip data.");
+if (resolvedDefault && !fixture.trips.some(trip => trip.id === resolvedDefault.id)) {
+  fail(`Resolved default trip ${resolvedDefault.id} is missing from the approved fixture.`);
+}
 
 for (const expected of fixture.trips) {
   const trip = trips.find(item => item.id === expected.id);
@@ -46,6 +58,34 @@ for (const expected of fixture.trips) {
       if (!link.label || !/^https:\/\//.test(link.url)) fail(`${trip.id} entry ${index + 1} link ${linkIndex + 1} is incomplete.`);
       if (/^UNESCO$/i.test(link.label.trim())) fail(`${trip.id} entry ${index + 1} has an ambiguous link label.`);
     });
+  });
+}
+
+for (const id of ["italy-slovenia", "italy-slovenia-reversed"]) {
+  const trip = trips.find(item => item.id === id);
+  if (!trip) {
+    fail(`Missing rental-feasibility trip ${id}.`);
+    continue;
+  }
+  const rental = trip.rentalFeasibility;
+  if (!rental || typeof rental !== "object") {
+    fail(`${id} is missing rentalFeasibility planning data.`);
+    continue;
+  }
+  if (rental.status !== "Not yet confirmed") fail(`${id} rentalFeasibility status must be "Not yet confirmed".`);
+  if (typeof rental.primary !== "string" || !rental.primary.startsWith("Primary concept:")) {
+    fail(`${id} rentalFeasibility primary concept is missing or malformed.`);
+  }
+  if (!Array.isArray(rental.checklist) || rental.checklist.length < 4) {
+    fail(`${id} rentalFeasibility checklist must include at least four verification items.`);
+  }
+  if (!Array.isArray(rental.fallbackOptions) || rental.fallbackOptions.length < 3) {
+    fail(`${id} rentalFeasibility fallback options must include at least three items.`);
+  }
+  trip.daysPlan.forEach((day, index) => {
+    if (/there is no Schengen border stop/i.test(day.transit)) {
+      fail(`${id} day ${index + 1} transit uses absolute border-stop language.`);
+    }
   });
 }
 

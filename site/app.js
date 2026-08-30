@@ -10,29 +10,45 @@
     return;
   }
 
+  function compareTripOrder(a, b) {
+    return (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER)
+      || a.name.localeCompare(b.name);
+  }
+
+  function resolveDefaultTrip(data) {
+    const explicit = data.filter(trip => trip.isDefault || trip.default === true).sort(compareTripOrder);
+    if (explicit.length) return explicit[0];
+    return [...data].sort(compareTripOrder)[0];
+  }
+
+  const defaultTrip = resolveDefaultTrip(trips);
+  const DEFAULT_TRIP_ID = defaultTrip.id;
   const RETAINED_IDS = new Set(trips.map(trip => trip.id));
+  const phoneLegendQuery = matchMedia("(max-width: 759px)");
   const byId = id => document.getElementById(id);
   const ids = [
     "concept-list", "sort-concepts", "concept-trigger", "current-concept", "map-heading",
-    "map-fallback", "fallback-route", "retry-map", "fit-route", "enable-map", "expand-map", "route-description",
+    "map-fallback", "fallback-route", "retry-map", "fit-route", "enable-map", "expand-map", "toggle-legend", "map-legend", "route-description",
     "concept-kicker", "concept-title", "status-detail", "route-shape", "route-facts", "why-fit",
     "flight-summary", "flight-detail", "flight-burden", "flight-links", "cost-range", "cost-hotels", "cost-buys",
-    "cost-pressure", "cost-confidence", "cost-verdict", "image-gallery", "mobility-summary", "responsible-copy",
+    "cost-pressure", "cost-confidence", "cost-verdict", "rental-panel", "rental-status", "rental-primary", "rental-checklist", "rental-fallbacks",
+    "image-gallery", "mobility-summary", "responsible-copy",
     "beat-position", "beat-title", "beat-detail", "beat-extra", "previous-beat", "next-beat",
     "itinerary-list", "hard-question", "repair", "rail-beats", "live-region"
   ];
   const els = Object.fromEntries(ids.map(id => [id, byId(id)]));
 
-  let selectedId = "italy-croatia";
+  let selectedId = DEFAULT_TRIP_ID;
   let dayIndex = 0;
   let map;
   let tileLayer;
   let routeLayers = [];
   let mapEnabled = false;
   let mapInteractionBeforeExpand = false;
+  let legendExpanded = true;
 
   function currentTrip() {
-    return trips.find(trip => trip.id === selectedId) || trips[0];
+    return trips.find(trip => trip.id === selectedId) || defaultTrip;
   }
 
   function announce(message) {
@@ -43,7 +59,7 @@
   function sortedTrips() {
     const list = [...trips];
     const sort = els["sort-concepts"].value;
-    if (sort === "council") list.sort((a, b) => a.order - b.order);
+    if (sort === "council") list.sort(compareTripOrder);
     if (sort === "alpha") list.sort((a, b) => a.name.localeCompare(b.name));
     if (sort === "bases") list.sort((a, b) => a.bases - b.bases || a.order - b.order);
     if (sort === "days") list.sort((a, b) => a.days - b.days || a.order - b.order);
@@ -56,6 +72,7 @@
       const button = document.createElement("button");
       button.type = "button";
       button.className = "concept-item";
+      button.dataset.tripId = trip.id;
       button.classList.toggle("selected", trip.id === selectedId);
       button.setAttribute("aria-pressed", String(trip.id === selectedId));
       const name = document.createElement("span");
@@ -134,6 +151,7 @@
     els["cost-pressure"].textContent = trip.cost.pressure;
     els["cost-confidence"].textContent = trip.cost.confidence;
     els["cost-verdict"].textContent = trip.cost.verdict;
+    renderRental(trip);
     renderMobility(trip);
     els["responsible-copy"].textContent = trip.responsible;
     renderImages(trip);
@@ -180,6 +198,28 @@
       figure.append(img, caption);
       els["image-gallery"].append(figure);
     });
+  }
+
+  function renderTextList(container, entries) {
+    container.replaceChildren();
+    entries.forEach(entry => {
+      const li = document.createElement("li");
+      li.textContent = entry;
+      container.append(li);
+    });
+  }
+
+  function renderRental(trip) {
+    const rental = trip.rentalFeasibility;
+    if (!rental) {
+      els["rental-panel"].hidden = true;
+      return;
+    }
+    els["rental-panel"].hidden = false;
+    els["rental-status"].textContent = rental.status;
+    els["rental-primary"].textContent = rental.primary;
+    renderTextList(els["rental-checklist"], rental.checklist);
+    renderTextList(els["rental-fallbacks"], rental.fallbackOptions);
   }
 
   function renderItinerary(day) {
@@ -274,9 +314,18 @@
     return wrapper;
   }
 
+  function normalizeDayIndex(id, index) {
+    const trip = trips.find(item => item.id === id) || defaultTrip;
+    return Math.max(0, Math.min(index, trip.daysPlan.length - 1));
+  }
+
+  function canonicalHash(id = selectedId, index = dayIndex) {
+    return `#${id}/day-${index + 1}`;
+  }
+
   function selectTrip(id, newDay = 0, updateHash = false) {
-    selectedId = RETAINED_IDS.has(id) ? id : "italy-croatia";
-    dayIndex = Math.min(Math.max(newDay, 0), currentTrip().daysPlan.length - 1);
+    selectedId = RETAINED_IDS.has(id) ? id : DEFAULT_TRIP_ID;
+    dayIndex = normalizeDayIndex(selectedId, newDay);
     renderConcepts();
     renderEvidence();
     drawRoutes(true);
@@ -296,21 +345,27 @@
   }
 
   function setDay(index, updateHash = false) {
-    dayIndex = Math.max(0, Math.min(index, currentTrip().daysPlan.length - 1));
+    dayIndex = normalizeDayIndex(selectedId, index);
     renderItinerary(currentTrip().daysPlan[dayIndex]);
     updateMapDay(true);
     if (updateHash) updateUrl();
     announce(`${currentTrip().daysPlan[dayIndex].title}. ${currentTrip().daysPlan[dayIndex].main}`);
   }
 
-  function updateUrl() {
-    history.pushState(null, "", `#${selectedId}/day-${dayIndex + 1}`);
+  function updateUrl(mode = "push") {
+    const hash = canonicalHash();
+    if (location.hash === hash) return;
+    history[mode === "replace" ? "replaceState" : "pushState"](null, "", hash);
   }
 
   function readUrl() {
-    const match = location.hash.match(/^#([a-z-]+)\/(?:day|beat)-(\d+)$/);
-    if (!match || !RETAINED_IDS.has(match[1])) return ["italy-croatia", 0];
-    return [match[1], Number(match[2]) - 1];
+    const match = location.hash.match(/^#([a-z0-9-]+)\/(?:day|beat)-(\d+)$/i);
+    if (!match || !RETAINED_IDS.has(match[1])) {
+      return { id: DEFAULT_TRIP_ID, day: 0, canonical: canonicalHash(DEFAULT_TRIP_ID, 0) };
+    }
+    const id = match[1];
+    const day = normalizeDayIndex(id, Number(match[2]) - 1);
+    return { id, day, canonical: canonicalHash(id, day) };
   }
 
   function initMap() {
@@ -467,6 +522,18 @@
     els["enable-map"].textContent = enabled ? "Disable map interaction" : "Enable map interaction";
   }
 
+  function setLegendExpanded(expanded, { announceChange = true } = {}) {
+    legendExpanded = expanded;
+    els["map-legend"].hidden = !expanded;
+    els["toggle-legend"].setAttribute("aria-expanded", String(expanded));
+    els["toggle-legend"].textContent = expanded ? "Hide legend" : "Show legend";
+    if (announceChange) announce(expanded ? "Map legend shown." : "Map legend hidden.");
+  }
+
+  function syncLegendForViewport() {
+    setLegendExpanded(!phoneLegendQuery.matches, { announceChange: false });
+  }
+
   function setMapExpanded(expanded, { announceChange = true } = {}) {
     document.querySelector(".route-table").classList.toggle("map-expanded", expanded);
     els["expand-map"].setAttribute("aria-expanded", String(expanded));
@@ -495,6 +562,7 @@
     });
     els["fit-route"].addEventListener("click", () => drawRoutes(true));
     els["enable-map"].addEventListener("click", () => setMapInteraction(!mapEnabled));
+    els["toggle-legend"].addEventListener("click", () => setLegendExpanded(!legendExpanded));
     els["expand-map"].addEventListener("click", () => {
       setMapExpanded(!document.querySelector(".route-table").classList.contains("map-expanded"));
     });
@@ -511,19 +579,27 @@
       }
     });
     window.addEventListener("popstate", () => {
-      const [id, day] = readUrl();
-      selectTrip(id, day, false);
+      const state = readUrl();
+      selectTrip(state.id, state.day, false);
+      if (location.hash !== state.canonical) updateUrl("replace");
     });
+    if (phoneLegendQuery.addEventListener) {
+      phoneLegendQuery.addEventListener("change", syncLegendForViewport);
+    } else {
+      phoneLegendQuery.addListener(syncLegendForViewport);
+    }
   }
 
   function start() {
-    const [id, initialDay] = readUrl();
-    selectedId = id;
-    dayIndex = initialDay;
+    const state = readUrl();
+    selectedId = state.id;
+    dayIndex = state.day;
     bindEvents();
+    syncLegendForViewport();
     renderConcepts();
     renderEvidence();
     initMap();
+    if (location.hash !== state.canonical) updateUrl("replace");
   }
 
   start();

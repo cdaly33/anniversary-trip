@@ -77,6 +77,7 @@
           <button id="expand-map" class="small-button" type="button" aria-expanded="false" aria-controls="map-shell">Expand map</button>
           <button id="enable-map" class="small-button" type="button">Enable map interaction</button>
           <button id="fit-route" class="small-button" type="button">Fit full route</button>
+          <button id="toggle-legend" class="small-button legend-button" type="button" aria-expanded="true" aria-controls="map-legend">Hide legend</button>
         </div>
       </div>
       <div class="map-shell" id="map-shell">
@@ -86,7 +87,7 @@
           <p id="fallback-route"></p>
           <button id="retry-map" class="small-button" type="button">Retry map</button>
         </div>
-        <div class="map-legend" aria-label="Map legend">
+        <div id="map-legend" class="map-legend" aria-label="Map legend">
           <span><i class="marker-key base-key"></i>Overnight base</span>
           <span><i class="marker-key excursion-key"></i>Excursion</span>
           <span><i class="marker-key alternative-key"></i>Choose one</span>
@@ -147,6 +148,16 @@
           <div><dt>Value verdict</dt><dd id="cost-verdict"></dd></div>
         </dl>
         <p class="cost-disclaimer">Includes economy travel from STL, stated midrange hotel nights, required route transport, ordinary meals, representative anchors, insurance, and contingency. Excludes shopping, premium upgrades, and unlisted extras. Recalculate after any gateway, positioning-night, season, or hotel-night change.</p>
+      </section>
+
+      <section id="rental-panel" class="planning-panel rental-panel" aria-labelledby="rental-heading" hidden>
+        <p class="eyebrow">Planning dependency</p>
+        <h3 id="rental-heading">Rental feasibility: <span id="rental-status"></span></h3>
+        <p id="rental-primary" class="panel-lead"></p>
+        <p class="verify-line"><strong>Verification checklist:</strong></p>
+        <ul id="rental-checklist" class="source-list"></ul>
+        <p class="verify-line"><strong>Fallback options:</strong></p>
+        <ul id="rental-fallbacks" class="source-list"></ul>
       </section>
 
       <section class="image-section" aria-labelledby="image-heading">

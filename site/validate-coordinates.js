@@ -24,17 +24,17 @@ const expectedTrips = {
     ["seville", "Seville", "base", 37.3886303, -5.9953403, 10],
     ["cordoba", "Córdoba", "excursion", 37.8845813, -4.7760138, 10]
   ],
-  "italy-croatia": [
+  "italy-slovenia": [
     ["como", "Lake Como", "base", 45.9917589, 9.264881, 10],
     ["venice", "Dolomites", "base", 46.5754, 11.6713, 25],
     ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
-    ["istria", "Piran or Slovenia side trip", "alternative", 45.5286, 13.5684, 10]
+    ["istria", "Piran or Slovenia finale option", "alternative", 45.5286, 13.5684, 10]
   ],
   "italy-slovenia-reversed": [
     ["como", "Lake Como", "base", 45.9917589, 9.264881, 10],
     ["venice", "Dolomites", "base", 46.5754, 11.6713, 25],
     ["rovinj", "Lake Bled", "base", 46.3683, 14.1146, 10],
-    ["istria", "Piran or Slovenia side trip", "alternative", 45.5286, 13.5684, 10]
+    ["istria", "Piran or Slovenia finale option", "alternative", 45.5286, 13.5684, 10]
   ],
   "new-zealand-australia": [
     ["queenstown", "Queenstown", "base", -45.0321923, 168.661, 10],
@@ -48,7 +48,7 @@ const expectedTrips = {
 const expectedSegments = {
   "northern-italy": ["venice>murano:excursion", "venice>burano:alternative", "venice>cinque-terre:rail", "cinque-terre>monterosso:excursion", "cinque-terre>vernazza:excursion", "cinque-terre>manarola:excursion", "cinque-terre>riomaggiore:alternative", "cinque-terre>portovenere:alternative", "cinque-terre>como:rail", "como>villa-carlotta:excursion", "como>bellagio:alternative"],
   spain: ["madrid>toledo:excursion", "madrid>segovia:alternative", "madrid>seville:rail", "seville>cordoba:excursion"],
-  "italy-croatia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
+  "italy-slovenia": ["como>venice:rail", "venice>rovinj:road", "rovinj>istria:alternative"],
   "italy-slovenia-reversed": ["rovinj>venice:road", "venice>como:rail", "rovinj>istria:alternative"],
   "new-zealand-australia": ["queenstown>glenorchy:excursion", "queenstown>te-anau:road", "te-anau>milford:road-excursion", "te-anau>queenstown:road", "queenstown>sydney:flight"]
 };
@@ -121,9 +121,9 @@ function validate(data) {
 
 const errors = validate(trips);
 const signRegression = structuredClone(trips);
-signRegression.find(trip => trip.id === "italy-croatia").stops.find(stop => stop.id === "como").lng *= -1;
+signRegression.find(trip => trip.id === "italy-slovenia").stops.find(stop => stop.id === "como").lng *= -1;
 const signErrors = validate(signRegression);
-if (!signErrors.some(error => error.includes("italy-croatia/como longitude sign differs"))) {
+if (!signErrors.some(error => error.includes("italy-slovenia/como longitude sign differs"))) {
   errors.push("Negative longitude-sign regression did not detect the Lake Como sign flip.");
 }
 
